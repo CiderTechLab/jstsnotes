@@ -108,6 +108,11 @@
 			grid-column: 2;
 			order: 2;
 		}
+
+		/** ハンバーガーボタンはデスクトップで非表示 */
+		.toc-hamburger {
+			display: none;
+		}
 	}
 }
 
@@ -116,18 +121,93 @@
 	@layer components {
 		.layout__inner {
 			@apply flex flex-col;
-			padding-top: 0;
-			padding-bottom: 0;
+			padding-top: var(--height-header);
+			padding-bottom: var(--height-footer);
 		}
 
 		aside {
-			order: -1;
-			padding-top: 5rem;
-			margin-top: var(--height-header);
+			@apply fixed left-0 z-50;
+			top: var(--height-header);
 		}
 
 		main {
 			order: 0;
+		}
+
+		/** ハンバーガーボタン */
+		.toc-hamburger {
+			@apply flex items-center justify-center bg-white cursor-pointer;
+			width: 2.5rem;
+			height: 2.5rem;
+			border: 1px solid #e5e7eb;
+			border-top: none;
+			border-left: none;
+			border-radius: 0 0 0.25rem 0;
+		}
+
+		/** 3本線（中央ライン） */
+		.toc-hamburger__icon {
+			@apply relative block;
+			width: 1.5rem;
+			height: 2px;
+			background-color: #374151;
+			transition: background-color 0.3s ease;
+		}
+
+		/** 上ライン */
+		.toc-hamburger__icon::before {
+			content: '';
+			@apply absolute left-0 block;
+			width: 1.5rem;
+			height: 2px;
+			background-color: #374151;
+			top: -6px;
+			transition: transform 0.3s ease, top 0.3s ease;
+		}
+
+		/** 下ライン */
+		.toc-hamburger__icon::after {
+			content: '';
+			@apply absolute left-0 block;
+			width: 1.5rem;
+			height: 2px;
+			background-color: #374151;
+			top: 6px;
+			transition: transform 0.3s ease, top 0.3s ease;
+		}
+
+		/** バツ印（is-open時）- 中央ラインを非表示 */
+		aside.is-open .toc-hamburger__icon {
+			background-color: transparent;
+		}
+
+		/** バツ印 - 上ラインを45度回転 */
+		aside.is-open .toc-hamburger__icon::before {
+			transform: rotate(45deg);
+			top: 0;
+		}
+
+		/** バツ印 - 下ラインを-45度回転 */
+		aside.is-open .toc-hamburger__icon::after {
+			transform: rotate(-45deg);
+			top: 0;
+		}
+
+		/** TOCナビ（デフォルトで非表示） */
+		aside .toc {
+			display: none;
+			background-color: white;
+			border: 1px solid #e5e7eb;
+			border-top: none;
+			padding: 1rem;
+			width: 250px;
+			max-height: calc(100vh - var(--height-header) - var(--height-footer) - 2.5rem);
+			overflow-y: auto;
+		}
+
+		/** TOCナビ（is-open時に表示） */
+		aside.is-open .toc {
+			display: block;
 		}
 	}
 }

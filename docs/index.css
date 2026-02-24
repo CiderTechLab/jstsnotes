@@ -455,6 +455,9 @@
       grid-column: 2;
       order: 2;
     }
+    .toc-hamburger {
+      display: none;
+    }
   }
 }
 @media (max-width: 1023px) {
@@ -462,16 +465,84 @@
     .layout__inner {
       display: flex;
       flex-direction: column;
-      padding-top: 0;
-      padding-bottom: 0;
+      padding-top: var(--height-header);
+      padding-bottom: var(--height-footer);
     }
     aside {
-      order: -1;
-      padding-top: 5rem;
-      margin-top: var(--height-header);
+      position: fixed;
+      left: calc(var(--spacing) * 0);
+      z-index: 50;
+      top: var(--height-header);
     }
     main {
       order: 0;
+    }
+    .toc-hamburger {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-white);
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 1px solid #e5e7eb;
+      border-top: none;
+      border-left: none;
+      border-radius: 0 0 0.25rem 0;
+    }
+    .toc-hamburger__icon {
+      position: relative;
+      display: block;
+      width: 1.5rem;
+      height: 2px;
+      background-color: #374151;
+      transition: background-color 0.3s ease;
+    }
+    .toc-hamburger__icon::before {
+      content: '';
+      position: absolute;
+      left: calc(var(--spacing) * 0);
+      display: block;
+      width: 1.5rem;
+      height: 2px;
+      background-color: #374151;
+      top: -6px;
+      transition: transform 0.3s ease, top 0.3s ease;
+    }
+    .toc-hamburger__icon::after {
+      content: '';
+      position: absolute;
+      left: calc(var(--spacing) * 0);
+      display: block;
+      width: 1.5rem;
+      height: 2px;
+      background-color: #374151;
+      top: 6px;
+      transition: transform 0.3s ease, top 0.3s ease;
+    }
+    aside.is-open .toc-hamburger__icon {
+      background-color: transparent;
+    }
+    aside.is-open .toc-hamburger__icon::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+    aside.is-open .toc-hamburger__icon::after {
+      transform: rotate(-45deg);
+      top: 0;
+    }
+    aside .toc {
+      display: none;
+      background-color: white;
+      border: 1px solid #e5e7eb;
+      border-top: none;
+      padding: 1rem;
+      width: 250px;
+      max-height: calc(100vh - var(--height-header) - var(--height-footer) - 2.5rem);
+      overflow-y: auto;
+    }
+    aside.is-open .toc {
+      display: block;
     }
   }
 }

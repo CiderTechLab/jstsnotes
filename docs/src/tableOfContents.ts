@@ -57,7 +57,11 @@ function getHeadings(): HeadingElement[] {
 function generateTableOfContentsHTML(headings: HeadingElement[]): string {
 	if (headings.length === 0) return '';
 
-	let html = '<nav class="toc">\n';
+	let html = '<button class="toc-hamburger" aria-label="目次を開く" aria-expanded="false">';
+	html += '<span class="toc-hamburger__icon"></span>';
+	html += '</button>\n';
+
+	html += '<nav class="toc">\n';
 	html += '  <h2 class="text-xl font-bold mb-4">目次</h2>\n';
 	html += '  <ul class="toc-list">\n';
 
@@ -108,6 +112,28 @@ function insertTableOfContents(): void {
 
 	aside.innerHTML = tocHTML;
 
+	// ハンバーガーボタンのクリックハンドラー
+	const hamburger = aside.querySelector<HTMLButtonElement>('.toc-hamburger');
+	if (hamburger) {
+		hamburger.addEventListener('click', () => {
+			const isOpen = aside.classList.toggle('is-open');
+			hamburger.setAttribute('aria-expanded', String(isOpen));
+			hamburger.setAttribute('aria-label', isOpen ? '目次を閉じる' : '目次を開く');
+		});
+	}
+
+	// TOCリンクのクリック後にメニューを閉じる
+	const tocLinks = aside.querySelectorAll('.toc-item a');
+	tocLinks.forEach((link) => {
+		link.addEventListener('click', () => {
+			aside.classList.remove('is-open');
+			if (hamburger) {
+				hamburger.setAttribute('aria-expanded', 'false');
+				hamburger.setAttribute('aria-label', '目次を開く');
+			}
+		});
+	});
+
 	// スタイルの追加
 	applyStyles(aside);
 }
@@ -118,10 +144,12 @@ function insertTableOfContents(): void {
 function applyStyles(aside: Element): void {
 	const style = document.createElement('style');
 	style.textContent = `
-    aside {
-      width: 250px;
-      padding: 20px;
-      border-right: 1px solid #e5e7eb;
+    @media (min-width: 1024px) {
+      aside {
+        width: 250px;
+        padding: 20px;
+        border-right: 1px solid #e5e7eb;
+      }
     }
 
     .toc h2 {
@@ -154,15 +182,6 @@ function applyStyles(aside: Element): void {
     .toc-item a:hover {
       color: #0e7490;
       text-decoration: underline;
-    }
-
-    /* レスポンシブ対応 */
-    @media (max-width: 1024px) {
-      aside {
-        width: 100%;
-        position: static;
-        max-height: none;
-      }
     }
   `;
 	document.head.appendChild(style);
