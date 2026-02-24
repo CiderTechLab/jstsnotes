@@ -127,7 +127,6 @@
 
 		aside {
 			@apply fixed left-0 z-50;
-			top: var(--height-header);
 		}
 
 		main {
@@ -166,14 +165,18 @@
 			height: 2px;
 			background-color: #374151;
 			top: -6px;
-			transition: transform 0.3s ease, top 0.3s ease;
+			transition:
+				transform 0.3s ease,
+				top 0.3s ease;
 		}
 
 		/** 下ライン */
 		.toc-hamburger__icon::after {
 			content: '';
 			@apply absolute left-0 block w-6 h-[2px] bg-gray-700 top-1.5;
-			transition: transform 0.3s ease, top 0.3s ease;
+			transition:
+				transform 0.3s ease,
+				top 0.3s ease;
 		}
 
 		/** バツ印（is-open時）- 中央ラインを非表示 */
@@ -181,20 +184,22 @@
 			@apply bg-transparent;
 		}
 
-		/** バツ印 - 上ラインを45度回転 */
+		/** バツ印 - 上ラインを-45度回転 */
 		aside.is-open .toc-hamburger__icon::before {
-			@apply rotate-45 top-0;
+			@apply -rotate-45 top-0;
 		}
 
-		/** バツ印 - 下ラインを-45度回転 */
+		/** バツ印 - 下ラインを45度回転 */
 		aside.is-open .toc-hamburger__icon::after {
-			@apply -rotate-45 top-0;
+			@apply rotate-45 top-0;
 		}
 
 		/** TOCナビ（デフォルトで非表示） */
 		aside .toc {
 			@apply hidden bg-white border border-gray-200 border-t-0 p-4 w-[250px] overflow-y-auto;
-			max-height: calc(100vh - var(--height-header) - var(--height-footer) - 2.5rem);
+			max-height: calc(
+				100vh - var(--height-header) - var(--height-footer) - 2.5rem
+			);
 		}
 
 		/** TOCナビ（is-open時に表示） */

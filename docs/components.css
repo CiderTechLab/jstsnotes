@@ -18,6 +18,7 @@
     --color-gray-300: oklch(87.2% 0.01 258.338);
     --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-gray-600: oklch(44.6% 0.03 256.802);
+    --color-gray-700: oklch(37.3% 0.034 259.733);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -459,7 +460,6 @@
       position: fixed;
       left: calc(var(--spacing) * 0);
       z-index: 50;
-      top: var(--height-header);
     }
     main {
       order: 0;
@@ -498,42 +498,59 @@
       height: 2px;
       background-color: #374151;
       top: -6px;
-      transition: transform 0.3s ease, top 0.3s ease;
+      transition: transform 0.3s ease,
+				top 0.3s ease;
     }
     .toc-hamburger__icon::after {
       content: '';
       position: absolute;
+      top: calc(var(--spacing) * 1.5);
       left: calc(var(--spacing) * 0);
       display: block;
-      width: 1.5rem;
       height: 2px;
-      background-color: #374151;
-      top: 6px;
-      transition: transform 0.3s ease, top 0.3s ease;
+      width: calc(var(--spacing) * 6);
+      background-color: var(--color-gray-700);
+      transition: transform 0.3s ease,
+				top 0.3s ease;
     }
     aside.is-open .toc-hamburger__icon {
       background-color: transparent;
     }
     aside.is-open .toc-hamburger__icon::before {
-      transform: rotate(45deg);
-      top: 0;
+      top: calc(var(--spacing) * 0);
+      rotate: calc(45deg * -1);
     }
     aside.is-open .toc-hamburger__icon::after {
-      transform: rotate(-45deg);
-      top: 0;
+      top: calc(var(--spacing) * 0);
+      rotate: 45deg;
     }
     aside .toc {
       display: none;
-      background-color: white;
-      border: 1px solid #e5e7eb;
-      border-top: none;
-      padding: 1rem;
       width: 250px;
-      max-height: calc(100vh - var(--height-header) - var(--height-footer) - 2.5rem);
       overflow-y: auto;
+      border-style: var(--tw-border-style);
+      border-width: 1px;
+      border-top-style: var(--tw-border-style);
+      border-top-width: 0px;
+      border-color: var(--color-gray-200);
+      background-color: var(--color-white);
+      padding: calc(var(--spacing) * 4);
+      max-height: calc(
+				100vh - var(--height-header) - var(--height-footer) - 2.5rem
+			);
     }
     aside.is-open .toc {
       display: block;
+    }
+    aside.is-open::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: -1;
     }
   }
 }
