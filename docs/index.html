@@ -34,7 +34,7 @@
 						<h2 class="heading-two heading-two--about">About</h2>
 						<details>
 							<summary><h3 class="heading-three">このサイトの構築プロセス</h3></summary>
-							<section class="ml-4">
+						<section class="section">
 								<p class="ml-4 mb-4">
 									RoadToTypeScriptは、<strong>生成AIの支援を受けながら段階的に</strong>構築されました。以下は制作の基本的なフローです。
 								</p>
@@ -79,10 +79,9 @@
 							</section>
 						</details>
 
-
 						<details>
 							<summary><h3 class="heading-three">まとめ</h3></summary>
-								<section class="ml-4 mt-6">
+								<section class="section ml-4 mt-6">
 								<p class="ml-4">
 									この段階的で反復的なアプローチにより、機能追加とデザイン調整を効率的に進めることができます。
 								</p>
@@ -94,7 +93,7 @@
 						<h2 class="heading-two heading-two--js">JavaScript</h2>
 						<details>
 							<summary><h3 class="heading-three">歴史</h3></summary>
-								<section>
+								<section class="section">
 									<ul>
 										<li>
 											開発者は<a
@@ -111,74 +110,183 @@
 									</ul>
 							</section>
 						</details>
-								<details>
-									<summary>
-										<h3 class="heading-three">Node.js上でのJavaScript実行</h3>
-									</summary>
-									以下のコマンドで実行できる。
+						<details>
+							<summary><h3 class="heading-three">実行方法</h3></summary>
+								<section class="section">
+									<h4>Node.js上での実行</h4>
+									<p>以下のコマンドで実行できる。</p>
 									<pre><code>
-		node [filename].js
-							</code></pre>
-								</details>
-								<details>
-									<summary><h3 class="heading-three">変数、定数</h3></summary>
+node [filename].js
+									</code></pre>
+								</section>
+						</details>
+						<details>
+							<summary><h3 class="heading-three">命名規則</h3></summary>
+								<section class="section">
 									<table class="table">
-										<thead>
+										<thead class="thead">
 											<tr>
-												<th>宣言</th>
-												<th>初期値</th>
-												<th>再宣言</th>
-												<th>再代入</th>
-												<th>スコープ</th>
-												<th>巻き上げ</th>
-												<th>備考</th>
+												<th>命名規則</th>
+												<th>読み方</th>
+												<th>例</th>
+												<th>用途</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td>const</td>
-												<td>必須</td>
-												<td>&#215;</td>
-												<td>&#215;</td>
-												<td>ブロックスコープ</td>
-												<td>&#215;</td>
-												<td><strong>最優先で使うべき。</strong></td>
+												<td>camelCase</td>
+												<td>キャメルケース</td>
+												<td>myVariable, userName</td>
+												<td>変数で使われる</td>
 											</tr>
 											<tr>
-												<td>let</td>
-												<td>undefined（→実質必須な事が多い）</td>
-												<td>&#215;</td>
-												<td>&#9675;</td>
-												<td>ブロックスコープ</td>
-												<td>&#215;</td>
-												<td>constの次に使用するべき。</td>
+												<td>PascalCase</td>
+												<td>パスカルケース</td>
+												<td>MyClass, User</td>
+												<td>クラス名、コンストラクタ関数で使われる</td>
 											</tr>
 											<tr>
-												<td>var</td>
-												<td>undefined</td>
-												<td>&#9675;</td>
-												<td>&#9675;</td>
-												<td>関数スコープ</td>
-												<td>&#9675;</td>
-												<td><strong>非推奨。</strong></td>
+												<td>snake_case</td>
+												<td>スネークケース</td>
+												<td>my_variable, user_name</td>
+												<td>変数や関数で使われる（キャメルよりは頻度少）</td>
 											</tr>
-										</tbody>
+											<tr>
+												<td>kebab-case</td>
+												<td>ケバブケース</td>
+												<td>can-not-use</td>
+												<td>JavaScriptでは変数や関数で使えないこともあり、あまり使われない。</td>
+											</tr>
+										</tbody>	
 									</table>
-								</details>
-								<details>
-									<summary><h3 class="heading-three">データ型</h3></summary>
-										<section>
-											<ul>
-												<li>プリミティブ型：string, number, boolean, null, undefined, symbol, bigint</li>
-												<li>オブジェクト型：object, array, functionなど</li>
-											</ul>
-										</section>
-								</details>
+								</section>
+						</details>
+						<details>
+							<summary><h3 class="heading-three">変数、定数、データ型</h3></summary>
+							<section class="section">
+								<h4>変数、定数</h4>
+									<table class="table">
+									<thead class="thead">
+										<tr>
+											<th>宣言</th>
+											<th>初期値</th>
+											<th>再宣言</th>
+											<th>再代入</th>
+											<th>スコープ</th>
+											<th>巻き上げ</th>
+											<th>備考</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>const</td>
+											<td>必須</td>
+											<td>&#215;</td>
+											<td>&#215;</td>
+											<td>ブロックスコープ</td>
+											<td>&#215;</td>
+											<td><strong>最優先で使うべき。</strong></td>
+										</tr>
+										<tr>
+											<td>let</td>
+											<td>undefined（→実質必須な事が多い）</td>
+											<td>&#215;</td>
+											<td>&#9675;</td>
+											<td>ブロックスコープ</td>
+											<td>&#215;</td>
+											<td>constの次に使用するべき。</td>
+										</tr>
+										<tr>
+											<td>var</td>
+											<td>undefined</td>
+											<td>&#9675;</td>
+											<td>&#9675;</td>
+											<td>関数スコープ</td>
+											<td>&#9675;</td>
+											<td><strong>非推奨。</strong></td>
+										</tr>
+									</tbody>
+								</table>
+
+								<h4>データ型</h4>
+								<table class="table">
+									<thead class="thead">
+										<tr>
+											<th>型</th>
+											<th>データ型</th>
+											<th>値</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>プリミティブ型</td>
+											<td>String</td>
+											<td>文字列</td>
+										</tr>
+										<tr>
+											<td>プリミティブ型</td>
+											<td>Number</td>
+											<td>数値（整数、浮動小数点数、Infinity、NaN）、-(2^53-1)〜2^53-1、※2^53 - 1 = 9007199254740991</td>
+										</tr>
+										<tr>
+											<td>プリミティブ型</td>
+											<td>bigint</td>
+											<td>任意精度整数（メモリが許す限りの大きさ）</td>
+										</tr>
+										<tr>
+											<td>プリミティブ型</td>
+											<td>Boolean</td>
+											<td>真偽値（trueまたはfalse）</td>
+										</tr>
+										<tr>
+											<td>プリミティブ型</td>
+											<td>null</td>
+											<td>null値</td>
+										</tr>
+										<tr>
+											<td>プリミティブ型</td>
+											<td>undefined</td>
+											<td>未定義値</td>
+										</tr>
+										<tr>
+											<td>プリミティブ型</td>
+											<td>symbol</td>
+											<td>一意の識別子</td>
+										</tr>
+										<tr>
+											<td>オブジェクト型</td>
+											<td>object</td>
+											<td>オブジェクト（プロパティの集合）</td>
+										</tr>
+										<tr>
+											<td>オブジェクト型</td>
+											<td>array</td>
+											<td>配列（順序付きの値の集合）</td>
+										</tr>
+										<tr>
+											<td>オブジェクト型</td>
+											<td>function</td>
+											<td>関数（実行可能なオブジェクト）</td>
+										</tr>
+									</tbody>
+								</table>
+							</section>						
+						</details>
+						<details>
+							<summary><h3 class="heading-three">制御構文</h3></summary>
+								<section class="section">
+									<ul>
+										<li>条件分岐：if, else if, else, switch</li>
+										<li>ループ：for, while, do...while, for...in, for...of</li>
+										<li>例外処理：try...catch...finally</li>
+									</ul>
+								</section>
+						</details>
 					</article>
 
 					<article class="article">
 						<h2 class="heading-two heading-two--ts">TypeScript</h2>
-							<section>
+							<section class="section">
 								<details>
 								<summary><h3 class="heading-three">tsconfig.json</h3></summary>
 									<p class="ml-4">
@@ -201,13 +309,13 @@
 											</p>
 								</details>
 							</section>
-							<section>
+							<section class="section">
 								<details>
 								<summary><h3 class="heading-three">TypeScriptの型一覧</h3></summary>
 									<div class="overflow-x-auto m-4">
 									<table class="w-full border-collapse border border-cyan-400">
 										<thead
-											class="bg-gradient-to-r from-cyan-400 to-blue-900 text-white"
+											class="thead bg-gradient-to-r from-cyan-400 to-blue-900 text-white"
 										>
 											<tr>
 												<th class="border border-cyan-400 p-3 text-left">
@@ -402,23 +510,23 @@
 
 					<article class="article">
 						<h2 class="heading-two heading-two--tw">Tailwind CSS</h2>
-							<section>
-								<details>
-									<summary><h3 class="heading-three">導入方法</h3></summary>
-								<p class="ml-4">
-									このページではTailwind CSSを試験的に導入しております。
-								</p>
-								<pre><code>
+						<details>
+							<summary><h3 class="heading-three">導入方法</h3></summary>
+								<section class="section">
+									<p class="ml-4">
+										このページではTailwind CSSを試験的に導入しております。
+									</p>
+									<pre><code>
 &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
-              	</code></pre>
-								<p>
-									Tailwind
-									CSSを以下のコマンドでbuildし、buildしたファイルをhtml側で読み込みます。
-								</p>
-								<pre><code>
+									</code></pre>
+									<p>
+										Tailwind
+										CSSを以下のコマンドでbuildし、buildしたファイルをhtml側で読み込みます。
+									</p>
+									<pre><code>
 npm run build
-								</code></pre>
-							</section>
+									</code></pre>
+								</section>
 						</details>
 					</article>
 				</main>

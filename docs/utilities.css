@@ -395,8 +395,21 @@
     text-decoration-line: none;
   }
   .table {
+    width: 100%;
+    table-layout: fixed;
     border-style: var(--tw-border-style);
     border-width: 1px;
+  }
+  .thead {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+    padding: calc(var(--spacing) * 2);
+    text-align: left;
+  }
+  td {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+    padding: calc(var(--spacing) * 2);
   }
 }
 @property --tw-space-y-reverse {

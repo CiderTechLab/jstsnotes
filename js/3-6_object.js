@@ -14,6 +14,12 @@ export {};
  * 組み込みオブジェクト
  * - JavaScriptがあらかじめ用意しているオブジェクトのこと。
  * @example console.log、window.alert
+ *
+ * - プロパティ属性について
+ *   - 各プロパティにはメタ属性が存在している
+ *     - writable（書き換え可？）
+ *     - configurable（再定義可？）
+ *     - enumerable（列挙される？）
  */
 
 const person = {

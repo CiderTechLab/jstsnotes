@@ -362,6 +362,10 @@
   main {
     counter-reset: h2-counter;
   }
+  .section {
+    margin: calc(var(--spacing) * 4);
+    margin-block: calc(var(--spacing) * 4);
+  }
   .hero {
     display: flex;
     height: 100vh;

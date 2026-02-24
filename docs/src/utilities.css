@@ -58,6 +58,12 @@
 
 	/** table */
 	.table {
-		@apply border;
+		@apply border table-fixed w-full;
+	}
+	.thead {
+		@apply border p-2 text-left;
+	}
+	td {
+		@apply border p-2;
 	}
 }

@@ -36,6 +36,11 @@
 	 * }
 	 */
 
+	/** section */
+	.section {
+		@apply my-4 m-4;
+	}
+
 	/** hero section */
 	.hero {
 		@apply h-screen flex items-center justify-center bg-gray-200;
