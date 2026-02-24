@@ -465,17 +465,21 @@
       order: 0;
     }
     .toc-hamburger {
+      position: fixed;
+      left: calc(var(--spacing) * 0);
       display: flex;
       cursor: pointer;
       align-items: center;
       justify-content: center;
-      background-color: var(--color-white);
-      width: 2.5rem;
-      height: 2.5rem;
-      border: 1px solid #e5e7eb;
-      border-top: none;
-      border-left: none;
-      border-radius: 0 0 0.25rem 0;
+      background-color: transparent;
+      top: 0;
+      width: 3rem;
+      height: var(--height-header);
+      border: none;
+      z-index: 51;
+    }
+    .header {
+      padding-left: 3.5rem;
     }
     .toc-hamburger__icon {
       position: relative;

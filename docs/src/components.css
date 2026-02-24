@@ -134,15 +134,19 @@
 			order: 0;
 		}
 
-		/** ハンバーガーボタン */
+		/** ハンバーガーボタン - ヘッダーと同じ高さで左上固定 */
 		.toc-hamburger {
-			@apply flex items-center justify-center bg-white cursor-pointer;
-			width: 2.5rem;
-			height: 2.5rem;
-			border: 1px solid #e5e7eb;
-			border-top: none;
-			border-left: none;
-			border-radius: 0 0 0.25rem 0;
+			@apply flex items-center justify-center bg-transparent cursor-pointer fixed left-0;
+			top: 0;
+			width: 3rem;
+			height: var(--height-header);
+			border: none;
+			z-index: 51;
+		}
+
+		/** ヘッダー - ハンバーガーボタン分の余白を左に追加 */
+		.header {
+			padding-left: 3.5rem;
 		}
 
 		/** 3本線（中央ライン） */
