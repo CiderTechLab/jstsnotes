@@ -37,33 +37,43 @@
 		content: counter(h2-counter) '.' counter(h3-counter) ' ';
 	}
 
-	/** pre */
+	p {
+		@apply ml-4;
+	}
+
 	pre {
 		@apply bg-black text-white p-2 overflow-x-auto rounded-[0.5rem] my-[0.125rem];
 	}
 
-	/** code */
 	code {
 		@apply p-0;
 	}
 
 	/** links */
 	a {
-		@apply underline;
-	}
-
-	a:hover {
-		@apply no-underline text-sky-400;
+		@apply text-cyan-600 no-underline transition-colors duration-200 hover:text-cyan-700 hover:underline;
 	}
 
 	/** table */
 	.table {
 		@apply border table-fixed w-full;
 	}
-	.thead {
+	th {
 		@apply border p-2 text-left;
+	}
+	.thead-js {
+		@apply bg-yellow-300;
 	}
 	td {
 		@apply border p-2;
+	}
+
+	/** list */
+	ul {
+		@apply ml-4;
+	}
+
+	.list-disc {
+		@apply ml-4 list-disc;
 	}
 }

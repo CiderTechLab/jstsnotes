@@ -6,14 +6,12 @@
 		<meta name="author" content="S.K" />
 		<meta
 			name="description"
-			content="S.KによるJavaScriptおよびTypeScriptの学習記録サイトです。"
+			content="S.KによるJavaScriptおよびTypeScriptの学習まとめサイトです。学習中に得た知識や経験をまとめました。"
 		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Road&nbsp;To&nbsp;JS&nbsp;&amp;&nbsp;TS</title>
-
 		<!-- style info -->
 		<link rel="stylesheet" href="index.css" />
-
 		<!-- script info -->
 		<script type="module" src="tableOfContents.js" defer></script>
 	</head>
@@ -32,54 +30,29 @@
 				<main class="main">
 					<article class="article">
 						<h2 class="heading-two heading-two--about">About</h2>
-						<details>
-							<summary>
-								<h3 class="heading-three">このサイトの構築プロセス</h3>
-							</summary>
-							<section class="section">
-								<p class="ml-4 mb-4">
-									RoadToTypeScriptは、<strong>生成AIの支援を受けながら段階的に</strong>構築されました。以下は制作の基本的なフローです。
-								</p>
-
-								<ol class="list-decimal ml-8 space-y-4">
-									<li>
-										<h4 class="text-xl font-semibold mb-2">
-											VSCodeのサイドバーチャットにプロンプトを記入
-										</h4>
-										<p class="ml-4">
-											実装したい機能や修正内容を、自然言語でチャットに入力します。例えば、「目次を自動生成したい」「レスポンシブレイアウトにしてほしい」といった内容です。
-										</p>
-									</li>
-
-									<li>
-										<h4 class="text-xl font-semibold mb-2">
-											追加・編集されたコードを確認し、「保持」ボタンをクリック
-										</h4>
-										<p class="ml-4">
-											AIが生成したコード変更をVSCode上で確認します。意図通りであれば、「保持」ボタンをクリックして変更を確定させます。
-										</p>
-									</li>
-
-									<li>
-										<h4 class="text-xl font-semibold mb-2">
-											見た目をブラウザで確認
-										</h4>
-										<p class="ml-4">
-											変更内容がブラウザでどのように表示されるかを確認します。レイアウト、色、フォント、レスポンシブ対応など、デザイン面での問題がないかチェックします。
-										</p>
-									</li>
-
-									<li>
-										<h4 class="text-xl font-semibold mb-2">
-											修正点があれば最初に戻る
-										</h4>
-										<p class="ml-4">
-											問題が見つかった場合は、プロンプトの記入に戻り、修正内容をプロンプトとして入力します。この反復プロセスを繰り返すことで、品質を高めていきます。
-										</p>
-									</li>
-								</ol>
-							</section>
-						</details>
+						<section class="section">
+							<h3 class="heading-three">
+								Road&nbsp;To&nbsp;JS&nbsp;&amp;&nbsp;TS（以下、当サイト）について
+							</h3>
+							<p>
+								当サイトは<a href="https://github.com/CiderTechLab">私（S.K）</a
+								>がJavaScriptとTypeScriptを学習しながら、得た知識や経験をまとめたサイトになります。
+							</p>
+							<h3 class="heading-three">当サイトの対象者</h3>
+							<ul>
+								<li class="list-disc">
+									JavaScriptやTypeScriptを学んでいるが、躓いているところがある方。
+								</li>
+								<li class="list-disc">チートシートが欲しい方。</li>
+							</ul>
+							<h3 class="heading-three">制作方法について</h3>
+							<p>
+								当サイトは<strong>GitHub Copilotと私でペアプログラミング</strong
+								>のような形で制作いたしました。また<strong
+									>Tailwind CSSも導入</strong
+								>し、効率化を図りました。
+							</p>
+						</section>
 					</article>
 
 					<article class="article">
@@ -87,20 +60,13 @@
 						<details>
 							<summary><h3 class="heading-three">歴史</h3></summary>
 							<section class="section">
-								<ul>
-									<li>
-										開発者は<a
-											href="https://ja.wikipedia.org/wiki/ブレンダン・アイク"
-											>ブレンダン・アイク</a
-										>
-									</li>
-									<li>
-										ブレンダン・アイクはMozillaのCEOも経験し、現在ではなんとブラウザのBraveの開発に携わっている！
-									</li>
-									<li>
-										JavaScript（JS）は最初は簡単な用途を想定して設計され、「Java風のプログラミング言語作ってくれ。」と言われなんと10日で作成！
-									</li>
-								</ul>
+								<p>
+									JavaScript（JS）は当時のNetscape社の<a
+										href="https://ja.wikipedia.org/wiki/ブレンダン・アイク"
+										target="_blank"
+										>ブレンダン・アイク氏</a
+									>によって開発され、1995年に初めてのバージョンがリリースされました。当時は簡単な用途を想定されており、「ブラウザで動作するJava風のプログラミング言語作ってくれ。（意訳）」と上司に言われ、<strong>なんと10日で作成（!?）</strong>されたと言われています。（ちなみに、後にブレンダン・アイク氏はMozillaのCEOも経験し、現在ではなんとBraveブラウザの開発に携わっています。）
+								</p>
 							</section>
 						</details>
 						<details>
@@ -119,10 +85,10 @@ node [filename].js
 								<table class="table">
 									<thead class="thead">
 										<tr>
-											<th>命名規則</th>
-											<th>読み方</th>
-											<th>例</th>
-											<th>用途</th>
+											<th class="thead-js">命名規則</th>
+											<th class="thead-js">読み方</th>
+											<th class="thead-js">例</th>
+											<th class="thead-js">用途</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -165,13 +131,13 @@ node [filename].js
 								<table class="table">
 									<thead class="thead">
 										<tr>
-											<th>宣言</th>
-											<th>初期値</th>
-											<th>再宣言</th>
-											<th>再代入</th>
-											<th>スコープ</th>
-											<th>巻き上げ</th>
-											<th>備考</th>
+											<th class="thead-js">宣言</th>
+											<th class="thead-js">初期値</th>
+											<th class="thead-js">再宣言</th>
+											<th class="thead-js">再代入</th>
+											<th class="thead-js">スコープ</th>
+											<th class="thead-js">巻き上げ</th>
+											<th class="thead-js">備考</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -209,63 +175,63 @@ node [filename].js
 								<table class="table">
 									<thead class="thead">
 										<tr>
-											<th>型</th>
-											<th>データ型</th>
-											<th>値</th>
+											<th class="thead-js">データ型</th>
+											<th class="thead-js">型</th>
+											<th class="thead-js">値</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>プリミティブ型</td>
 											<td>String</td>
+											<td>プリミティブ型</td>
 											<td>文字列</td>
 										</tr>
 										<tr>
-											<td>プリミティブ型</td>
 											<td>Number</td>
+											<td>プリミティブ型</td>
 											<td>
 												数値（整数、浮動小数点数、Infinity、NaN）、-(2^53-1)〜2^53-1、※2^53
 												- 1 = 9007199254740991
 											</td>
 										</tr>
 										<tr>
-											<td>プリミティブ型</td>
 											<td>bigint</td>
+											<td>プリミティブ型</td>
 											<td>任意精度整数（メモリが許す限りの大きさ）</td>
 										</tr>
 										<tr>
-											<td>プリミティブ型</td>
 											<td>Boolean</td>
+											<td>プリミティブ型</td>
 											<td>真偽値（trueまたはfalse）</td>
 										</tr>
 										<tr>
-											<td>プリミティブ型</td>
 											<td>null</td>
+											<td>プリミティブ型</td>
 											<td>null値</td>
 										</tr>
 										<tr>
-											<td>プリミティブ型</td>
 											<td>undefined</td>
+											<td>プリミティブ型</td>
 											<td>未定義値</td>
 										</tr>
 										<tr>
-											<td>プリミティブ型</td>
 											<td>symbol</td>
+											<td>プリミティブ型</td>
 											<td>一意の識別子</td>
 										</tr>
 										<tr>
-											<td>オブジェクト型</td>
 											<td>object</td>
+											<td>オブジェクト型</td>
 											<td>オブジェクト（プロパティの集合）</td>
 										</tr>
 										<tr>
-											<td>オブジェクト型</td>
 											<td>array</td>
+											<td>オブジェクト型</td>
 											<td>配列（順序付きの値の集合）</td>
 										</tr>
 										<tr>
-											<td>オブジェクト型</td>
 											<td>function</td>
+											<td>オブジェクト型</td>
 											<td>関数（実行可能なオブジェクト）</td>
 										</tr>
 									</tbody>
@@ -287,11 +253,17 @@ node [filename].js
 					<article class="article">
 						<h2 class="heading-two heading-two--ts">TypeScript</h2>
 						<details>
+							<summary><h3 class="heading-three">歴史</h3></summary>
+							<section class="section">
+								<p>
+									TypeScript（TS）はMicrosoftによって開発され、2012年に初めてのバージョンがリリースされました。
+								</p>
+							</section>
+						</details>
+						<details>
 							<summary><h3 class="heading-three">tsconfig.json</h3></summary>
 							<section class="section">
-								<p class="ml-4">
-									TypeScriptのコンパイル設定を記述するファイルです。
-								</p>
+								<p>TypeScriptのコンパイル設定を記述するファイルです。</p>
 								<pre><code>
 {
   "compilerOptions": {
@@ -299,12 +271,12 @@ node [filename].js
   }
 }
 									</code></pre>
-								<p class="ml-4">
+								<p>
 									上記で、コンパイル後のJavaScriptのバージョンをECMAScript2015に指定できます。
 									<strong>指定しないとデフォルトでES5になります。</strong>
 								</p>
-								<p class="ml-4">"outDir": "dist",</p>
-								<p class="ml-4">
+								<p>"outDir": "dist",</p>
+								<p>
 									この設定により、コンパイル後のJavaScriptファイルがdistディレクトリに出力されます。
 								</p>
 							</section>
@@ -515,9 +487,7 @@ node [filename].js
 						<details>
 							<summary><h3 class="heading-three">導入方法</h3></summary>
 							<section class="section">
-								<p class="ml-4">
-									このページではTailwind CSSを試験的に導入しております。
-								</p>
+								<p>このページではTailwind CSSを試験的に導入しております。</p>
 								<pre><code>
 &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
 									</code></pre>
@@ -536,7 +506,7 @@ npm run build
 
 			<footer class="footer">
 				<p>
-					&copy; 2026 RoadToTypeScript<span
+					&copy;Road&nbsp;To&nbsp;JS&nbsp;&amp;&nbsp;TS&nbsp;<span
 						>Powered by
 						<a href="https://cidertechlab.github.io/">CiderTechLab</a></span
 					>

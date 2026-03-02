@@ -109,3 +109,58 @@ console.log(menu.fullMenu);
 menu.num = 1000;
 console.log(typeof menu.num);
 console.log(menu);
+
+/**
+ * クラスの継承
+ * - 既存クラスを継承(extends)することで、既存クラスの機能を利用しつつ
+ *   機能の異なるクラスを新たに生成できる。
+ *
+ * @example
+ * class Parent {
+ *   ...
+ * }
+ *
+ * class Child extends Parent {
+ *   ...
+ * }
+ */
+
+/**
+ * 生成元クラスの確認
+ * - インスタンスの生成元クラス名が一致する場合、trueを返す。
+ * @example let result = [インスタンス] instanceof [クラス名];
+ */
+console.log('---生成元クラスの確認---');
+class Parent {}
+class Child extends Parent {}
+class Other {}
+
+const obj = new Child();
+console.log(obj instanceof Child);
+console.log(obj instanceof Parent);
+console.log(obj instanceof Other);
+
+/**
+ * hasOwnPropertyメソッド
+ * - プロパティ名が自身のオブジェクトのプロパティが存在した場合、trueを返す。
+ * - メソッド名と一致してもtrueにはならない。
+ * - prototypeチェーン上にあるものも含まれる。
+ * in演算子
+ * - オブジェクトが保持するプロパティ、メソッドと一致した場合。
+ * - 継承したクラスのプロパティ、メソッドも含まれる。
+ */
+console.log('---hasOwnPropertyメソッド、in演算子---');
+class People {
+	constructor() {
+		this.name = 'ichiro';
+	}
+	hello() {
+		console.log('Hello!');
+	}
+}
+
+const ichiro = new People();
+console.log(ichiro.hasOwnProperty('name'));
+console.log(ichiro.hasOwnProperty('hello'));
+console.log('name' in ichiro);
+console.log('hello' in ichiro);

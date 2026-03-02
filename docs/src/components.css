@@ -55,7 +55,7 @@
 	}
 
 	aside {
-		@apply fixed left-0 z-50 w-screen h-screen;
+		@apply fixed left-0 z-50 w-screen h-screen pointer-events-none;
 	}
 
 	/** ハンバーガーボタン - ヘッダーと同じ高さで左上固定 */
@@ -121,6 +121,11 @@
 	/** TOCナビ（is-open時に表示） */
 	aside.is-open .toc {
 		@apply block;
+	}
+
+	/** メニュー開いている時はクリック可能にする */
+	aside.is-open {
+		@apply pointer-events-auto;
 	}
 
 	/** モバイルメニュー用バックドロップ（is-open時に表示） */
@@ -205,10 +210,38 @@
 			top: var(--height-header);
 			max-height: calc(100vh - var(--height-header) - var(--height-footer));
 			overflow-y: auto;
+			@apply pointer-events-auto;
 		}
 
 		aside .toc {
 			@apply block;
+		}
+
+		aside {
+			width: 250px;
+			padding: 20px;
+			border-right: 1px solid #e5e7eb;
+		}
+
+		.toc h2 {
+			margin: 0 0 16px 0;
+			font-size: 18px;
+		}
+
+		.toc-list {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.toc-list li {
+			margin: 8px 0;
+		}
+
+		.toc-nested {
+			list-style: none;
+			padding-left: 20px;
+			margin: 4px 0;
 		}
 
 		main {
