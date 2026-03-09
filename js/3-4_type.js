@@ -8,7 +8,7 @@ export {};
  *     - 例） let x = 42;
  *   - 変数に型はない。**値に型がある。**
  * -データ型一覧
- *   - プリミティブ型
+ *   - プリミティブ型（primitive: 原始的）
  *     - String: 文字列
  *     - Number: 数値
  * 		 	 - JavaScriptでは、整数(Integer)も小数も(Float)も同じNumber型。

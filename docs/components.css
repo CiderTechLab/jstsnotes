@@ -373,14 +373,6 @@
     border: none;
     z-index: 51;
   }
-  .toc-hamburger__icon {
-    position: relative;
-    display: block;
-    width: 1.5rem;
-    height: 2px;
-    background-color: var(--color-border-primary);
-    transition: background-color 0.3s ease;
-  }
   .toc-hamburger__icon::before {
     content: '';
     position: absolute;
@@ -393,6 +385,14 @@
     background-color: var(--color-border-primary);
     transition: transform 0.3s ease,
 			top 0.3s ease;
+  }
+  .toc-hamburger__icon {
+    position: relative;
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    background-color: var(--color-border-primary);
+    transition: background-color 0.3s ease;
   }
   .toc-hamburger__icon::after {
     content: '';

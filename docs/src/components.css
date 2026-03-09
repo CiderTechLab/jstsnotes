@@ -67,16 +67,7 @@
 		z-index: 51;
 	}
 
-	/** 3本線（中央ライン） */
-	.toc-hamburger__icon {
-		@apply relative block;
-		width: 1.5rem;
-		height: 2px;
-		background-color: var(--color-border-primary);
-		transition: background-color 0.3s ease;
-	}
-
-	/** 上ライン */
+	/** 3本線 */
 	.toc-hamburger__icon::before {
 		content: '';
 		@apply absolute left-0 block -top-2 origin-left;
@@ -87,8 +78,13 @@
 			transform 0.3s ease,
 			top 0.3s ease;
 	}
-
-	/** 下ライン */
+	.toc-hamburger__icon {
+		@apply relative block;
+		width: 1.5rem;
+		height: 2px;
+		background-color: var(--color-border-primary);
+		transition: background-color 0.3s ease;
+	}
 	.toc-hamburger__icon::after {
 		content: '';
 		@apply absolute left-0 block w-6 h-[2px] bg-gray-700 top-2 origin-left;
