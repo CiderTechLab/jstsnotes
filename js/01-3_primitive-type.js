@@ -1,5 +1,13 @@
 export {};
-
+/**
+ * MEMO: プリミティブ型
+ * - String
+ * - Number
+ * - BigInt
+ * - Boolearn
+ * - null
+ * - undefined
+ */
 /**
  * 文字列(String)
  */

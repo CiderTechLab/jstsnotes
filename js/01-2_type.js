@@ -1,7 +1,6 @@
 export {};
-
 /**
- * MEMO:
+ * MEMO: データ型
  * - JavaScriptのデータ型の特徴
  *   - 動的型付け言語（Dynamic Typing Language）
  *     - 変数にどんな型の値でも代入できる。

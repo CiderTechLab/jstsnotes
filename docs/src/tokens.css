@@ -13,7 +13,7 @@
 	line-height: 1.5;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
 	:root {
 		--height-footer: 40px;
 	}

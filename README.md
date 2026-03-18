@@ -22,7 +22,7 @@ This repository is my JavaScript and TypeScript practice log.
 
 ## 設計方針
 
-[CiderTechLab](https://cidertechla.github.io)に準じます。
+[CiderTechLabのREADME.md](https://github.com/CiderTechLab/cidertechlab.github.io/blob/main/README.md)に準じます。
 
 ### 具体的な実装手段
 
@@ -39,7 +39,7 @@ This repository is my JavaScript and TypeScript practice log.
 
 ## 非機能要件
 
-[CiderTechLab](https://cidertechla.github.io)に準じます。
+[CiderTechLabのREADME.md](https://github.com/CiderTechLab/cidertechlab.github.io/blob/main/README.md)に準じます。
 
 ## ブランチ構成
 
@@ -50,12 +50,12 @@ This repository is my JavaScript and TypeScript practice log.
 ## ディレクトリ構成
 
 - js
-  - JavaScriptのソースコードが格納されています。
+  - 学習に使用した、JavaScriptのソースコードが格納されています。
 - ts
   - src
-    - TypeScriptのソースコードが格納されています。
+    - 学習に使用した、TypeScriptのソースコードが格納されています。
   - dist
-    - TypeScriptからコンパイルされたJavaScriptコードが格納されます。
+    - TypeScriptからコンパイルされたJavaScriptソースコードが格納されます。
     - 学習目的のため、コンパイル後のコードも確認できるよう格納しております。
 - docs
   - GitHub Pages用のプロジェクトサイト（チートシート）の内容が格納されています。

@@ -103,7 +103,7 @@
 
 	/** TOCナビ（デフォルトで非表示） */
 	aside .toc {
-		@apply hidden bg-white border-gray-200 p-4 w-full;
+		@apply hidden bg-white border-gray-200 p-4 w-full overflow-y-auto;
 		height: 100vh;
 	}
 
@@ -169,6 +169,9 @@
 		@apply fixed bottom-0 w-full p-4 bg-white border-t border-gray-300 flex justify-start items-center;
 		color: var(--text-primary);
 		height: var(--height-footer);
+		left: 0;
+		right: 0;
+		z-index: 40;
 	}
 
 	.footer span {
@@ -177,7 +180,7 @@
 }
 
 /** PC Edition */
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
 	@layer components {
 		.header {
 			@apply pl-4;
@@ -200,7 +203,7 @@
 		}
 
 		aside .toc {
-			@apply block;
+			@apply block overflow-y-visible;
 		}
 
 		aside {

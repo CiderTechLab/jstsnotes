@@ -3,7 +3,7 @@
 @layer utilities {
 	/** h1 */
 	h1 {
-		@apply text-4xl font-bold;
+		@apply text-base lg:text-4xl font-bold;
 	}
 
 	/** h2 */
@@ -62,7 +62,7 @@
 
 	/** table */
 	.table {
-		@apply border table-fixed w-full;
+		@apply border table-fixed w-full m-4;
 	}
 	th {
 		@apply border p-2 text-left;
