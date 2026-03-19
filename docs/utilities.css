@@ -23,6 +23,8 @@
     --spacing: 0.25rem;
     --text-base: 1rem;
     --text-base--line-height: calc(1.5 / 1);
+    --text-lg: 1.125rem;
+    --text-lg--line-height: calc(1.75 / 1.125);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
@@ -314,6 +316,14 @@
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
   }
+  .heading-five {
+    margin: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 2);
+    font-size: var(--text-lg);
+    line-height: var(--tw-leading, var(--text-lg--line-height));
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+  }
   p {
     margin-left: calc(var(--spacing) * 4);
     padding: calc(var(--spacing) * 0);
@@ -357,6 +367,11 @@
     table-layout: fixed;
     border-style: var(--tw-border-style);
     border-width: 1px;
+  }
+  caption {
+    text-align: left;
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
   }
   th {
     border-style: var(--tw-border-style);

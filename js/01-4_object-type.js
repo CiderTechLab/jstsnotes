@@ -33,7 +33,7 @@ const person = {
  * ドット記法
  * @example [オブジェクト名].[プロパティ名]
  */
-console.log('---以下はドット記法です---');
+console.log('# 以下、ドット記法です');
 console.log(person.name); // { first: 'Taro', last: 'Yamada' }
 console.log(person.name.first); // 'Taro'
 console.log(person.name.last); // 'Yamada'
@@ -42,12 +42,12 @@ console.log(person.name.last); // 'Yamada'
  * ブラケット記法
  * @example [オブジェクト名]['プロパティ名']
  */
-console.log('---以下はブラケット記法です---');
+console.log('# 以下、ブラケット記法');
 console.log(person['name']); // { first: 'Taro', last: 'Yamada' }
 console.log(person['name']['first']); // 'Taro'
 console.log(person['name']['last']); // 'Yamada'
 
-console.log('---ブラケット記法では変数でもアクセスできます---');
+console.log('# ブラケット記法では変数でもアクセス可能');
 
 const myoji = 'last';
 console.log(person['name2'][myoji]); // 'Yamada'
@@ -55,7 +55,7 @@ console.log(person['name2'][myoji]); // 'Yamada'
 /**
  * プロパティの削除
  */
-console.log('---プロパティの削除でnameの苗字が消えました。---');
+console.log('# プロパティの削除でnameの苗字が消失');
 delete person.name.last;
 console.log(person); // { name: { first: 'Taro' }, name2: { first: 'Hanako', last: 'Yamada' }, isStudent: true }
 
@@ -63,7 +63,7 @@ console.log(person); // { name: { first: 'Taro' }, name2: { first: 'Hanako', las
  * メソッド
  * - オブジェクトに保持される関数のこと。
  */
-console.log('---メソッド---');
+console.log('# メソッド');
 const method = {
 	wakeUp: function () {
 		console.log('おはようございます！');
@@ -89,7 +89,7 @@ method.gotoSleep(); // おやすみなさい！
  *   - あまり使用されない。TypeScriptもあるため。
  * 　- ただし、内部的には結構な頻度で使われているらしい。
  */
-console.log('---シンボル型（値なし）---');
+console.log('# シンボル型（値なし）');
 const s1 = Symbol();
 const s2 = Symbol();
 
@@ -99,7 +99,7 @@ const obj = {
 };
 console.log(obj[s1] === obj[s2]); // false
 
-console.log('---シンボル型（値あり）---');
+console.log('# シンボル型（値あり）');
 const s3 = Symbol();
 const s4 = Symbol();
 

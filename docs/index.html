@@ -55,6 +55,7 @@
 								</p>
 							</section>
 						</details>
+
 						<details>
 							<summary><h3 class="heading-three">実行方法</h3></summary>
 							<section class="section">
@@ -63,11 +64,12 @@
 								<pre><code>node (folder)/[filename].js</code></pre>
 							</section>
 						</details>
+
 						<details>
 							<summary><h3 class="heading-three">命名規則</h3></summary>
 							<section class="section">
-								<h4 class="heading-four">規則一覧</h4>
 								<table class="table">
+									<caption>命名規則一覧</caption>
 									<thead class="thead">
 										<tr>
 											<th class="thead-js">命名規則</th>
@@ -117,13 +119,14 @@
 								</ul>
 							</section>
 						</details>
+
 						<details>
 							<summary>
 								<h3 class="heading-three">変数、定数、データ型</h3>
 							</summary>
 							<section class="section">
-								<h4 class="heading-four">変数、定数</h4>
 								<table class="table">
+									<caption>変数・定数宣言の種類</caption>
 									<thead class="thead">
 										<tr>
 											<th class="thead-js">宣言</th>
@@ -277,7 +280,155 @@
 						<details>
 							<summary><h3 class="heading-three">演算子</h3></summary>
 							<section class="section">
-								<p>編集中&#x1F4DD;&#x1F611;</p>
+								<h4 class="heading-four">優先順位</h4>
+								<p>一番強い演算子は()（括弧）、一番弱い演算子は,(カンマ)。</p>
+								<h4 class="heading-four">算術演算子</h4>
+								<table class="table">
+									<caption>算術演算子一覧</caption>
+									<thead>
+										<tr>
+											<th class="thead-js">演算子</th>
+											<th class="thead-js">意味</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>+</td>
+											<td>加算</td>
+										</tr>
+										<tr>
+											<td>-</td>
+											<td>減算</td>
+										</tr>
+										<tr>
+											<td>*</td>
+											<td>乗算</td>
+										</tr>
+										<tr>
+											<td>/</td>
+											<td>除算</td>
+										</tr>
+										<tr>
+											<td>%</td>
+											<td>剰余（割り算の余り）</td>
+										</tr>
+										<tr>
+											<td>++（インクリメント演算子）
+											</td>
+											<td>1を加算。前置・後置で挙動が異なる。</td>
+										</tr>
+										<tr>
+											<td>--（デクリメント演算子）
+											</td>
+											<td>1を減算。前置・後置で挙動が異なる。</td>
+										</tr>
+									</tbody>
+								</table>
+								<h4 class="heading-four">等価演算子</h4>
+								<h5 class="heading-five">概要</h5>
+								<p>値の等しさを比較するために使用され、戻り値はBoolean型（trueまたはfalse）となる。ほとんどの場合、厳密等価（===）または厳密非等価（!==）を使用する。</p>
+								<table class="table">
+									<caption>等価演算子一覧</caption>
+									<thead>
+										<tr>
+											<th class="thead-js">演算子</th>
+											<th class="thead-js">意味</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>==</td>
+											<td>等価。値が等しい場合にtrueを返す。<b>型変換あり</b></td>
+										</tr>
+										<tr>
+											<td>===</td>
+											<td>厳密等価。値と型が等しい場合にtrueを返す。<b>型変換なし</b></td>
+										</tr>
+										<tr>
+											<td>!=</td>
+											<td>非等価。値が等しくない場合にtrueを返す。<b>型変換あり</b></td>
+										</tr>
+										<tr>
+											<td>!==</td>
+											<td>厳密非等価。値と型が等しくない場合にtrueを返す。<b>型変換なし</b></td>
+										</tr>
+									</tbody>
+								</table>
+
+								<h4 class="heading-four">関係演算子</h4>
+								<h5 class="heading-five">概要</h5>
+								<p>オペランドの大小関係を比較するために使用され、戻り値はBoolean型（trueまたはfalse）となる。</p>
+								<table class="table">
+									<caption>関係演算子一覧</caption>
+									<thead>
+										<tr>
+											<th class="thead-js">演算子</th>
+											<th class="thead-js">意味</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>X&gt;Y</td>
+											<td>大なり。XがYより大きい場合にtrueを返す。</td>
+										</tr>
+										<tr>
+											<td>X&lt;Y</td>
+											<td>小なり。XがYより小さい場合にtrueを返す。</td>
+										</tr>
+										<tr>
+											<td>X&gt;=Y</td>
+											<td>大なりイコール。XがY<b>以上</b>の場合にtrueを返す。</td>
+										</tr>
+										<tr>
+											<td>X&lt;=Y</td>
+											<td>小なりイコール。XがY<b>以下</b>の場合にtrueを返す。</td>
+										</tr>
+										<tr>
+											<td>X in Y</td>
+											<td>YプロパティがXオブジェクトのプロパティを持っているかどうかを判断する。</td>
+										</tr>
+									</tbody>
+								</table>
+								<h4 class="heading-four">論理演算子</h4>
+								<h5 class="heading-five">概要</h5>
+								<p>オペランドの論理積、論理和、論理否定を評価するために使用され、戻り値はBoolean型（trueまたはfalse）となる。</p>
+								<table class="table">
+									<caption>論理演算子一覧</caption>
+									<thead>
+										<tr>
+											<th class="thead-js">演算子</th>
+											<th class="thead-js">意味</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>X&nbsp;&amp;&amp;&nbsp;Y</td>
+											<td>論理積（AND）。XとYの両方がtrueの場合にtrueを返す。</td>
+										</tr>
+										<tr>
+											<td>X&nbsp;||&nbsp;Y</td>
+											<td>論理和（OR）。XまたはYのどちらかがtrueの場合にtrueを返す。</td>
+										</tr>
+										<tr>
+											<td>!X</td>
+											<td>論理否定（NOT）。Xがfalseの場合にtrueを返す。</td>
+										</tr>
+								</table>
+								<h4 class="heading-four">falsyとtruthy</h4>
+								<p>Boolean関数で値を評価した際、falseとみなされる値を<b>falsy</b>、trueとみなされる値を<b>truthy</b>と呼ぶ。</p>
+								<h4 class="heading-four">三項演算子</h4>
+								<p>以下の式でif文を簡潔に書くことができる。</p>
+								<p>[条件式]&nbsp;?&nbsp;[真のときの値]&nbsp;:&nbsp;[偽のときの値]</p>
+								<h4 class="heading-four">サンプルコード</h4>
+								<ul>
+									<li>
+										<a
+											href="https://github.com/CiderTechLab/roadtojsts/blob/main/js/02_operators-operands.js"
+											target="_blank"
+											>02_operators-operands.js</a
+										>
+									</li>
+								</ul>
 							</section>
 						</details>
 
@@ -285,6 +436,7 @@
 							<summary><h3 class="heading-three">制御構文</h3></summary>
 							<section class="section">
 								<table class="table">
+									<caption>一覧</caption>
 									<thead class="thead">
 										<tr>
 											<th class="thead-js">制御の種類</th>
@@ -398,6 +550,17 @@
 								<p>編集中&#x1F4DD;&#x1F611;</p>
 							</section>
 						</details>
+
+						<details>
+							<summary><h3 class="heading-three">Node.js特有の話</h3></summary>
+							<section class="section">
+								<ul>
+									<li>
+										fetch()ではURL形式を指定する必要があるため、ローカルファイルを読み込む際は、URL形式でパスを指定する必要があります。
+									</li>
+								</ul>
+							</section>
+
 					</article>
 
 					<article class="article">
