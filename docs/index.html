@@ -556,7 +556,10 @@
 							<section class="section">
 								<ul>
 									<li>
-										fetch()ではURL形式を指定する必要があるため、ローカルファイルを読み込む際は、URL形式でパスを指定する必要があります。
+										fetch()ではURL形式を指定する必要があるため、ローカルファイルを読み込む際は、URL形式でパスを指定する必要がある。
+									</li>
+									<li>
+										Node.js上でTypeScriptを使用する際は@types/nodeをインストールする必要がある。
 									</li>
 								</ul>
 							</section>
@@ -642,9 +645,11 @@
 								</p>
 							</section>
 						</details>
+
 						<details>
-							<summary><h3 class="heading-three">導入方法</h3></summary>
+							<summary><h3 class="heading-three">導入</h3></summary>
 							<section class="section">
+								<h4 class="heading-four">試験的導入</h4>
 								<p>
 									私は当初、<a href="https://tailwindcss.com/" target="_blank"
 										>Tailwind CSSの公式サイト</a
@@ -657,11 +662,25 @@
 										CSSのクラスを記述するのは冗長だな」</b
 									>と感じ、npmを経由し本格導入することにしました。
 								</p>
+								<h4 class="heading-four">本格的導入</h4>
+								<p><a href="https://tailwindcss.com/docs/installation/using-vite" target="_blank">Tailwind CSS公式サイト</a>を参考に、viteを経由して導入しました。</p>
 							</section>
 						</details>
+
 						<details>
-							<summary>
-								<h3 class="heading-three">ビルド～読み込み方法</h3>
+							<summary><h3 class="heading-three">設定ファイル</h3></summary>
+							<section class="section">
+								<p>
+									Tailwind
+									CSSの設定ファイルは、プロジェクトのルートディレクトリに配置される
+									<strong>tailwind.config.js</strong
+									>です。以下、記述例です。
+								</p>
+						</details>
+
+						<details>
+						<summary>
+							<h3 class="heading-three">ビルド～読み込み方法</h3>
 							</summary>
 							<section>
 								<p>
