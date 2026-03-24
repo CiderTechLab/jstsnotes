@@ -1,9 +1,11 @@
 # README.md
 
-ようこそ「Road&nbsp;To&nbsp;JS&amp;TS」へ！
+![License](https://img.shields.io/badge/License-MIT-blue.svg?logo=github)
+
+ようこそ「JS&amp;TS&nbsp;学習まとめノート」へ！
 このリポジトリは私のJavaScript並びにTypeScriptの練習記録です。
 
-**Welcome to "Road&nbsp;To&nbsp;JS&amp;TS"!**
+**Welcome to "JS&amp;TS&nbsp;Learning Summary Notes"!**
 This repository is my JavaScript and TypeScript practice log.
 
 # サイト要件
@@ -29,7 +31,7 @@ This repository is my JavaScript and TypeScript practice log.
 - JavaScriptとTypeScriptのコードを写経し、実際に動作させることで理解を深める。
 - チートシートを作成し、学習した内容を整理する。
 - チートシートのレイアウトは生成AI(GitHub Copilot:Claude Haiku)とペアプログラミングを行い、効率的に制作を進める。
-- Tailwind CSSも使用し、効率的にデザインを行う。
+- [Tailwind CSS](https://tailwindcss.com/)も使用し、効率的にデザインを行う。
 - エラーが発生したら、原因を生成AIと共に調査した上で解決する。
 
 ## 機能要件

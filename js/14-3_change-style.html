@@ -5,5 +5,40 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>14-3.スタイルを変更する</title>
 	</head>
-	<body></body>
+	<body>
+		<style>
+			changeColor {
+				background-color: lightblue;
+				color: darkblue;
+			}
+		</style>
+		<p>2秒後、文字と背景の色が変わります。</p>
+		<hr />
+		<p class="changeColor">3秒後、文字と背景の色が変わります。</p>
+		<hr />
+		<p class="changebtn">ボタン押下で文字と背景の色が変わります。</p>
+		<button>ボタン</button>
+		<script>
+			/**
+			 * スタイルの変更
+			 * - styleプロパティを使用して、要素のスタイルを変更することができる。
+			 */
+			setTimeout(() => {
+				document.querySelector('p').style.backgroundColor = 'lightpink';
+				document.querySelector('p').style.color = 'darkred';
+			}, 2000);
+
+			setTimeout(() => {
+				document.querySelector('.changeColor').style.backgroundColor =
+					'lightgreen';
+				document.querySelector('.changeColor').style.color = 'darkgreen';
+			}, 3000);
+
+			document.querySelector('button').addEventListener('click', () => {
+				document.querySelector('.changebtn').style.backgroundColor =
+					'lightyellow';
+				document.querySelector('.changebtn').style.color = 'darkorange';
+			});
+		</script>
+	</body>
 </html>

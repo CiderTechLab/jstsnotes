@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<!-- meta info-->
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>イベントハンドラー</title>
+	</head>
+	<body>
+		<div>
+			<button id="minus">-</button>
+			<span id="counter">0</span>
+			<button id="plus">+</button>
+		</div>
+		<hr />
+		<button id="alert">アラートボタン</button>
+
+		<script>
+			const counter = document.querySelector('#counter');
+			const minus = document.querySelector('#minus');
+			const plus = document.querySelector('#plus');
+
+			minus.onclick = function () {
+				counter.textContent = parseInt(counter.textContent) - 1;
+			};
+
+			plus.onclick = function () {
+				counter.textContent = parseInt(counter.textContent) + 1;
+			};
+
+			const alertBtn = document.querySelector('#alert');
+			alertBtn.onclick = function () {
+				alert('クリックされました！');
+			};
+			// MEMO: alertBtn.onclick = null; イベントハンドラーを解除
+		</script>
+	</body>
+</html>
