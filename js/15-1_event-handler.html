@@ -16,14 +16,20 @@
 		<button id="alert">アラートボタン</button>
 
 		<script>
+			/**
+			 * MEMO: イベントハンドラー
+			 * @example
+			 * EventTarget.addEventListener(['EventType'], action,[options])
+			 * - イベント発生時に「実際に実行される関数」を登録するためのメソッド
+			 */
 			const counter = document.querySelector('#counter');
-			const minus = document.querySelector('#minus');
-			const plus = document.querySelector('#plus');
 
+			const minus = document.querySelector('#minus');
 			minus.onclick = function () {
 				counter.textContent = parseInt(counter.textContent) - 1;
 			};
 
+			const plus = document.querySelector('#plus');
 			plus.onclick = function () {
 				counter.textContent = parseInt(counter.textContent) + 1;
 			};
@@ -32,7 +38,7 @@
 			alertBtn.onclick = function () {
 				alert('クリックされました！');
 			};
-			// MEMO: alertBtn.onclick = null; イベントハンドラーを解除
+			// alertBtn.onclick = null; イベントハンドラーを解除
 		</script>
 	</body>
 </html>

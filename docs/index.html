@@ -58,9 +58,36 @@
 						<details>
 							<summary><h3 class="heading-three">実行方法</h3></summary>
 							<section class="section">
+								<h4 class="heading-four">HTMLから読み込む</h4>
+								<p>以下のタグで読み込むことができます。</p>
+
+								<code>&lt;script src="[ファイル名].js"&gt;&lt;/script&gt;</code>
+
+								<p>
+									しかし、問題が。実はこのタグをそのままHTMLの最前部（例えば&lt;body&gt;直下）に置くと、DOMツリー構築後にスクリプトが実行され、意図した動作にならないことがあります。そこで出てくるのがHTMLの最後部、&lt;/body&gt;タグ直前に書く方法です。
+								</p>
+								<br />
+								<p>
+									でも、ちょっと待ってください！分かりづらくないですか？そこで次は&lt;head&gt;内に埋め込む方法です。
+								</p>
+
+								<code>&lt;script src="[ファイル名].js"&gt;&lt;/script&gt;</code>
+
+								<p>
+									はい、コードは同じですね。書き方も同じです。しかし問題があります。それは<b>DOMツリー構築後にスクリプトが実行され、意図した動作にならないこと</b>です。そこで、以下のコードに変更します。
+								</p>
+
+								<code
+									>&lt;script src="[ファイル名].js"
+									defer&gt;&lt;/script&gt;</code
+								>
+
+								<p>
+									違いが分かりますか？defer属性を付けることで、スクリプトはDOMツリーの構築が完了した後に実行されるようになります。
+								</p>
 								<h4 class="heading-four">Node.js上での実行</h4>
 								<p>以下のコマンドで実行することができます。</p>
-								<pre><code>node (folder)/[filename].js</code></pre>
+								<code>node&nbsp;[ファイル名].js</code>
 							</section>
 						</details>
 
@@ -655,13 +682,175 @@
 						<details>
 							<summary><h3 class="heading-three">モジュール</h3></summary>
 							<section class="section">
-								<p>編集中&#x1F4DD;&#x1F611;</p>
+								<h4 class="heading-four">特徴</h4>
+								<ul>
+									<li>モジュールはファイル単位で定義される。</li>
+									<li>
+										モジュールはデフォルトでStrictモードで実行される。<strong
+											>そのため、DOMツリー構築後にモジュールが実行される。</strong
+										>
+									</li>
+									<li>
+										モジュールの読み込み時、モジュールのトップレベルのコードは初回読み込み時実行される。<b
+											>2回目以降の読み込み時には実行されない。</b
+										>
+									</li>
+								</ul>
+								<h4 class="heading-four">エクスポート</h4>
+
+								<h4 class="heading-four">インポート</h4>
+								<h5 class="heading-five">静的インポート</h5>
+								<ul>
+									<li>fromに続くモジュール名に変数は使えない。</li>
+									<li>
+										読み込み時点でモジュールのトップレベルのコードが実行される。
+									</li>
+								</ul>
+								<table>
+									<thead>
+										<tr>
+											<th class="thead-js">説明</th>
+											<th class="thead-js">構文</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>名前付きインポート</td>
+											<td>
+												<code
+													>import { [エクスポート名1], [エクスポート名2] } from
+													'[モジュール名].js';
+												</code>
+											</td>
+										</tr>
+										<tr>
+											<td>別名を付けてインポート</td>
+											<td>
+												<code
+													>import { [エクスポート名] as [別名] } from
+													'[モジュール名].js';
+												</code>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												デフォルトエクスポート、名前付きエクスポートをmoduleObjectのプロパティとしてインポート
+											</td>
+											<td>
+												<code
+													>import * as moduleObject from '[モジュール名].js';
+												</code>
+											</td>
+										</tr>
+										<tr>
+											<td>デフォルトエクスポート</td>
+											<td>
+												<code
+													>import [任意の名前] from '[モジュール名].js';</code
+												>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												デフォルトエクスポート、名前付きエクスポートを個別にインポート
+											</td>
+											<td>
+												<code
+													>import [任意の名前], { [エクスポート名1],
+													[エクスポート名2] } from '[モジュール名].js';</code
+												>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												デフォルトエクスポート、名前付きエクスポートをmoduleObjectのプロパティとしてインポート
+											</td>
+											<td>
+												<code
+													>import [任意の名前], * as moduleObject from
+													'[モジュール名].js';</code
+												>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												インポートせず、モジュール内のコードを一度だけ実行
+											</td>
+											<td>
+												<code>import '[モジュール名].js';</code>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<h5 class="heading-five">動的インポート</h5>
+								<ul>
+									<li>ES2020以降でサポートされている比較的新しい機能。</li>
+									<li>必要な時に他のモジュールを読み込むことができる。</li>
+								</ul>
+								<table>
+									<thead>
+										<tr>
+											<th class="thead-js">説明</th>
+											<th class="thead-js">構文</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Promiseオブジェクトで使う</td>
+											<td>
+												<code
+													>let promise =
+													import('[モジュール名].js');promise.then((moduleObj)
+													=> { moduleObj.exportedFunc(); });</code
+												>
+											</td>
+										</tr>
+										<tr>
+											<td>async/awaitで使う</td>
+											<td>
+												<code
+													>async function loadModule() { let [export元の関数名]
+													= await import('[モジュール名].js');
+													[export元の関数名](); }</code
+												>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<h4 class="heading-four">Strictモード</h4>
+								<p>
+									ES5で導入されたモードです。<strong>Strictモード</strong>では、コードの書き方を厳格にします。なお、moduleを有効にした場合、デフォルトでStrictモードが適用されます。
+								</p>
+								<h5 class="heading-five">影響</h5>
+								<ul>
+									<li>予約語が増え、変数名や関数名として使用できなくなる。</li>
+									<li>未宣言の変数への代入が禁止される。</li>
+									<li>書き込み不可のプロパティの変更が禁止される。</li>
+									<li>関数宣言にブロックスコープが適用される。</li>
+									<li>thisはプリミティブ値も許容される</li>
+								</ul>
 							</section>
 						</details>
 
 						<details>
-							<summary><h3 class="heading-three">Node.js特有の話</h3></summary>
+							<summary><h3 class="heading-three">Node.js</h3></summary>
 							<section class="section">
+								<h4 class="heading-four">CommonJSモジュール</h4>
+								<h5 class="heading-five">概要</h5>
+								<p>
+									Node.jsでモジュールを使用するための規格です。モジュールはファイル単位で定義され、モジュール内のコードはモジュールが読み込まれたときに実行されます。
+								</p>
+								<h5 class="heading-five">エクスポート</h5>
+								<code>exports.[エクスポート名] = function(){[処理内容]};</code>
+								<code
+									>module.exports.[任意の名前] =
+									require('[モジュール名].js');</code
+								>
+								<h5 class="heading-five">インポート</h5>
+								<code
+									>const [任意の名前] = require('[エクスポート名].js');
+									[任意の名前].[エクスポートされた関数名]();
+								</code>
 								<ul>
 									<li>
 										fetch()ではURL形式を指定する必要があるため、ローカルファイルを読み込む際は、URL形式でパスを指定する必要がある。
@@ -692,7 +881,7 @@
 									<strong>tsconfig.json</strong
 									>は、TypeScriptのコンパイル設定を記述する重要なファイルです。以下、記述例です。
 								</p>
-								<pre><code>{"compilerOptions": {"target": "es2015"}}</code></pre>
+								<code>{"compilerOptions": {"target": "es2015"}}</code>
 								<p>
 									通常、TSのコンパイルは設定しないと互換性維持のためデフォルトでES5にコンパイルされます。しかし、上記の記述例でコンパイル後のJSのバージョンをECMAScript2015（ES6）に設定することができます。
 								</p>
@@ -763,7 +952,10 @@
 										>Tailwind CSSの公式サイト</a
 									>を参考に以下のコードを&lt;head&gt;要素内に記述し、試験的に導入しておりました。
 								</p>
-								<pre><code>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</code></pre>
+								<code
+									>&lt;script
+									src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</code
+								>
 								<p>
 									その後<b
 										>「同じ要素に、毎回同じTailwind
@@ -801,7 +993,7 @@
 									docs&gt;src&nbsp;内にあるTailwind
 									CSSの構文で制作したCSSファイルを以下のコマンドでbuildし、docsフォルダ内に生成します。
 								</p>
-								<pre><code>npm run build</code></pre>
+								<code>npm run build</code>
 								<p>その後、生成したCSSファイルをhtml側で読み込みます。</p>
 							</section>
 						</details>

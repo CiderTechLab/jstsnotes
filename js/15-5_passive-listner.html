@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Passive Event Listeners</title>
+	</head>
+	<body>
+		<div>
+			<span>0</span>
+			<button disabled>+</button>
+		</div>
+
+		<style>
+			body {
+				margin: 0;
+			}
+			div {
+				background: linear-gradient(skyblue, lightgreen);
+				height: 200vh;
+			}
+		</style>
+
+		<script>
+			/**
+			 * Passive Listener（パッシブリスナ）
+			 * - Chrome 51以降でサポートされているイベントリスナーのオプション
+			 * - addEventListenerの第3引数に{ passive: true }を指定することで、パッシ
+			 *   ブリスナが有効になる。ちなみにデフォルトで有効。
+			 */
+			function scrollStop() {
+				function preventScroll(event) {
+					event.preventDefault();
+				}
+				document.addEventListener('touchmove', preventScroll, {
+					passive: false,
+				});
+				document.addEventListener('wheel', preventScroll, { passive: false });
+			}
+			scrollStop();
+
+			/**
+			 * dispatcheEvent: イベントをJavaScriptから発火させるためのメソッド
+			 */
+			function dispatchEvent() {
+				const btn = document.querySelector('button');
+				const span = document.querySelector('span');
+
+				let cnt = 0;
+				btn.addEventListener('click', (event) => {
+					cnt++;
+					span.textContent = cnt;
+				});
+
+				const clickEvent = new Event('click');
+				setInterval(() => {
+					btn.dispatchEvent(clickEvent);
+				}, 1000);
+			}
+			dispatchEvent();
+		</script>
+	</body>
+</html>

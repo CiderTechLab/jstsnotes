@@ -7,31 +7,96 @@
 		<title>イベントハンドラー</title>
 	</head>
 	<body>
+		<p>カウンター</p>
 		<div>
 			<button id="minus">-</button>
 			<span id="counter">0</span>
 			<button id="plus">+</button>
 		</div>
+		<hr />
+		<p id="change-paragraph">この文字列を色んなボタンで変えてみましょう！</p>
+		<button id="color">文字色を変えます。</button>
+		<button id="bg-color">背景色を変えます。</button>
+		<button id="all-color">文字色・背景色を変えます。</button>
+		<button id="reset">リセットします。</button>
+		<hr />
+		<p id="text">イベントリスナが解除されます。</p>
+		<button id="btn">ボタン</button>
+
 		<script>
 			/**
-			 * イベントハンドラ
+			 * MEMO: イベントリスナー
 			 * @example
 			 * EventTarget.addEventListener(['EventType'], action,[options])
+			 * - イベントを「監視して登録する仕組み」
+			 * - (event)には、イベントオブジェクトが渡される。
 			 */
-			let cnt = 0;
-			const counter = document.querySelector('#counter');
-			const minus = document.querySelector('#minus');
-			const plus = document.querySelector('#plus');
+			function counterApp() {
+				let cnt = 0;
+				const counter = document.querySelector('#counter');
 
-			minus.addEventListener('click', (event) => {
-				cnt--;
-				counter.textContent = cnt;
-			});
+				const minus = document.querySelector('#minus');
+				minus.addEventListener('click', (event) => {
+					cnt--;
+					counter.textContent = cnt;
+				});
 
-			plus.addEventListener('click', (event) => {
-				cnt++;
-				counter.textContent = cnt;
-			});
+				const plus = document.querySelector('#plus');
+				plus.addEventListener('click', (event) => {
+					cnt++;
+					counter.textContent = cnt;
+				});
+			}
+			counterApp();
+
+			/**
+			 * MEMO: 複数のイベントリスナーの登録
+			 * - 1つの要素に複数のイベントリスナーを登録することができる
+			 */
+			function changeColor() {
+				const paragraph = document.querySelector('#change-paragraph');
+
+				const colorBtn = document.querySelector('#color');
+				colorBtn.addEventListener('click', (event) => {
+					paragraph.style.color = 'red';
+				});
+
+				const bgColorBtn = document.querySelector('#bg-color');
+				bgColorBtn.addEventListener('click', (event) => {
+					paragraph.style.backgroundColor = 'yellow';
+				});
+
+				const allColorBtn = document.querySelector('#all-color');
+				allColorBtn.addEventListener('click', (event) => {
+					paragraph.style.color = 'blue';
+					paragraph.style.backgroundColor = 'lightgray';
+				});
+
+				const resetBtn = document.querySelector('#reset');
+				resetBtn.addEventListener('click', (event) => {
+					paragraph.style.color = '';
+					paragraph.style.backgroundColor = '';
+				});
+			}
+			changeColor();
+
+			/**
+			 * MEMO: イベントリスナーの削除
+			 * EventTarget.removeEventListener(['EventType'], action,[options])
+			 * - イベントリスナーを削除することができる
+			 */
+			function addRemoveEventListener() {
+				const text = document.querySelector('#text');
+
+				function changeTextColor(event) {
+					text.style.color = 'green';
+				}
+
+				const btn = document.querySelector('#btn');
+				btn.addEventListener('click', changeTextColor);
+				btn.removeEventListener('click', changeTextColor);
+			}
+			addRemoveEventListener();
 		</script>
 	</body>
 </html>

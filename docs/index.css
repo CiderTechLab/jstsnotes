@@ -238,6 +238,10 @@
   .table {
     display: table;
   }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
   .text-xl {
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
@@ -628,15 +632,11 @@
     margin-left: calc(var(--spacing) * 4);
     padding: calc(var(--spacing) * 0);
   }
-  pre {
-    margin: calc(var(--spacing) * 4);
-    padding: calc(var(--spacing) * 0);
-  }
   code {
+    margin: calc(var(--spacing) * 4);
     margin-block: 0.125rem;
     overflow-x: auto;
     background-color: var(--color-black);
-    padding: calc(var(--spacing) * 4);
     color: var(--color-white);
     --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -711,14 +711,14 @@
     }
   }
 }
-@property --tw-font-weight {
-  syntax: "*";
-  inherits: false;
-}
 @property --tw-border-style {
   syntax: "*";
   inherits: false;
   initial-value: solid;
+}
+@property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
 }
 @property --tw-duration {
   syntax: "*";
@@ -807,8 +807,8 @@
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-font-weight: initial;
       --tw-border-style: solid;
+      --tw-font-weight: initial;
       --tw-duration: initial;
       --tw-translate-x: 0;
       --tw-translate-y: 0;

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Eventオブジェクト</title>
+	</head>
+	<body>
+		<section>
+			section<br />
+			<div>
+				div<br />
+				<button>button</button>
+			</div>
+			<p>p<br />この要素は伝播されません。</p>
+		</section>
+
+		<style>
+			section,
+			div,
+			button,
+			p {
+				padding: 10px;
+				border: 10px solid gray;
+			}
+		</style>
+
+		<div id="div2">この要素の色が変化します。</div>
+		<button id="btn2">ボタン2</button>
+
+		<ul>
+			<li>
+				<a class="no-link" href="https://www.google.com/intl/ja_jp/chrome/"
+					>&#x1f30f;Chrome&#x1f30f;へは行けません&#x1f624;</a
+				>
+			</li>
+			<li>
+				<a class="no-link" href="https://www.apple.com/jp/safari/"
+					>&#x1f9ed;Safari&#x1f9ed;へは行けません&#x1f624;</a
+				>
+			</li>
+			<li>
+				<a href="https://www.mozilla.org/ja/firefox/new/"
+					>&#x1f98a;Firefox&#x1f98a;へ行きましょう&#x1f60f;&#x1f680;&#x1f525;</a
+				>
+			</li>
+		</ul>
+
+		<script>
+			/**
+			 * MEMO: Eventオブジェクト
+			 */
+			/**
+			 * stopPropagationメソッド：他の要素への伝播を止める。
+			 * - 以下のeventObj()関数では、section要素のクリックイベントで伝播を止めて
+			 *   いる。（「sectionのクリックイベント」とだけ表示される）
+			 */
+			function stoppingPropagation() {
+				const btn = document.querySelector('button');
+				btn.addEventListener('click', (event) => {
+					console.log('buttonのクリックイベント');
+				});
+
+				const division = document.querySelector('div');
+				division.addEventListener('click', (event) => {
+					console.log('divのクリックイベント');
+				});
+
+				const section = document.querySelector('section');
+				section.addEventListener(
+					'click',
+					(event) => {
+						event.stopPropagation(); // 伝播を止める
+						console.log('sectionのクリックイベント');
+					},
+					{ capture: true }
+				);
+			}
+			stoppingPropagation();
+
+			/**
+			 * stopImmediatePropagationメソッド：アクションを即時で停止する
+			 * - 以下のstoppingImmediatePropagation()関数では、btn2のクリックイベント
+			 *   でstopImmediatePropagation()メソッドを呼び出しているため、divの背景色
+			 *   は変化しない。
+			 */
+			function stoppingImmediatePropagation() {
+				const btn = document.querySelector('#btn2');
+				const div = document.querySelector('#div2');
+
+				btn.addEventListener('click', (event) => {
+					event.stopImmediatePropagation(); // アクションを即時で停止する
+					div.style.color = 'red';
+				});
+
+				btn.addEventListener('click', (event) => {
+					div.style.backgroundColor = 'pink';
+				});
+			}
+			stoppingImmediatePropagation();
+
+			/**
+			 * preventDefaultメソッド：ブラウザのデフォルトの動作をキャンセルする
+			 * @example
+			 * - event.currentTarget.textContent
+			 *   - event          : イベントオブジェクト
+			 *     - target       : イベントが発生した要素を指す
+			 *     - currentTarget: イベントが実行中の要素を指す
+			 *       - textContent: その要素のテキスト内容を取得する
+			 */
+			function preventingDefault() {
+				const noLinks = document.querySelectorAll('.no-link');
+				noLinks.forEach((noLink) => {
+					noLink.addEventListener('click', (event) => {
+						event.preventDefault(); // デフォルトの動作をキャンセルする
+						alert(event.currentTarget.textContent);
+					});
+				});
+			}
+			preventingDefault();
+		</script>
+	</body>
+</html>

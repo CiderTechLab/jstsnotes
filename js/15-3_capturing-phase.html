@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>キャプチャリングフェーズ</title>
+	</head>
+	<body>
+		<div id="element-one"></div>
+		<div id="element-two">
+			<button>ボタン</button>
+		</div>
+
+		<script>
+			/**
+			 * MEMO: イベントの伝播（Propagation）
+			 * - キャプチャリングフェーズ
+			 *   - イベントは、発生した要素から親要素へと伝播していく
+			 * - ターゲットフェーズ
+			 *   - キャプチャリングフェーズによってイベントの伝播がイベント発生要素までた
+			 *     どり着くと、ターゲットフェーズになる。
+			 * - バブリングフェーズ
+			 *   - ターゲットフェーズ完了後、イベントは親要素、祖先要素へと伝播していく。
+			 */
+			function capturePhase(event) {
+				window.addEventListener(
+					'click',
+					() => {
+						console.log('windowのclickイベント');
+					},
+					{ capture: true }
+				);
+
+				const elementOne = document.getElementById('element-one');
+				elementOne.addEventListener(
+					'click',
+					() => {
+						console.log('elementOneのclickイベント');
+					},
+					{ capture: true }
+				);
+
+				const elementTwo = document.getElementById('element-two');
+				elementTwo.addEventListener(
+					'click',
+					() => {
+						console.log('elementTwoのclickイベント');
+					},
+					{ capture: true }
+				);
+
+				const btn = elementTwo.querySelector('button');
+				btn.addEventListener(
+					'click',
+					() => {
+						console.log('buttonのclickイベント');
+					},
+					{ capture: true }
+				);
+			}
+			capturePhase();
+		</script>
+	</body>
+</html>
