@@ -20,6 +20,9 @@
 	.heading-two::before {
 		content: counter(h2-counter) '. ';
 	}
+	.asideleft-heading-two {
+		@apply text-xl mx-1 my-2 border-b border-gray-500;
+	}
 
 	/** h3 */
 	.heading-three {
@@ -57,7 +60,7 @@
 
 	/** links */
 	a {
-		@apply text-cyan-600 no-underline transition-colors duration-200 hover:text-cyan-700 hover:underline;
+		@apply text-cyan-600 no-underline transition-colors duration-200 hover:text-cyan-700 hover:underline break-words;
 	}
 
 	/** table */

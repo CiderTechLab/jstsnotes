@@ -2,22 +2,24 @@
 @import 'tailwindcss';
 /**
  * - モバイルファースト
- * - デスクトップは1024px以上
- *   - 2カラムレイアウト（デスクトップのみ）
+ * - デスクトップは1280px以上
+ *   - 3カラムレイアウト（PC Edition）
  */
 @layer components {
-	/** 2カラムレイアウト */
-	.layout__inner {
-		@apply flex flex-col gap-0;
-		padding-top: var(--height-header);
-		padding-bottom: var(--height-footer);
+	body {
+		display: grid;
+		grid-template-rows: auto 1fr auto;
+		grid-template-areas:
+			'header'
+			'main'
+			'footer';
 	}
-
-	/** header */
-	.header {
+	header {
+		grid-area: header;
 		@apply fixed w-full p-4 pl-14 flex items-center gap-8 bg-white border-b border-gray-300;
 		color: var(--text-primary);
 		height: var(--height-header);
+		z-index: 100;
 	}
 	.header__title--js {
 		@apply bg-yellow-300 text-black px-2;
@@ -32,9 +34,13 @@
   * @memo h2-counter CSSカウンターのこと。ただし、CSS変数ではない。
   */
 	main {
-		@apply pb-20 p-1;
+		grid-area: main;
+		@apply pb-20 p-1 flex flex-col gap-0;
+		padding-top: var(--height-header);
+		padding-bottom: var(--height-footer);
 		counter-reset: h2-counter;
 		order: 0;
+		z-index: 99;
 	}
 
 	/** アンカーリンク時のスクロール位置調整 */
@@ -48,14 +54,16 @@
 	 *.article {
 	 * }
 	 */
-	.layout__inner {
-		@apply flex flex-col;
-		padding-top: var(--height-header);
-		padding-bottom: var(--height-footer);
-	}
-
 	aside {
 		@apply fixed left-0 z-50 w-screen h-screen pointer-events-none;
+		z-index: 99;
+	}
+	.aside-left {
+		grid-area: aside-left;
+	}
+	.aside-right {
+		grid-area: aside-right;
+		@apply block bg-gray-100 translate-x-0 h-auto overflow-visible;
 	}
 
 	/** ハンバーガーボタン - ヘッダーと同じ高さで左上固定 */
@@ -103,7 +111,8 @@
 
 	/** TOCナビ（デフォルトで非表示） */
 	aside .toc {
-		@apply block bg-white border-gray-200 p-4 w-full overflow-y-auto h-screen translate-x-full transition-transform duration-500;
+		@apply block bg-gray-100 border-gray-200 w-full overflow-y-auto h-screen translate-x-full transition-transform duration-500;
+		--tw-translate-x: 0;
 	}
 
 	/** TOCナビ（is-open時に表示） */
@@ -148,13 +157,13 @@
 
 	/** summary */
 	summary {
-		@apply flex items-center cursor-pointer select-none list-none border-b border-gray-300 mt-2 mr-2 mb-2 ml-4;
+		@apply flex items-center cursor-pointer select-none list-none my-1 ml-1;
 	}
 	summary::-webkit-details-marker {
 		display: none;
 	}
 	summary::before {
-		content: '∨';
+		content: '';
 		@apply inline-block transition-transform duration-200;
 		color: var(--text-primary);
 	}
@@ -164,16 +173,17 @@
 	}
 
 	/** footer */
-	.footer {
+	footer {
+		grid-area: footer;
 		@apply fixed bottom-0 w-full p-4 bg-white border-t border-gray-300 flex justify-start items-center;
 		color: var(--text-primary);
 		height: var(--height-footer);
 		left: 0;
 		right: 0;
-		z-index: 40;
+		z-index: 100;
 	}
 
-	.footer span {
+	footer span {
 		@apply block;
 	}
 }
@@ -181,29 +191,38 @@
 /** PC Edition */
 @media screen and (min-width: 1280px) {
 	@layer components {
-		.header {
+		body {
+			grid-template-columns: 20vw 60vw 20vw;
+			grid-template-areas:
+				'header header header'
+				'aside-left main aside-right'
+				'footer footer footer';
+		}
+		header {
 			@apply pl-4;
 		}
 
-		.layout__inner {
-			@apply grid;
-			grid-template-columns: 250px 1fr;
-			gap: 0;
+		main {
+			@apply pb-20 p-4 col-span-1 order-2 overflow-y-auto;
+			padding-top: var(--height-header);
+			padding-bottom: var(--height-footer);
+			max-height: 100vh;
 		}
 
 		aside {
-			@apply col-span-1 order-1 sticky overflow-y-auto pointer-events-auto w-[250px] p-5 border-r border-gray-200;
-			top: var(--height-header);
-			max-height: calc(100vh - var(--height-header) - var(--height-footer));
+			@apply col-span-1 order-1 sticky overflow-y-auto pointer-events-auto w-[20vw] p-3 border-r border-gray-200;
+			padding-top: calc(var(--height-header) + 5vh);
+			padding-bottom: var(--height-footer);
+			max-height: 100vh;
 		}
 
-		aside .toc {
-			@apply block translate-x-0 h-auto overflow-visible;
-		}
-
-		.toc h2 {
+		.aside-right h2 {
 			margin: 0 0 16px 0;
 			font-size: 1rem;
+		}
+
+		.toc {
+			max-height: calc(100vh - var(--height-header) - var(--height-footer));
 		}
 
 		.toc-list {
@@ -211,19 +230,14 @@
 			padding: 0;
 			margin: 0;
 		}
-
 		.toc-list li {
 			margin: 8px 0;
 		}
 
 		.toc-nested {
 			list-style: none;
-			padding-left: 20px;
+			padding-left: 12px;
 			margin: 4px 0;
-		}
-
-		main {
-			@apply pb-20 p-4 col-span-1 order-2;
 		}
 
 		/** ハンバーガーボタンはデスクトップで非表示 */
@@ -231,7 +245,12 @@
 			display: none;
 		}
 
-		.footer span {
+		summary > a {
+			display: block;
+			overflow-wrap: break-word;
+		}
+
+		footer span {
 			@apply inline;
 		}
 	}

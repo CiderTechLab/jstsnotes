@@ -9,7 +9,7 @@
 		"typescript": "^6.0.2"
 	},
 	"scripts": {
-		"build:css": "postcss docs/src/*.css -d docs/",
+		"build:css": "postcss docs/src/*.css -d docs/dist",
 		"build:ts": "tsc",
 		"build": "npm run build:ts && npm run build:css"
 	},

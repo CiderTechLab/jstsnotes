@@ -9,11 +9,58 @@
 			content="S.KによるJavaScriptおよびTypeScriptの学習まとめサイトです。学習中に得た知識や経験をまとめました。"
 		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>JS&nbsp;&amp;&nbsp;TS&nbsp;学習まとめノート</title>
+		<title>概要 - JS&nbsp;&amp;&nbsp;TS&nbsp;Learn Notes</title>
 		<!-- style info -->
-		<link rel="stylesheet" href="index.css" />
+		<link rel="stylesheet" href="/docs/dist/index.css" />
 		<!-- script info -->
-		<script type="module" src="toc.js" defer></script>
+		<script type="module" src="/ts/dist/header.js" defer></script>
+		<script type="module" src="/ts/dist/footer.js" defer></script>
+		<script type="module" src="/ts/dist/asideLeft.js" defer></script>
+		<script type="module" src="/ts/dist/asideRight.js" defer></script>
 	</head>
-	<body></body>
+	<body>
+		<header></header>
+		<aside class="aside-left"></aside>
+		<main>
+			<h2 class="heading-two">概要</h2>
+			<h4 class="heading-four heading-four--js">JavaScriptの歴史</h4>
+			<p>
+				1995年、JavaScript（以下、JS）は当時Netscape社の<a
+					href="https://ja.wikipedia.org/wiki/ブレンダン・アイク"
+					target="_blank"
+					>Brendan Eich（ブレンダン・アイク）氏</a
+				>によって開発され、初めてのバージョンがリリースされました。当時は簡単な用途を想定されており、「ブラウザで動作するJava風のプログラミング言語作ってくれ。（意訳）」と上司に言われ、<strong>なんと10日で作成</strong>されたと言われています。ちなみに、後にBrendan
+				Eich氏はMozillaのCEOも経験し、現在では<strong>Braveブラウザの開発にも携わっています</strong>。
+			</p>
+			<h4 class="heading-four heading-four--js">JavaScriptの弱点</h4>
+			<ul>
+				<li>
+					型安全性の欠如：動的型付け言語のため、変数の型不一致によるバグが発生しやすい。
+				</li>
+				<li>
+					大規模プロジェクトでの保守性の低さ：型安全の欠如や、例えばJSDocで型を注釈できるものの、人の手で書くため信頼性や保守性が低い。
+				</li>
+				<li>
+					モジュールシステムの不備：JavaScriptの標準モジュールシステムは不十分であり、依存関係の管理が難しい。
+				</li>
+				<li>クラスベースのオブジェクト指向プログラミングのサポート不足</li>
+			</ul>
+			<h4 class="heading-four heading-four--ts">TypeScriptの歴史</h4>
+			<p>
+				2010年、Microsoftが開発を開始しました。主導は<a
+					href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%80%E3%83%BC%E3%82%B9%E3%83%BB%E3%83%98%E3%83%AB%E3%82%B9%E3%83%90%E3%83%BC%E3%82%B0"
+					target="_blank"
+					>Anders Hejlsberg（アンダース・ヘイルスバーグ）氏</a
+				>で.NET FrameworkやC#言語の開発者としても知られています。
+				2012年、初めてのバージョンがリリースされ、オープンソース化されました。
+			</p>
+			<h4 class="heading-four heading-four--ts">TypeScriptの特徴</h4>
+			<p>
+				<strong>型安全の強制</strong
+				>：逆に言うと、それ以外はどのような設計でも良いし、それぞれのフレームワークやライブラリに依存する形になる。
+			</p>
+		</main>
+		<aside class="aside-right"></aside>
+		<footer></footer>
+	</body>
 </html>

@@ -1,6 +1,8 @@
 /**
+ * @author S.K
  * Table of Contents Generator
- * <main>要素内のh2, h3タグから自動的に目次を生成し、<aside>に挿入する
+ * <main>要素内のh2, h3タグから自動的に目次を生成し、
+ * <aside class="sidebar-right">に挿入する
  */
 
 interface HeadingElement {
@@ -63,61 +65,68 @@ function generateTableOfContentsHTML(headings: HeadingElement[]): string {
 	html += '</button>\n';
 
 	html += '<nav class="toc">\n';
-	html += '  <h2 class="text-xl font-bold mb-4">目次</h2>\n';
-	html += '  <ul class="toc-list">\n';
+	html += '  <h2 class="text-xl font-bold mb-4">ページ内目次</h2>\n';
 
-	let currentLevel = 2;
+	let inDetails = false;
 
 	headings.forEach((heading) => {
-		// レベルが上がった場合、新しいリストを開く
-		while (currentLevel < heading.level) {
-			html += '    <ul class="toc-nested">\n';
-			currentLevel++;
-		}
+		if (heading.level === 2) {
+			// 前の details があれば閉じる
+			if (inDetails) {
+				html += '    </ul>\n';
+				html += '  </details>\n';
+			}
 
-		// レベルが下がった場合、リストを閉じる
-		while (currentLevel > heading.level) {
-			html += '    </ul>\n';
-			currentLevel--;
+			// 新しい details を開く
+			const displayText = heading.counterText
+				? `${heading.counterText}${heading.text}`
+				: heading.text;
+			html += `  <details>\n`;
+			html += `    <summary><a href="#${heading.id}">${displayText}</a></summary>\n`;
+			html += `    <ul class="toc-nested">\n`;
+			inDetails = true;
+		} else if (heading.level === 3) {
+			// h3 のリストアイテムを追加
+			if (!inDetails) {
+				html += '  <ul class="toc-list">\n';
+				inDetails = true;
+			}
+			const displayText = heading.counterText
+				? `${heading.counterText}${heading.text}`
+				: heading.text;
+			html += `      <li class="toc-item"><a href="#${heading.id}">${displayText}</a></li>\n`;
 		}
-
-		// リストアイテムを追加
-		const indent = '  '.repeat(heading.level - 2 + 1);
-		const displayText = heading.counterText
-			? `${heading.counterText}${heading.text}`
-			: heading.text;
-		html += `${indent}<li class="toc-item"><a href="#${heading.id}">${displayText}</a></li>\n`;
 	});
 
-	// 残りのリストを閉じる
-	while (currentLevel > 2) {
+	// 残りの details を閉じる
+	if (inDetails) {
 		html += '    </ul>\n';
-		currentLevel--;
+		html += '  </details>\n';
 	}
 
-	html += '  </ul>\n';
 	html += '</nav>\n';
 
 	return html;
 }
 
 /**
- * 目次を<aside>に挿入する
+ * 目次を<aside class="sidebar-right">に挿入する
  */
 function insertToc(): void {
-	const aside = document.querySelector('aside');
-	if (!aside) return;
+	const sidebarRight = document.querySelector('.aside-right');
+	if (!sidebarRight) return;
 
 	const headings = getHeadings();
 	const tocHTML = generateTableOfContentsHTML(headings);
 
-	aside.innerHTML = tocHTML;
+	sidebarRight.innerHTML = tocHTML;
 
 	// ハンバーガーボタンのクリックハンドラー
-	const hamburger = aside.querySelector<HTMLButtonElement>('.toc-hamburger');
+	const hamburger =
+		sidebarRight.querySelector<HTMLButtonElement>('.toc-hamburger');
 	if (hamburger) {
 		hamburger.addEventListener('click', () => {
-			const isOpen = aside.classList.toggle('is-open');
+			const isOpen = sidebarRight.classList.toggle('is-open');
 			hamburger.setAttribute('aria-expanded', String(isOpen));
 			hamburger.setAttribute(
 				'aria-label',
@@ -126,15 +135,27 @@ function insertToc(): void {
 		});
 	}
 
+	// summary要素のクリックハンドラー
+	const summaryElements = sidebarRight.querySelectorAll<HTMLElement>('summary');
+	summaryElements.forEach((summary) => {
+		summary.addEventListener('click', (event: Event) => {
+			const details = summary.closest<HTMLDetailsElement>('details');
+			if (details) {
+				details.toggleAttribute('open');
+				event.preventDefault();
+			}
+		});
+	});
+
 	// TOCリンクのクリック後にメニューを閉じる（イベントデリゲーション）
-	aside.addEventListener('click', (event: MouseEvent) => {
+	sidebarRight.addEventListener('click', (event: Event) => {
 		const target = event.target as HTMLElement | null;
 		const link = target?.closest<HTMLAnchorElement>('.toc-item a');
 		if (!link) {
 			return;
 		}
 
-		aside.classList.remove('is-open');
+		sidebarRight.classList.remove('is-open');
 		if (hamburger) {
 			hamburger.setAttribute('aria-expanded', 'false');
 			hamburger.setAttribute('aria-label', '目次を開く');

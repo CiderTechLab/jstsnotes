@@ -9,1413 +9,1322 @@
 			content="S.KによるJavaScriptおよびTypeScriptの学習まとめサイトです。学習中に得た知識や経験をまとめました。"
 		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>JS&nbsp;&amp;&nbsp;TS&nbsp;学習まとめノート</title>
+		<title>JS&nbsp;&amp;&nbsp;TS&nbsp;Learn&nbsp;Notes</title>
 		<!-- style info -->
-		<link rel="stylesheet" href="index.css" />
+		<link rel="stylesheet" href="/docs/dist/index.css" />
 		<!-- script info -->
-		<script type="module" src="toc.js" defer></script>
+		<script type="module" src="/ts/dist/header.js" defer></script>
+		<script type="module" src="/ts/dist/footer.js" defer></script>
+		<script type="module" src="/ts/dist/asideLeft.js" defer></script>
+		<script type="module" src="/ts/dist/asideRight.js" defer></script>
 	</head>
 	<body>
-		<div class="layout">
-			<header class="header">
-				<h1>
-					<span class="header__title--js">JS</span>&nbsp;&amp;&nbsp;<span
-						class="header__title--ts"
-						>TS</span
-					><br class="title-linebreak" />&nbsp;学習まとめノート
-				</h1>
-			</header>
+		<header></header>
+		<aside class="aside-left"></aside>
+		<main>
+			<article class="article">
+				<section class="section">
+					<b>ようこそ！JS&nbsp;&amp;&nbsp;TS&nbsp;Learn&nbsp;Notesへ！</b><br />
+					詳細は<a
+						href="https://github.com/CiderTechLab/roadtojsts/blob/main/README.md"
+						>README.md</a
+					>をご覧ください
+				</section>
+			</article>
 
-			<div class="layout__inner">
-				<aside></aside>
+			<article class="article">
+				<h2 class="heading-two">JavaScript/TypeScript CheetSheet</h2>
+				<details>
+					<summary><h3 class="heading-three">実行方法</h3></summary>
+					<section class="section">
+						<h4 class="heading-four heading-four--js">JavaScriptの実行方法</h4>
+						<h5 class="heading-five">HTMLから読み込む</h5>
+						<p>以下のタグで読み込むことができます。</p>
 
-				<main class="main">
-					<article class="article">
-						<h2 class="heading-two">About</h2>
-						<section class="section">
-							詳細は<a
-								href="https://github.com/CiderTechLab/roadtojsts/blob/main/README.md"
-								>README.md</a
-							>をご覧ください
-						</section>
-					</article>
+						<code>&lt;script src="[ファイル名].js"&gt;&lt;/script&gt;</code>
 
-					<article class="article">
-						<h2 class="heading-two">
-							JavaScript/TypeScript CheetSheet
-						</h2>
-						<details>
-							<summary><h3 class="heading-three">概要</h3></summary>
-							<section class="section">
-								<h4 class="heading-four heading-four--js">JavaScriptの歴史</h4>
-								<p>
-									1995年、JavaScript（以下、JS）は当時Netscape社の<a
-										href="https://ja.wikipedia.org/wiki/ブレンダン・アイク"
-										target="_blank"
-										>Brendan Eich（ブレンダン・アイク）氏</a
-									>によって開発され、初めてのバージョンがリリースされました。当時は簡単な用途を想定されており、「ブラウザで動作するJava風のプログラミング言語作ってくれ。（意訳）」と上司に言われ、<strong>なんと10日で作成</strong>されたと言われています。ちなみに、後にBrendan
-									Eich氏はMozillaのCEOも経験し、現在では<strong>Braveブラウザの開発にも携わっています</strong>。
-								</p>
-								<h4 class="heading-four heading-four--js">JavaScriptの弱点</h4>
-								<ul>
-									<li>
-										型安全性の欠如：動的型付け言語のため、変数の型不一致によるバグが発生しやすい。
-									</li>
-									<li>
-										大規模プロジェクトでの保守性の低さ：型安全の欠如や、例えばJSDocで型を注釈できるものの、人の手で書くため信頼性や保守性が低い。
-									</li>
-									<li>
-										モジュールシステムの不備：JavaScriptの標準モジュールシステムは不十分であり、依存関係の管理が難しい。
-									</li>
-									<li>
-										クラスベースのオブジェクト指向プログラミングのサポート不足
-									</li>
-								</ul>
-								<h4 class="heading-four heading-four--ts">TypeScriptの歴史</h4>
-								<p>
-									2010年、Microsoftが開発を開始しました。主導は<a
-										href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%80%E3%83%BC%E3%82%B9%E3%83%BB%E3%83%98%E3%83%AB%E3%82%B9%E3%83%90%E3%83%BC%E3%82%B0"
-										target="_blank"
-										>Anders Hejlsberg（アンダース・ヘイルスバーグ）氏</a
-									>で.NET FrameworkやC#言語の開発者としても知られています。
-									2012年、初めてのバージョンがリリースされ、オープンソース化されました。
-								</p>
-								<h4 class="heading-four heading-four--ts">TypeScriptの特徴</h4>
-								<p>
-									<strong>型安全の強制</strong
-									>：逆に言うと、それ以外はどのような設計でも良いし、それぞれのフレームワークやライブラリに依存する形になる。
-								</p>
-							</section>
-						</details>
+						<p>
+							しかし、問題が。実はこのタグをそのままHTMLの最前部（例えば&lt;body&gt;直下）に置くと、DOMツリー構築後にスクリプトが実行され、意図した動作にならないことがあります。そこで出てくるのがHTMLの最後部、&lt;/body&gt;タグ直前に書く方法です。
+						</p>
+						<br />
+						<p>
+							でも、ちょっと待ってください！分かりづらくないですか？そこで次は&lt;head&gt;内に埋め込む方法です。
+						</p>
 
-						<details>
-							<summary><h3 class="heading-three">実行方法</h3></summary>
-							<section class="section">
-								<h4 class="heading-four heading-four--js">JavaScriptの実行方法</h4>
-								<h5 class="heading-five">HTMLから読み込む</h5>
-								<p>以下のタグで読み込むことができます。</p>
+						<code>&lt;script src="[ファイル名].js"&gt;&lt;/script&gt;</code>
 
-								<code>&lt;script src="[ファイル名].js"&gt;&lt;/script&gt;</code>
+						<p>
+							はい、コードは同じですね。書き方も同じです。しかし問題があります。それは<b>DOMツリー構築後にスクリプトが実行され、意図した動作にならないこと</b>です。そこで、以下のコードに変更します。
+						</p>
 
-								<p>
-									しかし、問題が。実はこのタグをそのままHTMLの最前部（例えば&lt;body&gt;直下）に置くと、DOMツリー構築後にスクリプトが実行され、意図した動作にならないことがあります。そこで出てくるのがHTMLの最後部、&lt;/body&gt;タグ直前に書く方法です。
-								</p>
-								<br />
-								<p>
-									でも、ちょっと待ってください！分かりづらくないですか？そこで次は&lt;head&gt;内に埋め込む方法です。
-								</p>
+						<code
+							>&lt;script src="[ファイル名].js" defer&gt;&lt;/script&gt;</code
+						>
 
-								<code>&lt;script src="[ファイル名].js"&gt;&lt;/script&gt;</code>
+						<p>
+							違いが分かりますか？defer属性を付けることで、スクリプトはDOMツリーの構築が完了した後に実行されるようになります。
+						</p>
+						<h5 class="heading-five">Node.js上での実行</h5>
+						<p>以下のコマンドで実行することができます。</p>
+						<code>node&nbsp;[ファイル名].js</code>
 
-								<p>
-									はい、コードは同じですね。書き方も同じです。しかし問題があります。それは<b>DOMツリー構築後にスクリプトが実行され、意図した動作にならないこと</b>です。そこで、以下のコードに変更します。
-								</p>
+						<h4 class="heading-four heading-four--ts">TypeScriptの実行方法</h4>
+						<h5 class="heading-five">TypeScriptのコンパイル</h5>
+						<p>
+							TypeScriptはJavaScriptのスーパーセットであり、JavaScriptにクロスコンパイルする必要があります。以下のコマンドでTypeScriptコードをJavaScriptコードに変換します。
+							<code>tsc&nbsp;[ファイル名].ts</code>
+						</p>
+						<h5 class="heading-five">コンパイル後の実行</h5>
+						<p>
+							コンパイル後はJavaScriptコードになるため、全項で説明したJavaScriptコードの実行方法で実行することができます。
+						</p>
+					</section>
+				</details>
 
-								<code
-									>&lt;script src="[ファイル名].js"
-									defer&gt;&lt;/script&gt;</code
+				<details>
+					<summary>
+						<h3 class="heading-three">命名規則（JavaScript/TypeScript）</h3>
+					</summary>
+					<section class="section">
+						<table class="table">
+							<caption>
+								命名規則一覧表
+							</caption>
+							<thead class="thead">
+								<tr>
+									<th class="thead-js-ts">命名規則</th>
+									<th class="thead-js-ts">例</th>
+									<th class="thead-js-ts">用途</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>camelCase</td>
+									<td>myVariable, userName</td>
+									<td>変数</td>
+								</tr>
+								<tr>
+									<td>PascalCase</td>
+									<td>MyClass, User</td>
+									<td>クラス名、コンストラクタ関数</td>
+								</tr>
+								<tr>
+									<td>snake_case</td>
+									<td>my_variable, user_name</td>
+									<td>変数、関数（キャメルケースより頻度少）</td>
+								</tr>
+								<tr>
+									<td>kebab-case</td>
+									<td>can-not-use</td>
+									<td>
+										JavaScript/TypeScriptでは変数や関数で使えないこともあり、あまり使われない。<strong
+											>ただし、CSSのクラス名、IDで使用されるのでJavaScript/TypeScriptと区別しやすい</strong
+										>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<h4 class="heading-four">サンプルコード</h4>
+						<ul>
+							<li>
+								<a
+									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-1_variable_naming-convension.js"
+									target="_blank"
+									>01-1_variable_naming-convension.js</a
 								>
+							</li>
+						</ul>
+					</section>
+				</details>
 
-								<p>
-									違いが分かりますか？defer属性を付けることで、スクリプトはDOMツリーの構築が完了した後に実行されるようになります。
-								</p>
-								<h5 class="heading-five">Node.js上での実行</h5>
-								<p>以下のコマンドで実行することができます。</p>
-								<code>node&nbsp;[ファイル名].js</code>
-
-								<h4 class="heading-four heading-four--ts">TypeScriptの実行方法</h4>
-								<h5 class="heading-five">TypeScriptのコンパイル</h5>
-								<p>
-									TypeScriptはJavaScriptのスーパーセットであり、JavaScriptにクロスコンパイルする必要があります。以下のコマンドでTypeScriptコードをJavaScriptコードに変換します。
-									<code>tsc&nbsp;[ファイル名].ts</code>
-								</p>
-								<h5 class="heading-five">コンパイル後の実行</h5>
-								<p>
-									コンパイル後はJavaScriptコードになるため、全項で説明したJavaScriptコードの実行方法で実行することができます。
-								</p>
-							</section>
-						</details>
-
-						<details>
-							<summary>
-								<h3 class="heading-three">命名規則（JavaScript/TypeScript）</h3>
-							</summary>
-							<section class="section">
-								<table class="table">
-									<caption>
-										命名規則一覧表
-									</caption>
-									<thead class="thead">
-										<tr>
-											<th class="thead-js-ts">命名規則</th>
-											<th class="thead-js-ts">例</th>
-											<th class="thead-js-ts">用途</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>camelCase</td>
-											<td>myVariable, userName</td>
-											<td>変数</td>
-										</tr>
-										<tr>
-											<td>PascalCase</td>
-											<td>MyClass, User</td>
-											<td>クラス名、コンストラクタ関数</td>
-										</tr>
-										<tr>
-											<td>snake_case</td>
-											<td>my_variable, user_name</td>
-											<td>変数、関数（キャメルケースより頻度少）</td>
-										</tr>
-										<tr>
-											<td>kebab-case</td>
-											<td>can-not-use</td>
-											<td>
-												JavaScript/TypeScriptでは変数や関数で使えないこともあり、あまり使われない。<strong
-													>ただし、CSSのクラス名、IDで使用されるのでJavaScript/TypeScriptと区別しやすい</strong
-												>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-								<h4 class="heading-four">サンプルコード</h4>
-								<ul>
-									<li>
-										<a
-											href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-1_variable_naming-convension.js"
-											target="_blank"
-											>01-1_variable_naming-convension.js</a
-										>
-									</li>
-								</ul>
-							</section>
-						</details>
-
-						<details>
-							<summary>
-								<h3 class="heading-three">
-									変数、定数、データ型（JavaScript/TypeScript）
-								</h3>
-							</summary>
-							<section class="section">
-								<table class="table">
-									<caption>
-										変数・定数宣言の種類一覧表
-									</caption>
-									<thead class="thead">
-										<tr>
-											<th class="thead-js">宣言</th>
-											<th class="thead-js">初期値</th>
-											<th class="thead-js">再宣言</th>
-											<th class="thead-js">再代入</th>
-											<th class="thead-js">スコープ</th>
-											<th class="thead-js">巻き上げ</th>
-											<th class="thead-js">備考</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>const</td>
-											<td>必須</td>
-											<td>&#215;</td>
-											<td>&#215;</td>
-											<td>ブロックスコープ</td>
-											<td>&#215;</td>
-											<td><strong>最優先で使うべき。</strong></td>
-										</tr>
-										<tr>
-											<td>let</td>
-											<td>undefined（→実質必須な事が多い）</td>
-											<td>&#215;</td>
-											<td>&#9675;</td>
-											<td>ブロックスコープ</td>
-											<td>&#215;</td>
-											<td>constの次に使用するべき。</td>
-										</tr>
-										<tr>
-											<td>var</td>
-											<td>undefined</td>
-											<td>&#9675;</td>
-											<td>&#9675;</td>
-											<td>関数スコープ</td>
-											<td>&#9675;</td>
-											<td><strong>非推奨。</strong></td>
-										</tr>
-									</tbody>
-								</table>
-								<h4 class="heading-four">サンプルコード</h4>
-								<ul>
-									<li>
-										<a
-											href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-1_variable_naming-convension.js"
-											target="_blank"
-											>01-1_variable_naming-convension.js</a
-										>
-									</li>
-								</ul>
-								<h4 class="heading-four">データ型</h4>
-								<table class="table">
-									<caption>データ型一覧表</caption>
-									<thead class="thead">
-										<tr>
-											<th class="thead-js-ts">データ型</th>
-											<th class="thead-js-ts">型の種類</th>
-											<th class="thead-js-ts">値</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>String</td>
-											<td>プリミティブ型</td>
-											<td>文字列</td>
-										</tr>
-										<tr>
-											<td>Number</td>
-											<td>プリミティブ型</td>
-											<td>
-												数値（整数、浮動小数点数、Infinity、NaN）、-(2^53-1)〜2^53-1、※2^53
-												- 1 = 9007199254740991
-											</td>
-										</tr>
-										<tr>
-											<td>bigint</td>
-											<td>プリミティブ型</td>
-											<td>任意精度整数（メモリが許す限りの大きさ）</td>
-										</tr>
-										<tr>
-											<td>Boolean</td>
-											<td>プリミティブ型</td>
-											<td>真偽値（trueまたはfalse）</td>
-										</tr>
-										<tr>
-											<td>null</td>
-											<td>プリミティブ型</td>
-											<td>null値</td>
-										</tr>
-										<tr>
-											<td>undefined</td>
-											<td>プリミティブ型</td>
-											<td>未定義値</td>
-										</tr>
-										<tr>
-											<td>symbol</td>
-											<td>プリミティブ型</td>
-											<td>一意の識別子</td>
-										</tr>
-										<tr>
-											<td>object</td>
-											<td>オブジェクト型</td>
-											<td>オブジェクト（プロパティの集合）</td>
-										</tr>
-										<tr>
-											<td>array</td>
-											<td>オブジェクト型</td>
-											<td>配列（順序付きの値の集合）</td>
-										</tr>
-										<tr>
-											<td>function</td>
-											<td>オブジェクト型</td>
-											<td>関数（実行可能なオブジェクト）</td>
-										</tr>
-									</tbody>
-								</table>
-								<table class="table">
-									<caption>TypeScript固有のデータ型一覧表</caption>
-									<thead class="thead">
-										<tr>
-											<th class="thead-ts">データ型</th>
-											<th class="thead-ts">型の種類</th>
-											<th class="thead-ts">構文</th>
-											<th class="thead-ts">使用例</th>
-											<th class="thead-ts">説明</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>any</td>
-											<td>特殊型</td>
-											<td>[変数宣言][変数名]: any</td>
-											<td><code>let valName: any</code></td>
-											<td>任意の型の値を許容する。しかし、型安全性が失われるため<strong>非推奨。</strong></td>
-										</tr>
-										<tr>
-											<td>union</td>
-											<td>特殊型</td>
-											<td>[変数宣言][変数名]:[型1] | [型2] | ...</td>
-											<td><code>let valName: string | number</code></td>
-											<td>
-												複数の型を組み合わせた型。使用例は、値がstring型またはnumber型のいづれかであることを意味する。使えるプロパティは指定した複数の型の両方で使えるものに限られます。たとえばstring | numberの場合.toString()は両方使えますが.toUpperCase()は使えません。（number型で使えないため。）
-											</td>
-										</tr>
-										<tr>
-											<td>リテラル</td>
-											<td>特殊型</td>
-											<td>[変数宣言][変数名]: [リテラル値]</td>
-											<td><code>let valName: "hello"</code></td>
-											<td>特定の値のみを許容する型。リテラル型を使用することで、変数が特定の値のみを持つことを保証できる。</td>
-										</tr>
-									</tbody>
-								</table>
-								<h4 class="heading-four">TypeScript固有の機能</h4>
-								<h5 class="heading-five">型の明示的な宣言</h5>
-								<p>
-									TypeScriptで型宣言は必須なのか、と言われると<strong>型推論機能により必ずしも明示的な型宣言は必要ない。</strong>ただし、関数の引数・戻り値、データベースでは安全のために明示的な型宣言が推奨される。
-								</p>
-								<h5 class="heading-five">型チェック機能</h5>
-								<p>
-									IDEでの注釈、型推論機能、typeof演算子を使用することで変数、関数の型をチェックすることが出来る。
-								</p>
-								<h5 class="heading-five">割り当て可能性（assignability）</h5>
-								<p>
-									ある型の値が別の型の変数に割り当て可能かどうかを判断するルール。（例：サブタイプ関係、構造的部分型）
-								</p>
-								<h5 class="heading-five">型アノテーション（※非推奨）</h5>
-								<p>
-									変数で初期化時、型が推論されない変数は<strong
-										>進化するany（evolving any）</strong
-									>となる。しかし、any型を明示的に指定することは非推奨。なぜなら、型安全性が失われ、TypeScriptの利点が活かせなくなるため。
-								</p>
-								<h5 class="heading-five">型の絞り込み</h5>
-								<p>
-									ある値が定義された型や、宣言された型、以前に推論された型よりも限定的な型であることをコードで示すことです。型の絞り込みで利用できる論理チェックを<strong>型ガード（type guard）</strong>と呼びます。	
-								</p>
-								<h5 class="heading-five">型の割り当てによる絞り込み</h5>
-								<p>変数に直接値を割り当てると、変数を割り当てられた値の型に限定します。</p>
-								<h5 class="heading-five">型のif文による確認</h5>
-								<p></p>
-								<h5 class="heading-five">型のtypeof演算子による確認</h5>
-								<h4 class="heading-four">サンプルコード</h4>
-								<ul>
-									<li>
-										<a
-											href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-2_type.js"
-											target="_blank"
-											>01-2_type.js</a
-										>
-									</li>
-									<li>
-										<a
-											href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-3_primitive-type.js"
-											target="_blank"
-											>01-3_primitive-type.js</a
-										>
-									</li>
-									<li>
-										<a
-											href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-4_object-type.js"
-											target="_blank"
-											>01-4_object-type.js</a
-										>
-									</li>
-									<li>
-										<a
-											href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-5_dynamic-type.js"
-											target="_blank"
-											>01-5_dynamic-type.js</a
-										>
-									</li>
-								</ul>
-							</section>
-						</details>
-
-						<details>
-							<summary><h3 class="heading-three">演算子</h3></summary>
-							<section class="section">
-								<h4 class="heading-four">優先順位</h4>
-								<p>一番強い演算子は()（括弧）、一番弱い演算子は,(カンマ)。</p>
-								<h4 class="heading-four">算術演算子</h4>
-								<table class="table">
-									<caption>
-										算術演算子一覧表
-									</caption>
-									<thead class="thead">
-										<tr>
-											<th class="thead-js">演算子</th>
-											<th class="thead-js">意味</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>+</td>
-											<td>加算</td>
-										</tr>
-										<tr>
-											<td>-</td>
-											<td>減算</td>
-										</tr>
-										<tr>
-											<td>*</td>
-											<td>乗算</td>
-										</tr>
-										<tr>
-											<td>/</td>
-											<td>除算</td>
-										</tr>
-										<tr>
-											<td>%</td>
-											<td>剰余（割り算の余り）</td>
-										</tr>
-										<tr>
-											<td>++（インクリメント演算子）</td>
-											<td>1を加算。前置・後置で挙動が異なる。</td>
-										</tr>
-										<tr>
-											<td>--（デクリメント演算子）</td>
-											<td>1を減算。前置・後置で挙動が異なる。</td>
-										</tr>
-									</tbody>
-								</table>
-								<h4 class="heading-four">等価演算子</h4>
-								<h5 class="heading-five">概要</h5>
-								<p>
-									値の等しさを比較するために使用され、戻り値はBoolean型（trueまたはfalse）となる。ほとんどの場合、厳密等価（===）または厳密非等価（!==）を使用する。
-								</p>
-								<table class="table">
-									<caption>
-										等価演算子一覧表
-									</caption>
-									<thead class="thead">
-										<tr>
-											<th class="thead-js">演算子</th>
-											<th class="thead-js">意味</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>==</td>
-											<td>
-												等価。値が等しい場合にtrueを返す。<b>型変換あり</b>
-											</td>
-										</tr>
-										<tr>
-											<td>===</td>
-											<td>
-												厳密等価。値と型が等しい場合にtrueを返す。<b
-													>型変換なし</b
-												>
-											</td>
-										</tr>
-										<tr>
-											<td>!=</td>
-											<td>
-												非等価。値が等しくない場合にtrueを返す。<b
-													>型変換あり</b
-												>
-											</td>
-										</tr>
-										<tr>
-											<td>!==</td>
-											<td>
-												厳密非等価。値と型が等しくない場合にtrueを返す。<b
-													>型変換なし</b
-												>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-
-								<h4 class="heading-four">関係演算子</h4>
-								<h5 class="heading-five">概要</h5>
-								<p>
-									オペランドの大小関係を比較するために使用され、戻り値はBoolean型（trueまたはfalse）となる。
-								</p>
-								<table class="table">
-									<caption>
-										関係演算子一覧表
-									</caption>
-									<thead class="thead">
-										<tr>
-											<th class="thead-js">演算子</th>
-											<th class="thead-js">意味</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>X&gt;Y</td>
-											<td>大なり。XがYより大きい場合にtrueを返す。</td>
-										</tr>
-										<tr>
-											<td>X&lt;Y</td>
-											<td>小なり。XがYより小さい場合にtrueを返す。</td>
-										</tr>
-										<tr>
-											<td>X&gt;=Y</td>
-											<td>
-												大なりイコール。XがY<b>以上</b>の場合にtrueを返す。
-											</td>
-										</tr>
-										<tr>
-											<td>X&lt;=Y</td>
-											<td>
-												小なりイコール。XがY<b>以下</b>の場合にtrueを返す。
-											</td>
-										</tr>
-										<tr>
-											<td>X in Y</td>
-											<td>
-												YプロパティがXオブジェクトのプロパティを持っているかどうかを判断する。
-											</td>
-										</tr>
-									</tbody>
-								</table>
-								<h4 class="heading-four">論理演算子</h4>
-								<h5 class="heading-five">概要</h5>
-								<p>
-									オペランドの論理積、論理和、論理否定を評価するために使用され、戻り値はBoolean型（trueまたはfalse）となる。
-								</p>
-								<table class="table">
-									<caption>
-										論理演算子一覧表
-									</caption>
-									<thead class="thead">
-										<tr>
-											<th class="thead-js">演算子</th>
-											<th class="thead-js">意味</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>X&nbsp;&amp;&amp;&nbsp;Y</td>
-											<td>
-												論理積（AND）。XとYの両方がtrueの場合にtrueを返す。
-											</td>
-										</tr>
-										<tr>
-											<td>X&nbsp;||&nbsp;Y</td>
-											<td>
-												論理和（OR）。XまたはYのどちらかがtrueの場合にtrueを返す。
-											</td>
-										</tr>
-										<tr>
-											<td>!X</td>
-											<td>論理否定（NOT）。Xがfalseの場合にtrueを返す。</td>
-										</tr>
-									</tbody>
-								</table>
-								<h4 class="heading-four">falsyとtruthy</h4>
-								<p>
-									Boolean関数で値を評価した際、falseとみなされる値を<b>falsy</b>、trueとみなされる値を<b>truthy</b>と呼ぶ。
-								</p>
-								<h4 class="heading-four">三項演算子</h4>
-								<p>以下の式でif文を簡潔に書くことができる。</p>
-								<p>
-									<code
-										>[条件式]&nbsp;?&nbsp;[真のときの値]&nbsp;:&nbsp;[偽のときの値]</code
-									>
-								</p>
-								<h4 class="heading-four">サンプルコード</h4>
-								<ul>
-									<li>
-										<a
-											href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/02_operators-operands.js"
-											target="_blank"
-											>02_operators-operands.js</a
-										>
-									</li>
-								</ul>
-							</section>
-						</details>
-
-						<details>
-							<summary><h3 class="heading-three">制御構文</h3></summary>
-							<section class="section">
-								<table class="table">
-									<caption>
-										制御構文一覧表
-									</caption>
-									<thead class="thead">
-										<tr>
-											<th class="thead-js">制御の種類</th>
-											<th class="thead-js">構文</th>
-											<th class="thead-js">解説</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td><span aria-hidden="true">&#x1f500;</span>条件分岐</td>
-											<td>if([条件]) { }</td>
-											<td>条件が真のときにコードブロックを実行</td>
-										</tr>
-										<tr>
-											<td><span aria-hidden="true">&#x1f500;</span>条件分岐</td>
-											<td>if { } else if { } else { }</td>
-											<td>条件に応じて複数のコードブロックを実行</td>
-										</tr>
-										<tr>
-											<td><span aria-hidden="true">&#x1f500;</span>条件分岐</td>
-											<td>switch</td>
-											<td></td>
-										</tr>
-										<tr>
-											<td><span aria-hidden="true">&#x1f504;</span>ループ</td>
-											<td>
-												for(let [変数名] = [開始数]; [変数名] &lt; [終了条件];
-												[変数名]++) { }
-											</td>
-											<td></td>
-										</tr>
-										<tr>
-											<td><span aria-hidden="true">&#x1f504;</span>ループ</td>
-											<td>while([条件]) { }</td>
-											<td>[条件]がfalseになるまで繰り返し実行する。</td>
-										</tr>
-										<tr>
-											<td><span aria-hidden="true">&#x1f504;</span>ループ</td>
-											<td>do { } while([条件])</td>
-											<td>
-												少なくとも1回はコードブロックを実行し、その後[条件]がtrueの間繰り返す。
-											</td>
-										</tr>
-										<tr>
-											<td><span aria-hidden="true">&#x1f504;</span>ループ</td>
-											<td>for...in</td>
-											<td></td>
-										</tr>
-										<tr>
-											<td><span aria-hidden="true">&#x1f504;</span>ループ</td>
-											<td>for...of</td>
-											<td></td>
-										</tr>
-										<tr>
-											<td><span aria-hidden="true">&#x267e;</span>例外処理</td>
-											<td>try {...} catch {...} finally {...}</td>
-											<td></td>
-										</tr>
-									</tbody>
-								</table>
-							</section>
-						</details>
-
-						<details>
-							<summary>
-								<h3 class="heading-three">コレクション - Array（配列）</h3>
-							</summary>
-							<section class="section">
-								<h4 class="heading-four">Array（配列）</h4>
-								<table class="table">
-									<caption>
-										コレクション一覧表
-									</caption>
-									<thead>
-										<tr>
-											<th class="thead-js">構文</th>
-											<th class="thead-js">使用例</th>
-											<th class="thead-js">説明</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>[変数宣言] [配列名] = [値1, 値2, 値3...]</td>
-											<td><code>const myArray = [1, 2, 3]</code></td>
-											<td>配列リテラル（[]）を使用した配列。</td>
-										</tr>
-										<tr>
-											<td>
-												[変数宣言] [配列名] = new Array([値1, 値2, 値3...])
-											</td>
-											<td><code>const myArray = new Array(1, 2, 3)</code></td>
-											<td>new Arrayを使用した配列の初期化。</td>
-										</tr>
-									</tbody>
-								</table>
-								<h4 class="heading-four">Array（配列）のメソッド</h4>
-								<table class="table">
-									<caption>
-										Array（配列）のメソッド一覧表
-									</caption>
-									<thead>
-										<tr>
-											<th class="thead-js">構文</th>
-											<th class="thead-js">使用例</th>
-											<th class="thead-js">説明</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>[配列名].shift()</td>
-											<td><code>myArray.shift()</code></td>
-											<td>配列の先頭から要素を削除する。</td>
-										</tr>
-										<tr>
-											<td>[配列名].unshift([追加要素1], [追加要素2], ...)</td>
-											<td><code>myArray.unshift(0)</code></td>
-											<td>配列の先頭に要素を追加する。</td>
-										</tr>
-										<tr>
-											<td>[配列名].push([追加要素1], [追加要素2], ...)</td>
-											<td><code>myArray.push(4)</code></td>
-											<td>配列の末尾に要素を追加する。</td>
-										</tr>
-										<tr>
-											<td>[配列名].pop()</td>
-											<td><code>myArray.pop()</code></td>
-											<td>配列の末尾から要素を削除する。</td>
-										</tr>
-										<tr>
-											<td>
-												[配列名].splice([開始位置], [削除する要素数]
-												[,追加要素1], [追加要素2], ...)
-											</td>
-											<td><code>myArray.splice(1, 1, 'a', 'b')</code></td>
-											<td>
-												配列の指定した位置から要素を削除し、必要に応じて新しい要素を追加する。
-											</td>
-										</tr>
-										<tr>
-											<td>[配列名].slice([開始位置], [終了位置])</td>
-											<td><code>myArray.slice(1, 3)</code></td>
-											<td>配列の指定した範囲の要素を新しい配列として返す。</td>
-										</tr>
-										<tr>
-											<td>[配列名].concat([配列1], [配列2], ...)</td>
-											<td><code>myArray.concat([4, 5, 6])</code></td>
-											<td>同じ要素を持つ新しい配列を作成する。</td>
-										</tr>
-									</tbody>
-								</table>
-							</section>
-						</details>
-
-						<details>
-							<summary><h3 class="heading-three">関数</h3></summary>
-							<section class="section">
-								<table>
-									<caption>
-										関数の定義方法一覧表
-									</caption>
-									<thead>
-										<tr>
-											<th class="thead-js">種類</th>
-											<th class="thead-js">構文</th>
-											<th class="thead-js">使用例</th>
-											<th class="thead-js">説明</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>関数宣言</td>
-											<td>
-												function [関数名]([引数1], [引数2], ...) { [処理内容];
-												[return 戻り値];}
-											</td>
-											<td>
-												<code
-													>function myFunction(a, b) { let sum = a + b ; return
-													sum; }</code
-												>
-											</td>
-											<td>
-												関数名付きの宣言で、基本的な構文。戻り値は省略可能。また、実行文を関数宣言よりも前に記述することが可能。
-											</td>
-										</tr>
-										<tr>
-											<td>関数式</td>
-											<td>
-												const [関数名] = function([引数1], [引数2], ...) {
-												[処理内容]; [return 戻り値];}
-											</td>
-											<td>
-												<code
-													>const myFunction = function(a, b) { let sum = a + b ;
-													return sum; }
-												</code>
-											</td>
-											<td>
-												関数を変数に代入する方法。戻り値は省略可能。関数宣言とは違い、実行文を関数宣言よりも前に記述することは不可能。
-											</td>
-										</tr>
-										<tr>
-											<td>無名関数</td>
-											<td>
-												function([引数1], [引数2], ...) { [処理内容]; [return
-												戻り値];}
-											</td>
-											<td>
-												<code
-													>function(a, b) { let sum = a + b ; return sum;
-													}</code
-												>
-											</td>
-											<td>
-												関数名を持たない関数。コールバック関数で使用されることが多い。
-											</td>
-										</tr>
-										<tr>
-											<td>アロー関数</td>
-											<td>([引数]) => { [処理内容]; [return 戻り値]; }</td>
-											<td>
-												<code>(a, b) => { let sum = a + b ; return sum; }</code>
-											</td>
-											<td>
-												ES6で導入された関数を簡潔に定義する方法。戻り値は省略可能。無名関数として使用されることが多い。
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</section>
-						</details>
-
-						<details>
-							<summary><h3 class="heading-three">クラス</h3></summary>
-							<section class="section">
-								<p>編集中&#x1F4DD;&#x1F611;</p>
-							</section>
-						</details>
-
-						<details>
-							<summary><h3 class="heading-three">非同期処理</h3></summary>
-							<section class="section">
-								<p>編集中&#x1F4DD;&#x1F611;</p>
-							</section>
-						</details>
-
-						<details>
-							<summary>
-								<h3 class="heading-three">Document Object Model (DOM) API</h3>
-							</summary>
-							<section class="section">
-								<p>編集中&#x1F4DD;&#x1F611;</p>
-								<h4 class="heading-four">HTML要素を取得する</h4>
-								<p>
-									getElementById以外<b>getElements</b>と複数形になっているので注意してください。
-								</p>
-								<table class="table">
-									<thead>
-										<tr>
-											<th class="thead-js">メソッド</th>
-											<th class="thead-js">説明</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>document.getElementById([id名])</td>
-											<td>指定したIDを持つ要素を取得する。</td>
-										</tr>
-										<tr>
-											<td>document.getElementsByClassName([class名])</td>
-											<td>
-												指定したクラス名を持つ要素のHTMLCollectionを取得する。
-											</td>
-										</tr>
-										<tr>
-											<td>document.getElementsByTagName([タグ名])</td>
-											<td>
-												指定したタグ名を持つ要素のHTMLCollectionを取得する。
-											</td>
-										</tr>
-										<tr>
-											<td>document.getElementsByName([name属性])</td>
-											<td>指定したname属性を持つ要素のNodeListを取得する。</td>
-										</tr>
-									</tbody>
-								</table>
-
-								<p>
-									現在は一般的に以下のAPIを使う事が推奨されています。ただし、パフォーマンスの関係でElementを取得するメソッドを使うことがあります。
-								</p>
-								<table class="table">
-									<thead>
-										<tr>
-											<th class="thead-js">メソッド</th>
-											<th class="thead-js">説明</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>document.querySelector([要素名][#id名][.class名])</td>
-											<td>指定したセレクタに一致する最初の要素を取得する。</td>
-										</tr>
-										<tr>
-											<td>
-												document.querySelectorAll([要素名][#id名][.class名])
-											</td>
-											<td>
-												指定したセレクタに一致するすべての要素のNodeListを取得する。
-											</td>
-										</tr>
-									</tbody>
-								</table>
-								<h4 class="heading-four">HTML要素を置き換える</h4>
-								<h4 class="heading-four">HTML要素を追加する</h4>
-							</section>
-						</details>
-
-						<details>
-							<summary><h3 class="heading-three">イベント</h3></summary>
-							<section class="section">
-								<p>編集中&#x1F4DD;&#x1F611;</p>
-							</section>
-						</details>
-
-						<details>
-							<summary><h3 class="heading-three">モジュール</h3></summary>
-							<section class="section">
-								<h4 class="heading-four">特徴</h4>
-								<ul>
-									<li>モジュールはファイル単位で定義される。</li>
-									<li>モジュール以外のファイルは全てスクリプトとなる。</li>
-									<li>
-										モジュール化すると、名前の競合（グローバルスコープ汚染）を避けつつ、コードを分割して管理できる。
-									</li>
-									<li>
-										モジュールはデフォルトでStrictモードで実行される。<strong
-											>そのため、DOMツリー構築後にモジュールが実行される。</strong
-										>
-									</li>
-									<li>
-										モジュールの読み込み時、モジュールのトップレベルのコードは初回読み込み時実行される。<b
-											>2回目以降の読み込み時には実行されない。</b
-										>
-									</li>
-								</ul>
-								<h4 class="heading-four">TypeScript固有の話</h4>
-								<p>
-									TypeScriptで<code>export{}</code>を書くと、コンパイル後のJavaScriptコードではexport文の位置が異なる場合がある。これはJavaScriptではexport文はどこに書かれても、実行順が変わらないため。
-								</p>
-								<h4 class="heading-four">エクスポート</h4>
-
-								<h4 class="heading-four">インポート</h4>
-								<h5 class="heading-five">静的インポート</h5>
-								<ul>
-									<li>fromに続くモジュール名に変数は使えない。</li>
-									<li>
-										読み込み時点でモジュールのトップレベルのコードが実行される。
-									</li>
-								</ul>
-
-								<table class="table">
-									<thead>
-										<tr>
-											<th class="thead-js-ts">説明</th>
-											<th class="thead-js-ts">構文</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>名前付きインポート</td>
-											<td>
-												<code
-													>import { [エクスポート名1], [エクスポート名2] } from
-													'[モジュール名].js';
-												</code>
-											</td>
-										</tr>
-										<tr>
-											<td>別名を付けてインポート</td>
-											<td>
-												<code
-													>import { [エクスポート名] as [別名] } from
-													'[モジュール名].js';
-												</code>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												デフォルトエクスポート、名前付きエクスポートをmoduleObjectのプロパティとしてインポート
-											</td>
-											<td>
-												<code
-													>import * as moduleObject from '[モジュール名].js';
-												</code>
-											</td>
-										</tr>
-										<tr>
-											<td>デフォルトエクスポート</td>
-											<td>
-												<code
-													>import [任意の名前] from '[モジュール名].js';</code
-												>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												デフォルトエクスポート、名前付きエクスポートを個別にインポート
-											</td>
-											<td>
-												<code
-													>import [任意の名前], { [エクスポート名1],
-													[エクスポート名2] } from '[モジュール名].js';</code
-												>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												デフォルトエクスポート、名前付きエクスポートをmoduleObjectのプロパティとしてインポート
-											</td>
-											<td>
-												<code
-													>import [任意の名前], * as moduleObject from
-													'[モジュール名].js';</code
-												>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												インポートせず、モジュール内のコードを一度だけ実行
-											</td>
-											<td>
-												<code>import '[モジュール名].js';</code>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-								<h5 class="heading-five">動的インポート</h5>
-								<ul>
-									<li>ES2020以降でサポートされている比較的新しい機能。</li>
-									<li>必要な時に他のモジュールを読み込むことができる。</li>
-								</ul>
-								<table class="table">
-									<thead>
-										<tr>
-											<th class="thead-js-ts">説明</th>
-											<th class="thead-js-ts">構文</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Promiseオブジェクトで使う</td>
-											<td>
-												<code
-													>let promise =
-													import('[モジュール名].js');promise.then((moduleObj)
-													=> { moduleObj.exportedFunc(); });</code
-												>
-											</td>
-										</tr>
-										<tr>
-											<td>async/awaitで使う</td>
-											<td>
-												<code
-													>async function loadModule() { let [export元の関数名]
-													= await import('[モジュール名].js');
-													[export元の関数名](); }</code
-												>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-								<h4 class="heading-four">Strictモード</h4>
-								<p>
-									ES5で導入されたモードです。<strong>Strictモード</strong>では、コードの書き方を厳格にします。なお、moduleを有効にした場合、デフォルトでStrictモードが適用されます。
-								</p>
-								<h5 class="heading-five">影響</h5>
-								<ul>
-									<li>予約語が増え、変数名や関数名として使用できなくなる。</li>
-									<li>未宣言の変数への代入が禁止される。</li>
-									<li>書き込み不可のプロパティの変更が禁止される。</li>
-									<li>関数宣言にブロックスコープが適用される。</li>
-									<li>thisはプリミティブ値も許容される</li>
-								</ul>
-							</section>
-						</details>
-
-						<details>
-							<summary><h3 class="heading-three">Node.js</h3></summary>
-							<section class="section">
-								<h4 class="heading-four">概要</h4>
-								<ul>
-									<li>
-										Node.jsは、サーバーサイドでJavaScriptを実行するための実行環境。
-									</li>
-									<li>V8 JavaScriptエンジンを使用している。</li>
-								</ul>
-								<h4 class="heading-four">ブラウザ環境との差異</h4>
-								<h5 class="heading-five">
-									&#x274C;モジュール&#11093;CommonJSモジュール
-								</h5>
-								<h6 class="heading-six">概要</h6>
-								<p>
-									Node.jsでモジュールを使用するための規格です。モジュールはファイル単位で定義され、モジュール内のコードはモジュールが読み込まれたときに実行されます。
-								</p>
-								<h6 class="heading-six">エクスポート</h6>
-								<code>exports.[エクスポート名] = function(){[処理内容]};</code>
-								<code
-									>module.exports.[任意の名前] =
-									require('[モジュール名].js');</code
+				<details>
+					<summary>
+						<h3 class="heading-three">
+							変数、定数、データ型（JavaScript/TypeScript）
+						</h3>
+					</summary>
+					<section class="section">
+						<table class="table">
+							<caption>
+								変数・定数宣言の種類一覧表
+							</caption>
+							<thead class="thead">
+								<tr>
+									<th class="thead-js">宣言</th>
+									<th class="thead-js">初期値</th>
+									<th class="thead-js">再宣言</th>
+									<th class="thead-js">再代入</th>
+									<th class="thead-js">スコープ</th>
+									<th class="thead-js">巻き上げ</th>
+									<th class="thead-js">備考</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>const</td>
+									<td>必須</td>
+									<td>&#215;</td>
+									<td>&#215;</td>
+									<td>ブロックスコープ</td>
+									<td>&#215;</td>
+									<td><strong>最優先で使うべき。</strong></td>
+								</tr>
+								<tr>
+									<td>let</td>
+									<td>undefined（→実質必須な事が多い）</td>
+									<td>&#215;</td>
+									<td>&#9675;</td>
+									<td>ブロックスコープ</td>
+									<td>&#215;</td>
+									<td>constの次に使用するべき。</td>
+								</tr>
+								<tr>
+									<td>var</td>
+									<td>undefined</td>
+									<td>&#9675;</td>
+									<td>&#9675;</td>
+									<td>関数スコープ</td>
+									<td>&#9675;</td>
+									<td><strong>非推奨。</strong></td>
+								</tr>
+							</tbody>
+						</table>
+						<h4 class="heading-four">サンプルコード</h4>
+						<ul>
+							<li>
+								<a
+									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-1_variable_naming-convension.js"
+									target="_blank"
+									>01-1_variable_naming-convension.js</a
 								>
-								<h6 class="heading-six">インポート</h6>
-								<code
-									>const [任意の名前] = require('[エクスポート名].js');
-									[任意の名前].[エクスポートされた関数名]();
-								</code>
-								<ul>
-									<li>
-										fetch()ではURL形式を指定する必要があるため、ローカルファイルを読み込む際は、URL形式でパスを指定する必要がある。
-									</li>
-									<li>
-										Node.js上でTypeScriptを使用する際は@types/nodeをインストールする必要がある。
-									</li>
-								</ul>
-								<h6 class="heading-six">Node.jsでモジュールを使いたい場合</h6>
-								<ul>
-									<li>
-										ESモジュールを使用するために、package.jsonに"type":
-										"module"を追加する。
-										<code>{ "type": "module" }</code>
-									</li>
-									<li>ファイル拡張子を.jsから.mjsに変更する。</li>
-									<li>
-										コマンドラインで--experimental-modulesフラグを使用してNode.jsを起動する。
-									</li>
-								</ul>
-								<h5 class="heading-five">
-									&#x274C;Windowオブジェクト&#11093;globalオブジェクト
-								</h5>
-								<p>
-									Windowオブジェクトが使えず、代わりにglobalオブジェクトを使用する必要がある。
-								</p>
-								<h4 class="heading-four">npm(Node Package Manager)</h4>
-								<ul>
-									<li>
-										npmはNode.js、JavaScriptのライブラリやツールを管理するためのパッケージマネージャー。
-									</li>
-									<li>
-										rpm、apt、yumなどのLinuxのパッケージマネージャーと同様の役割を果たす。
-									</li>
-									<li>
-										npmを使用することで、プロジェクトに必要なプログラムを簡単にインストール、アップデート、管理することができる。
-									</li>
-									<li>管理はpackage.jsonファイルを通じて行われる。</li>
-								</ul>
-							</section>
-						</details>
-					</article>
-
-					<article class="article">
-						<h2 class="heading-two heading-two--ts">TypeScript</h2>
-
-						<details>
-							<summary><h3 class="heading-three">コンパイル設定</h3></summary>
-							<table class="table">
-								<caption>
-									tsconfig.jsonの設定一覧表
-								</caption>
-								<thead>
-									<tr>
-										<th class="thead-ts">設定名</th>
-										<th class="thead-ts">プロパティ</th>
-										<th class="thead-ts">説明</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>compilerOptions</td>
-										<td></td>
-										<td>
-											TypeScriptのコンパイルオプションを指定するためのプロパティ。
-										</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>target</td>
-										<td>
-											コンパイル後のJavaScriptのバージョンを指定するためのプロパティです。。
-										</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>include</td>
-										<td>
-											コンパイル対象のファイルやディレクトリを指定するためのプロパティ。
-										</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>exclude</td>
-										<td>
-											コンパイルから除外するファイルやディレクトリを指定するためのプロパティ。
-										</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>files</td>
-										<td>
-											コンパイル対象のファイルを明示的に指定するためのプロパティ。
-										</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>declaration</td>
-										<td>
-											型定義ファイル（.d.ts）を生成するかどうかを指定するプロパティです。デフォルトはtrue（生成する）です。falseに設定すると生成されません。
-										</td>
-									</tr>
-									<tr>
-										<td>references</td>
-										<td></td>
-										<td>他のプロジェクトへの参照を定義する。</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>outDir</td>
-										<td>
-											コンパイル後のJavaScriptファイルの出力先ディレクトリを指定するプロパティです。
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</details>
-
-						<details>
-							<summary><h3 class="heading-three">エラーコード集</h3></summary>
-							<section class="section">
-								<table class="table">
-									<caption>
-										TypeScriptのエラーコード一覧表
-									</caption>
-									<thead>
-										<tr>
-											<th class="thead-ts">エラーコード</th>
-											<th class="thead-ts">説明</th>
-										</tr>
-										<tr>
-											<td>TS6305</td>
-											<td></td>
-										</tr>
-							</section>
-						</details>
-						<details>
-							<summary><h3 class="heading-three">Node.jsコマンド</h3></summary>
-							<table class="table">
-								<caption>
-									TypeScriptコマンド一覧表
-								</caption>
-								<thead>
-									<tr>
-										<th class="thead-ts">コマンド</th>
-										<th class="thead-ts">説明</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>tsc [ファイル名].ts</td>
-										<td>
-											TypeScriptファイルをJavaScriptにコンパイルするコマンド。
-										</td>
-									</tr>
-									<tr>
-										<td>tsc --version</td>
-										<td>
-											ローカルにインストールされているTypeScriptのコンパイラーのバージョンを表示するコマンド。
-										</td>
-									</tr>
-								</tbody>
-							</table>
-
-							<table>
-								<caption>
-									TypeScript関連のNode.jsコマンド一覧表
-								</caption>
-								<thead>
-									<tr>
-										<th class="thead-ts">コマンド</th>
-										<th class="thead-ts">説明</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>tsc [ファイル名].ts</td>
-										<td>
-											type script
-											compilerの略。TypeScriptファイルをJavaScriptにコンパイルするコマンド。
-										</td>
-									</tr>
-									<tr>
-										<td>ts-node [ファイル名].ts</td>
-										<td>
-											TypeScriptファイルを直接実行するコマンド。ts-nodeはNode.jsの実行環境でTypeScriptコードを直接実行できるようにするツールです。
-										</td>
-									</tr>
-									<tr>
-										<td>tsc --version</td>
-										<td>TypeScriptのバージョンを表示するコマンド。</td>
-									</tr>
-								</tbody>
-							</table>
-						</details>
-					</article>
-
-					<article class="article">
-						<h2 class="heading-two heading-two--tw">Tailwind CSS</h2>
-						<details>
-							<summary><h3 class="heading-three">概要</h3></summary>
-							<section class="section">
-								<p>
-									Tailwind
-									CSSはOSSのCSSフレームワークです。特徴として<strong>ユーティリティファースト</strong>が挙げられます。他のCSSフレームワークは、ボタンやボックスなど既に定義済みのコンポーネントを使い制作していきますが、Tailwind
-									CSSはユーティリティークラスという特定のスタイルが設定されているクラスをHTML要素に組み合わせて適用することで、自由度が高く保守性が高いコーディングを実現しています。
-								</p>
-							</section>
-						</details>
-
-						<details>
-							<summary><h3 class="heading-three">導入</h3></summary>
-							<section class="section">
-								<h4 class="heading-four">試験的導入</h4>
-								<p>
-									私は当初、<a href="https://tailwindcss.com/" target="_blank"
-										>Tailwind CSSの公式サイト</a
-									>を参考に以下のコードを&lt;head&gt;要素内に記述し、試験的に導入しておりました。
-								</p>
-								<code
-									>&lt;script
-									src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</code
+							</li>
+						</ul>
+						<h4 class="heading-four">データ型</h4>
+						<table class="table">
+							<caption>
+								データ型一覧表
+							</caption>
+							<thead class="thead">
+								<tr>
+									<th class="thead-js-ts">データ型</th>
+									<th class="thead-js-ts">型の種類</th>
+									<th class="thead-js-ts">値</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>String</td>
+									<td>プリミティブ型</td>
+									<td>文字列</td>
+								</tr>
+								<tr>
+									<td>Number</td>
+									<td>プリミティブ型</td>
+									<td>
+										数値（整数、浮動小数点数、Infinity、NaN）、-(2^53-1)〜2^53-1、※2^53
+										- 1 = 9007199254740991
+									</td>
+								</tr>
+								<tr>
+									<td>bigint</td>
+									<td>プリミティブ型</td>
+									<td>任意精度整数（メモリが許す限りの大きさ）</td>
+								</tr>
+								<tr>
+									<td>Boolean</td>
+									<td>プリミティブ型</td>
+									<td>真偽値（trueまたはfalse）</td>
+								</tr>
+								<tr>
+									<td>null</td>
+									<td>プリミティブ型</td>
+									<td>null値</td>
+								</tr>
+								<tr>
+									<td>undefined</td>
+									<td>プリミティブ型</td>
+									<td>未定義値</td>
+								</tr>
+								<tr>
+									<td>symbol</td>
+									<td>プリミティブ型</td>
+									<td>一意の識別子</td>
+								</tr>
+								<tr>
+									<td>object</td>
+									<td>オブジェクト型</td>
+									<td>オブジェクト（プロパティの集合）</td>
+								</tr>
+								<tr>
+									<td>array</td>
+									<td>オブジェクト型</td>
+									<td>配列（順序付きの値の集合）</td>
+								</tr>
+								<tr>
+									<td>function</td>
+									<td>オブジェクト型</td>
+									<td>関数（実行可能なオブジェクト）</td>
+								</tr>
+							</tbody>
+						</table>
+						<table class="table">
+							<caption>
+								TypeScript固有のデータ型一覧表
+							</caption>
+							<thead class="thead">
+								<tr>
+									<th class="thead-ts">データ型</th>
+									<th class="thead-ts">型の種類</th>
+									<th class="thead-ts">構文</th>
+									<th class="thead-ts">使用例</th>
+									<th class="thead-ts">説明</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>any</td>
+									<td>特殊型</td>
+									<td>[変数宣言][変数名]: any</td>
+									<td><code>let valName: any</code></td>
+									<td>
+										任意の型の値を許容する。しかし、型安全性が失われるため<strong
+											>非推奨。</strong
+										>
+									</td>
+								</tr>
+								<tr>
+									<td>union</td>
+									<td>特殊型</td>
+									<td>[変数宣言][変数名]:[型1] | [型2] | ...</td>
+									<td><code>let valName: string | number</code></td>
+									<td>
+										複数の型を組み合わせた型。使用例は、値がstring型またはnumber型のいづれかであることを意味する。使えるプロパティは指定した複数の型の両方で使えるものに限られます。たとえばstring
+										|
+										numberの場合.toString()は両方使えますが.toUpperCase()は使えません。（number型で使えないため。）
+									</td>
+								</tr>
+								<tr>
+									<td>リテラル</td>
+									<td>特殊型</td>
+									<td>[変数宣言][変数名]: [リテラル値]</td>
+									<td><code>let valName: "hello"</code></td>
+									<td>
+										特定の値のみを許容する型。リテラル型を使用することで、変数が特定の値のみを持つことを保証できる。
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<h4 class="heading-four">TypeScript固有の機能</h4>
+						<h5 class="heading-five">型の明示的な宣言</h5>
+						<p>
+							TypeScriptで型宣言は必須なのか、と言われると<strong>型推論機能により必ずしも明示的な型宣言は必要ない。</strong>ただし、関数の引数・戻り値、データベースでは安全のために明示的な型宣言が推奨される。
+						</p>
+						<h5 class="heading-five">型チェック機能</h5>
+						<p>
+							IDEでの注釈、型推論機能、typeof演算子を使用することで変数、関数の型をチェックすることが出来る。
+						</p>
+						<h5 class="heading-five">割り当て可能性（assignability）</h5>
+						<p>
+							ある型の値が別の型の変数に割り当て可能かどうかを判断するルール。（例：サブタイプ関係、構造的部分型）
+						</p>
+						<h5 class="heading-five">型アノテーション（※非推奨）</h5>
+						<p>
+							変数で初期化時、型が推論されない変数は<strong
+								>進化するany（evolving any）</strong
+							>となる。しかし、any型を明示的に指定することは非推奨。なぜなら、型安全性が失われ、TypeScriptの利点が活かせなくなるため。
+						</p>
+						<h5 class="heading-five">型の絞り込み</h5>
+						<p>
+							ある値が定義された型や、宣言された型、以前に推論された型よりも限定的な型であることをコードで示すことです。型の絞り込みで利用できる論理チェックを<strong
+								>型ガード（type guard）</strong
+							>と呼びます。
+						</p>
+						<h5 class="heading-five">型の割り当てによる絞り込み</h5>
+						<p>
+							変数に直接値を割り当てると、変数を割り当てられた値の型に限定します。
+						</p>
+						<h5 class="heading-five">型のif文による確認</h5>
+						<p></p>
+						<h5 class="heading-five">型のtypeof演算子による確認</h5>
+						<h4 class="heading-four">サンプルコード</h4>
+						<ul>
+							<li>
+								<a
+									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-2_type.js"
+									target="_blank"
+									>01-2_type.js</a
 								>
-								<p>
-									その後<b
-										>「同じ要素に、毎回同じTailwind
-										CSSのクラスを記述するのは冗長だな」</b
-									>と感じ、npmを経由し本格導入することにしました。
-								</p>
-								<h4 class="heading-four">本格的導入</h4>
-								<p>
-									<a
-										href="https://tailwindcss.com/docs/installation/using-vite"
-										target="_blank"
-										>Tailwind CSS公式サイト</a
-									>を参考に、viteを経由して導入しました。
-								</p>
-							</section>
-						</details>
+							</li>
+							<li>
+								<a
+									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-3_primitive-type.js"
+									target="_blank"
+									>01-3_primitive-type.js</a
+								>
+							</li>
+							<li>
+								<a
+									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-4_object-type.js"
+									target="_blank"
+									>01-4_object-type.js</a
+								>
+							</li>
+							<li>
+								<a
+									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-5_dynamic-type.js"
+									target="_blank"
+									>01-5_dynamic-type.js</a
+								>
+							</li>
+						</ul>
+					</section>
+				</details>
 
-						<details>
-							<summary><h3 class="heading-three">設定ファイル</h3></summary>
-							<section class="section">
-								<p>
-									Tailwind
-									CSSの設定ファイルは、プロジェクトのルートディレクトリに配置される
-									<strong>tailwind.config.js</strong>です。以下、記述例です。
-								</p>
-							</section>
-						</details>
+				<details>
+					<summary><h3 class="heading-three">演算子</h3></summary>
+					<section class="section">
+						<h4 class="heading-four">優先順位</h4>
+						<p>一番強い演算子は()（括弧）、一番弱い演算子は,(カンマ)。</p>
+						<h4 class="heading-four">算術演算子</h4>
+						<table class="table">
+							<caption>
+								算術演算子一覧表
+							</caption>
+							<thead class="thead">
+								<tr>
+									<th class="thead-js">演算子</th>
+									<th class="thead-js">意味</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>+</td>
+									<td>加算</td>
+								</tr>
+								<tr>
+									<td>-</td>
+									<td>減算</td>
+								</tr>
+								<tr>
+									<td>*</td>
+									<td>乗算</td>
+								</tr>
+								<tr>
+									<td>/</td>
+									<td>除算</td>
+								</tr>
+								<tr>
+									<td>%</td>
+									<td>剰余（割り算の余り）</td>
+								</tr>
+								<tr>
+									<td>++（インクリメント演算子）</td>
+									<td>1を加算。前置・後置で挙動が異なる。</td>
+								</tr>
+								<tr>
+									<td>--（デクリメント演算子）</td>
+									<td>1を減算。前置・後置で挙動が異なる。</td>
+								</tr>
+							</tbody>
+						</table>
+						<h4 class="heading-four">等価演算子</h4>
+						<h5 class="heading-five">概要</h5>
+						<p>
+							値の等しさを比較するために使用され、戻り値はBoolean型（trueまたはfalse）となる。ほとんどの場合、厳密等価（===）または厳密非等価（!==）を使用する。
+						</p>
+						<table class="table">
+							<caption>
+								等価演算子一覧表
+							</caption>
+							<thead class="thead">
+								<tr>
+									<th class="thead-js">演算子</th>
+									<th class="thead-js">意味</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>==</td>
+									<td>等価。値が等しい場合にtrueを返す。<b>型変換あり</b></td>
+								</tr>
+								<tr>
+									<td>===</td>
+									<td>
+										厳密等価。値と型が等しい場合にtrueを返す。<b>型変換なし</b>
+									</td>
+								</tr>
+								<tr>
+									<td>!=</td>
+									<td>
+										非等価。値が等しくない場合にtrueを返す。<b>型変換あり</b>
+									</td>
+								</tr>
+								<tr>
+									<td>!==</td>
+									<td>
+										厳密非等価。値と型が等しくない場合にtrueを返す。<b
+											>型変換なし</b
+										>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 
-						<details>
-							<summary>
-								<h3 class="heading-three">ビルド～読み込み方法</h3>
-							</summary>
-							<section>
-								<p>
-									docs&gt;src&nbsp;内にあるTailwind
-									CSSの構文で制作したCSSファイルを以下のコマンドでbuildし、docsフォルダ内に生成します。
-								</p>
-								<code>npm run build</code>
-								<p>その後、生成したCSSファイルをhtml側で読み込みます。</p>
-							</section>
-						</details>
-					</article>
-				</main>
-			</div>
+						<h4 class="heading-four">関係演算子</h4>
+						<h5 class="heading-five">概要</h5>
+						<p>
+							オペランドの大小関係を比較するために使用され、戻り値はBoolean型（trueまたはfalse）となる。
+						</p>
+						<table class="table">
+							<caption>
+								関係演算子一覧表
+							</caption>
+							<thead class="thead">
+								<tr>
+									<th class="thead-js">演算子</th>
+									<th class="thead-js">意味</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>X&gt;Y</td>
+									<td>大なり。XがYより大きい場合にtrueを返す。</td>
+								</tr>
+								<tr>
+									<td>X&lt;Y</td>
+									<td>小なり。XがYより小さい場合にtrueを返す。</td>
+								</tr>
+								<tr>
+									<td>X&gt;=Y</td>
+									<td>大なりイコール。XがY<b>以上</b>の場合にtrueを返す。</td>
+								</tr>
+								<tr>
+									<td>X&lt;=Y</td>
+									<td>小なりイコール。XがY<b>以下</b>の場合にtrueを返す。</td>
+								</tr>
+								<tr>
+									<td>X in Y</td>
+									<td>
+										YプロパティがXオブジェクトのプロパティを持っているかどうかを判断する。
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<h4 class="heading-four">論理演算子</h4>
+						<h5 class="heading-five">概要</h5>
+						<p>
+							オペランドの論理積、論理和、論理否定を評価するために使用され、戻り値はBoolean型（trueまたはfalse）となる。
+						</p>
+						<table class="table">
+							<caption>
+								論理演算子一覧表
+							</caption>
+							<thead class="thead">
+								<tr>
+									<th class="thead-js">演算子</th>
+									<th class="thead-js">意味</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>X&nbsp;&amp;&amp;&nbsp;Y</td>
+									<td>論理積（AND）。XとYの両方がtrueの場合にtrueを返す。</td>
+								</tr>
+								<tr>
+									<td>X&nbsp;||&nbsp;Y</td>
+									<td>
+										論理和（OR）。XまたはYのどちらかがtrueの場合にtrueを返す。
+									</td>
+								</tr>
+								<tr>
+									<td>!X</td>
+									<td>論理否定（NOT）。Xがfalseの場合にtrueを返す。</td>
+								</tr>
+							</tbody>
+						</table>
+						<h4 class="heading-four">falsyとtruthy</h4>
+						<p>
+							Boolean関数で値を評価した際、falseとみなされる値を<b>falsy</b>、trueとみなされる値を<b>truthy</b>と呼ぶ。
+						</p>
+						<h4 class="heading-four">三項演算子</h4>
+						<p>以下の式でif文を簡潔に書くことができる。</p>
+						<p>
+							<code
+								>[条件式]&nbsp;?&nbsp;[真のときの値]&nbsp;:&nbsp;[偽のときの値]</code
+							>
+						</p>
+						<h4 class="heading-four">サンプルコード</h4>
+						<ul>
+							<li>
+								<a
+									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/02_operators-operands.js"
+									target="_blank"
+									>02_operators-operands.js</a
+								>
+							</li>
+						</ul>
+					</section>
+				</details>
 
-			<footer class="footer">
-				<p>
-					&copy;JS&nbsp;&amp;&nbsp;TS&nbsp;学習まとめノート
-					<span
-						>Powered by
-						<a href="https://cidertechlab.github.io/">CiderTechLab</a></span
-					>
-				</p>
-			</footer>
-		</div>
+				<details>
+					<summary><h3 class="heading-three">制御構文</h3></summary>
+					<section class="section">
+						<table class="table">
+							<caption>
+								制御構文一覧表
+							</caption>
+							<thead class="thead">
+								<tr>
+									<th class="thead-js">制御の種類</th>
+									<th class="thead-js">構文</th>
+									<th class="thead-js">解説</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><span aria-hidden="true">&#x1f500;</span>条件分岐</td>
+									<td>if([条件]) { }</td>
+									<td>条件が真のときにコードブロックを実行</td>
+								</tr>
+								<tr>
+									<td><span aria-hidden="true">&#x1f500;</span>条件分岐</td>
+									<td>if { } else if { } else { }</td>
+									<td>条件に応じて複数のコードブロックを実行</td>
+								</tr>
+								<tr>
+									<td><span aria-hidden="true">&#x1f500;</span>条件分岐</td>
+									<td>switch</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><span aria-hidden="true">&#x1f504;</span>ループ</td>
+									<td>
+										for(let [変数名] = [開始数]; [変数名] &lt; [終了条件];
+										[変数名]++) { }
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><span aria-hidden="true">&#x1f504;</span>ループ</td>
+									<td>while([条件]) { }</td>
+									<td>[条件]がfalseになるまで繰り返し実行する。</td>
+								</tr>
+								<tr>
+									<td><span aria-hidden="true">&#x1f504;</span>ループ</td>
+									<td>do { } while([条件])</td>
+									<td>
+										少なくとも1回はコードブロックを実行し、その後[条件]がtrueの間繰り返す。
+									</td>
+								</tr>
+								<tr>
+									<td><span aria-hidden="true">&#x1f504;</span>ループ</td>
+									<td>for...in</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><span aria-hidden="true">&#x1f504;</span>ループ</td>
+									<td>for...of</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><span aria-hidden="true">&#x267e;</span>例外処理</td>
+									<td>try {...} catch {...} finally {...}</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</details>
+
+				<details>
+					<summary>
+						<h3 class="heading-three">コレクション - Array（配列）</h3>
+					</summary>
+					<section class="section">
+						<h4 class="heading-four">Array（配列）</h4>
+						<table class="table">
+							<caption>
+								コレクション一覧表
+							</caption>
+							<thead>
+								<tr>
+									<th class="thead-js">構文</th>
+									<th class="thead-js">使用例</th>
+									<th class="thead-js">説明</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>[変数宣言] [配列名] = [値1, 値2, 値3...]</td>
+									<td><code>const myArray = [1, 2, 3]</code></td>
+									<td>配列リテラル（[]）を使用した配列。</td>
+								</tr>
+								<tr>
+									<td>[変数宣言] [配列名] = new Array([値1, 値2, 値3...])</td>
+									<td><code>const myArray = new Array(1, 2, 3)</code></td>
+									<td>new Arrayを使用した配列の初期化。</td>
+								</tr>
+							</tbody>
+						</table>
+						<h4 class="heading-four">Array（配列）のメソッド</h4>
+						<table class="table">
+							<caption>
+								Array（配列）のメソッド一覧表
+							</caption>
+							<thead>
+								<tr>
+									<th class="thead-js">構文</th>
+									<th class="thead-js">使用例</th>
+									<th class="thead-js">説明</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>[配列名].shift()</td>
+									<td><code>myArray.shift()</code></td>
+									<td>配列の先頭から要素を削除する。</td>
+								</tr>
+								<tr>
+									<td>[配列名].unshift([追加要素1], [追加要素2], ...)</td>
+									<td><code>myArray.unshift(0)</code></td>
+									<td>配列の先頭に要素を追加する。</td>
+								</tr>
+								<tr>
+									<td>[配列名].push([追加要素1], [追加要素2], ...)</td>
+									<td><code>myArray.push(4)</code></td>
+									<td>配列の末尾に要素を追加する。</td>
+								</tr>
+								<tr>
+									<td>[配列名].pop()</td>
+									<td><code>myArray.pop()</code></td>
+									<td>配列の末尾から要素を削除する。</td>
+								</tr>
+								<tr>
+									<td>
+										[配列名].splice([開始位置], [削除する要素数] [,追加要素1],
+										[追加要素2], ...)
+									</td>
+									<td><code>myArray.splice(1, 1, 'a', 'b')</code></td>
+									<td>
+										配列の指定した位置から要素を削除し、必要に応じて新しい要素を追加する。
+									</td>
+								</tr>
+								<tr>
+									<td>[配列名].slice([開始位置], [終了位置])</td>
+									<td><code>myArray.slice(1, 3)</code></td>
+									<td>配列の指定した範囲の要素を新しい配列として返す。</td>
+								</tr>
+								<tr>
+									<td>[配列名].concat([配列1], [配列2], ...)</td>
+									<td><code>myArray.concat([4, 5, 6])</code></td>
+									<td>同じ要素を持つ新しい配列を作成する。</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</details>
+
+				<details>
+					<summary><h3 class="heading-three">関数</h3></summary>
+					<section class="section">
+						<table>
+							<caption>
+								関数の定義方法一覧表
+							</caption>
+							<thead>
+								<tr>
+									<th class="thead-js">種類</th>
+									<th class="thead-js">構文</th>
+									<th class="thead-js">使用例</th>
+									<th class="thead-js">説明</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>関数宣言</td>
+									<td>
+										function [関数名]([引数1], [引数2], ...) { [処理内容];
+										[return 戻り値];}
+									</td>
+									<td>
+										<code
+											>function myFunction(a, b) { let sum = a + b ; return sum;
+											}</code
+										>
+									</td>
+									<td>
+										関数名付きの宣言で、基本的な構文。戻り値は省略可能。また、実行文を関数宣言よりも前に記述することが可能。
+									</td>
+								</tr>
+								<tr>
+									<td>関数式</td>
+									<td>
+										const [関数名] = function([引数1], [引数2], ...) {
+										[処理内容]; [return 戻り値];}
+									</td>
+									<td>
+										<code
+											>const myFunction = function(a, b) { let sum = a + b ;
+											return sum; }
+										</code>
+									</td>
+									<td>
+										関数を変数に代入する方法。戻り値は省略可能。関数宣言とは違い、実行文を関数宣言よりも前に記述することは不可能。
+									</td>
+								</tr>
+								<tr>
+									<td>無名関数</td>
+									<td>
+										function([引数1], [引数2], ...) { [処理内容]; [return
+										戻り値];}
+									</td>
+									<td>
+										<code
+											>function(a, b) { let sum = a + b ; return sum; }</code
+										>
+									</td>
+									<td>
+										関数名を持たない関数。コールバック関数で使用されることが多い。
+									</td>
+								</tr>
+								<tr>
+									<td>アロー関数</td>
+									<td>([引数]) => { [処理内容]; [return 戻り値]; }</td>
+									<td>
+										<code>(a, b) => { let sum = a + b ; return sum; }</code>
+									</td>
+									<td>
+										ES6で導入された関数を簡潔に定義する方法。戻り値は省略可能。無名関数として使用されることが多い。
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</details>
+
+				<details>
+					<summary><h3 class="heading-three">クラス</h3></summary>
+					<section class="section">
+						<p>編集中&#x1F4DD;&#x1F611;</p>
+					</section>
+				</details>
+
+				<details>
+					<summary><h3 class="heading-three">非同期処理</h3></summary>
+					<section class="section">
+						<p>編集中&#x1F4DD;&#x1F611;</p>
+					</section>
+				</details>
+
+				<details>
+					<summary>
+						<h3 class="heading-three">Document Object Model (DOM) API</h3>
+					</summary>
+					<section class="section">
+						<p>編集中&#x1F4DD;&#x1F611;</p>
+						<h4 class="heading-four">HTML要素を取得する</h4>
+						<p>
+							getElementById以外<b>getElements</b>と複数形になっているので注意してください。
+						</p>
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="thead-js">メソッド</th>
+									<th class="thead-js">説明</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>document.getElementById([id名])</td>
+									<td>指定したIDを持つ要素を取得する。</td>
+								</tr>
+								<tr>
+									<td>document.getElementsByClassName([class名])</td>
+									<td>
+										指定したクラス名を持つ要素のHTMLCollectionを取得する。
+									</td>
+								</tr>
+								<tr>
+									<td>document.getElementsByTagName([タグ名])</td>
+									<td>指定したタグ名を持つ要素のHTMLCollectionを取得する。</td>
+								</tr>
+								<tr>
+									<td>document.getElementsByName([name属性])</td>
+									<td>指定したname属性を持つ要素のNodeListを取得する。</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<p>
+							現在は一般的に以下のAPIを使う事が推奨されています。ただし、パフォーマンスの関係でElementを取得するメソッドを使うことがあります。
+						</p>
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="thead-js">メソッド</th>
+									<th class="thead-js">説明</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>document.querySelector([要素名][#id名][.class名])</td>
+									<td>指定したセレクタに一致する最初の要素を取得する。</td>
+								</tr>
+								<tr>
+									<td>document.querySelectorAll([要素名][#id名][.class名])</td>
+									<td>
+										指定したセレクタに一致するすべての要素のNodeListを取得する。
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<h4 class="heading-four">HTML要素を置き換える</h4>
+						<h4 class="heading-four">HTML要素を追加する</h4>
+					</section>
+				</details>
+
+				<details>
+					<summary><h3 class="heading-three">イベント</h3></summary>
+					<section class="section">
+						<p>編集中&#x1F4DD;&#x1F611;</p>
+					</section>
+				</details>
+
+				<details>
+					<summary><h3 class="heading-three">モジュール</h3></summary>
+					<section class="section">
+						<h4 class="heading-four">特徴</h4>
+						<ul>
+							<li>モジュールはファイル単位で定義される。</li>
+							<li>モジュール以外のファイルは全てスクリプトとなる。</li>
+							<li>
+								モジュール化すると、名前の競合（グローバルスコープ汚染）を避けつつ、コードを分割して管理できる。
+							</li>
+							<li>
+								モジュールはデフォルトでStrictモードで実行される。<strong
+									>そのため、DOMツリー構築後にモジュールが実行される。</strong
+								>
+							</li>
+							<li>
+								モジュールの読み込み時、モジュールのトップレベルのコードは初回読み込み時実行される。<b
+									>2回目以降の読み込み時には実行されない。</b
+								>
+							</li>
+						</ul>
+						<h4 class="heading-four">TypeScript固有の話</h4>
+						<p>
+							TypeScriptで<code>export{}</code>を書くと、コンパイル後のJavaScriptコードではexport文の位置が異なる場合がある。これはJavaScriptではexport文はどこに書かれても、実行順が変わらないため。
+						</p>
+						<h4 class="heading-four">エクスポート</h4>
+
+						<h4 class="heading-four">インポート</h4>
+						<h5 class="heading-five">静的インポート</h5>
+						<ul>
+							<li>fromに続くモジュール名に変数は使えない。</li>
+							<li>
+								読み込み時点でモジュールのトップレベルのコードが実行される。
+							</li>
+						</ul>
+
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="thead-js-ts">説明</th>
+									<th class="thead-js-ts">構文</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>名前付きインポート</td>
+									<td>
+										<code
+											>import { [エクスポート名1], [エクスポート名2] } from
+											'[モジュール名].js';
+										</code>
+									</td>
+								</tr>
+								<tr>
+									<td>別名を付けてインポート</td>
+									<td>
+										<code
+											>import { [エクスポート名] as [別名] } from
+											'[モジュール名].js';
+										</code>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										デフォルトエクスポート、名前付きエクスポートをmoduleObjectのプロパティとしてインポート
+									</td>
+									<td>
+										<code
+											>import * as moduleObject from '[モジュール名].js';
+										</code>
+									</td>
+								</tr>
+								<tr>
+									<td>デフォルトエクスポート</td>
+									<td>
+										<code>import [任意の名前] from '[モジュール名].js';</code>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										デフォルトエクスポート、名前付きエクスポートを個別にインポート
+									</td>
+									<td>
+										<code
+											>import [任意の名前], { [エクスポート名1],
+											[エクスポート名2] } from '[モジュール名].js';</code
+										>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										デフォルトエクスポート、名前付きエクスポートをmoduleObjectのプロパティとしてインポート
+									</td>
+									<td>
+										<code
+											>import [任意の名前], * as moduleObject from
+											'[モジュール名].js';</code
+										>
+									</td>
+								</tr>
+								<tr>
+									<td>インポートせず、モジュール内のコードを一度だけ実行</td>
+									<td>
+										<code>import '[モジュール名].js';</code>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<h5 class="heading-five">動的インポート</h5>
+						<ul>
+							<li>ES2020以降でサポートされている比較的新しい機能。</li>
+							<li>必要な時に他のモジュールを読み込むことができる。</li>
+						</ul>
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="thead-js-ts">説明</th>
+									<th class="thead-js-ts">構文</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Promiseオブジェクトで使う</td>
+									<td>
+										<code
+											>let promise =
+											import('[モジュール名].js');promise.then((moduleObj) => {
+											moduleObj.exportedFunc(); });</code
+										>
+									</td>
+								</tr>
+								<tr>
+									<td>async/awaitで使う</td>
+									<td>
+										<code
+											>async function loadModule() { let [export元の関数名] =
+											await import('[モジュール名].js'); [export元の関数名]();
+											}</code
+										>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<h4 class="heading-four">Strictモード</h4>
+						<p>
+							ES5で導入されたモードです。<strong>Strictモード</strong>では、コードの書き方を厳格にします。なお、moduleを有効にした場合、デフォルトでStrictモードが適用されます。
+						</p>
+						<h5 class="heading-five">影響</h5>
+						<ul>
+							<li>予約語が増え、変数名や関数名として使用できなくなる。</li>
+							<li>未宣言の変数への代入が禁止される。</li>
+							<li>書き込み不可のプロパティの変更が禁止される。</li>
+							<li>関数宣言にブロックスコープが適用される。</li>
+							<li>thisはプリミティブ値も許容される</li>
+						</ul>
+					</section>
+				</details>
+
+				<details>
+					<summary><h3 class="heading-three">Node.js</h3></summary>
+					<section class="section">
+						<h4 class="heading-four">概要</h4>
+						<ul>
+							<li>
+								Node.jsは、サーバーサイドでJavaScriptを実行するための実行環境。
+							</li>
+							<li>V8 JavaScriptエンジンを使用している。</li>
+						</ul>
+						<h4 class="heading-four">ブラウザ環境との差異</h4>
+						<h5 class="heading-five">
+							&#x274C;モジュール&#11093;CommonJSモジュール
+						</h5>
+						<h6 class="heading-six">概要</h6>
+						<p>
+							Node.jsでモジュールを使用するための規格です。モジュールはファイル単位で定義され、モジュール内のコードはモジュールが読み込まれたときに実行されます。
+						</p>
+						<h6 class="heading-six">エクスポート</h6>
+						<code>exports.[エクスポート名] = function(){[処理内容]};</code>
+						<code
+							>module.exports.[任意の名前] = require('[モジュール名].js');</code
+						>
+						<h6 class="heading-six">インポート</h6>
+						<code
+							>const [任意の名前] = require('[エクスポート名].js');
+							[任意の名前].[エクスポートされた関数名]();
+						</code>
+						<ul>
+							<li>
+								fetch()ではURL形式を指定する必要があるため、ローカルファイルを読み込む際は、URL形式でパスを指定する必要がある。
+							</li>
+							<li>
+								Node.js上でTypeScriptを使用する際は@types/nodeをインストールする必要がある。
+							</li>
+						</ul>
+						<h6 class="heading-six">Node.jsでモジュールを使いたい場合</h6>
+						<ul>
+							<li>
+								ESモジュールを使用するために、package.jsonに"type":
+								"module"を追加する。
+								<code>{ "type": "module" }</code>
+							</li>
+							<li>ファイル拡張子を.jsから.mjsに変更する。</li>
+							<li>
+								コマンドラインで--experimental-modulesフラグを使用してNode.jsを起動する。
+							</li>
+						</ul>
+						<h5 class="heading-five">
+							&#x274C;Windowオブジェクト&#11093;globalオブジェクト
+						</h5>
+						<p>
+							Windowオブジェクトが使えず、代わりにglobalオブジェクトを使用する必要がある。
+						</p>
+						<h4 class="heading-four">npm(Node Package Manager)</h4>
+						<ul>
+							<li>
+								npmはNode.js、JavaScriptのライブラリやツールを管理するためのパッケージマネージャー。
+							</li>
+							<li>
+								rpm、apt、yumなどのLinuxのパッケージマネージャーと同様の役割を果たす。
+							</li>
+							<li>
+								npmを使用することで、プロジェクトに必要なプログラムを簡単にインストール、アップデート、管理することができる。
+							</li>
+							<li>管理はpackage.jsonファイルを通じて行われる。</li>
+						</ul>
+					</section>
+				</details>
+			</article>
+
+			<article class="article">
+				<h2 class="heading-two heading-two--ts">TypeScript</h2>
+
+				<details>
+					<summary><h3 class="heading-three">コンパイル設定</h3></summary>
+					<table class="table">
+						<caption>
+							tsconfig.jsonの設定一覧表
+						</caption>
+						<thead>
+							<tr>
+								<th class="thead-ts">設定名</th>
+								<th class="thead-ts">プロパティ</th>
+								<th class="thead-ts">説明</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>compilerOptions</td>
+								<td></td>
+								<td>
+									TypeScriptのコンパイルオプションを指定するためのプロパティ。
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>target</td>
+								<td>
+									コンパイル後のJavaScriptのバージョンを指定するためのプロパティです。。
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>include</td>
+								<td>
+									コンパイル対象のファイルやディレクトリを指定するためのプロパティ。
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>exclude</td>
+								<td>
+									コンパイルから除外するファイルやディレクトリを指定するためのプロパティ。
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>files</td>
+								<td>
+									コンパイル対象のファイルを明示的に指定するためのプロパティ。
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>declaration</td>
+								<td>
+									型定義ファイル（.d.ts）を生成するかどうかを指定するプロパティです。デフォルトはtrue（生成する）です。falseに設定すると生成されません。
+								</td>
+							</tr>
+							<tr>
+								<td>references</td>
+								<td></td>
+								<td>他のプロジェクトへの参照を定義する。</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>outDir</td>
+								<td>
+									コンパイル後のJavaScriptファイルの出力先ディレクトリを指定するプロパティです。
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</details>
+
+				<details>
+					<summary><h3 class="heading-three">Node.jsコマンド</h3></summary>
+					<table class="table">
+						<caption>
+							TypeScriptコマンド一覧表
+						</caption>
+						<thead>
+							<tr>
+								<th class="thead-ts">コマンド</th>
+								<th class="thead-ts">説明</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>tsc [ファイル名].ts</td>
+								<td>
+									TypeScriptファイルをJavaScriptにコンパイルするコマンド。
+								</td>
+							</tr>
+							<tr>
+								<td>tsc --version</td>
+								<td>
+									ローカルにインストールされているTypeScriptのコンパイラーのバージョンを表示するコマンド。
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table>
+						<caption>
+							TypeScript関連のNode.jsコマンド一覧表
+						</caption>
+						<thead>
+							<tr>
+								<th class="thead-ts">コマンド</th>
+								<th class="thead-ts">説明</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>tsc [ファイル名].ts</td>
+								<td>
+									type script
+									compilerの略。TypeScriptファイルをJavaScriptにコンパイルするコマンド。
+								</td>
+							</tr>
+							<tr>
+								<td>ts-node [ファイル名].ts</td>
+								<td>
+									TypeScriptファイルを直接実行するコマンド。ts-nodeはNode.jsの実行環境でTypeScriptコードを直接実行できるようにするツールです。
+								</td>
+							</tr>
+							<tr>
+								<td>tsc --version</td>
+								<td>TypeScriptのバージョンを表示するコマンド。</td>
+							</tr>
+						</tbody>
+					</table>
+				</details>
+			</article>
+
+			<article class="article">
+				<h2 class="heading-two heading-two--tw">Tailwind CSS</h2>
+				<details>
+					<summary><h3 class="heading-three">概要</h3></summary>
+					<section class="section">
+						<p>
+							Tailwind
+							CSSはOSSのCSSフレームワークです。特徴として<strong>ユーティリティファースト</strong>が挙げられます。他のCSSフレームワークは、ボタンやボックスなど既に定義済みのコンポーネントを使い制作していきますが、Tailwind
+							CSSはユーティリティークラスという特定のスタイルが設定されているクラスをHTML要素に組み合わせて適用することで、自由度が高く保守性が高いコーディングを実現しています。
+						</p>
+					</section>
+				</details>
+
+				<details>
+					<summary><h3 class="heading-three">導入</h3></summary>
+					<section class="section">
+						<h4 class="heading-four">試験的導入</h4>
+						<p>
+							私は当初、<a href="https://tailwindcss.com/" target="_blank"
+								>Tailwind CSSの公式サイト</a
+							>を参考に以下のコードを&lt;head&gt;要素内に記述し、試験的に導入しておりました。
+						</p>
+						<code
+							>&lt;script
+							src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</code
+						>
+						<p>
+							その後<b
+								>「同じ要素に、毎回同じTailwind
+								CSSのクラスを記述するのは冗長だな」</b
+							>と感じ、npmを経由し本格導入することにしました。
+						</p>
+						<h4 class="heading-four">本格的導入</h4>
+						<p>
+							<a
+								href="https://tailwindcss.com/docs/installation/using-vite"
+								target="_blank"
+								>Tailwind CSS公式サイト</a
+							>を参考に、viteを経由して導入しました。
+						</p>
+					</section>
+				</details>
+
+				<details>
+					<summary><h3 class="heading-three">設定ファイル</h3></summary>
+					<section class="section">
+						<p>
+							Tailwind
+							CSSの設定ファイルは、プロジェクトのルートディレクトリに配置される
+							<strong>tailwind.config.js</strong>です。以下、記述例です。
+						</p>
+					</section>
+				</details>
+
+				<details>
+					<summary>
+						<h3 class="heading-three">ビルド～読み込み方法</h3>
+					</summary>
+					<section>
+						<p>
+							docs&gt;src&nbsp;内にあるTailwind
+							CSSの構文で制作したCSSファイルを以下のコマンドでbuildし、docsフォルダ内に生成します。
+						</p>
+						<code>npm run build</code>
+						<p>その後、生成したCSSファイルをhtml側で読み込みます。</p>
+					</section>
+				</details>
+			</article>
+		</main>
+		<aside class="aside-right"></aside>
+		<footer></footer>
 	</body>
 </html>
