@@ -8,9 +8,10 @@
 @layer components {
 	.body {
 		display: grid;
-		grid-template-rows: auto auto 1fr auto auto;
+		grid-template-rows: auto auto auto auto;
 		grid-template-areas:
 			'header'
+			'aside-right'
 			'main'
 			'footer';
 	}
@@ -65,32 +66,27 @@
 	}
 	.aside-right {
 		grid-area: aside-right;
-		@apply w-screen h-auto bg-gray-100 pointer-events-none;
-		display: none;
-		overflow-y: auto;
+		@apply w-full h-auto bg-gray-100 pointer-events-none;
+		position: static;
 	}
 
 	/** overlay表示時のgridレイアウト配置 */
-	.header.is-open + .overlay ~ .aside-right {
+	.header.is-open ~ .overlay ~ .aside-left {
 		display: block;
 		position: absolute;
 		pointer-events: auto;
 		top: var(--height-header);
 		left: 0;
 		width: 100vw;
-		height: calc(100vh - var(--height-header));
-		z-index: 101;
+		height: auto;
+		z-index: 100;
+		overflow-y: auto;
+		max-height: calc(100vh - var(--height-header));
 	}
 
-	.header.is-open ~ .overlay ~ .aside-left {
+	.header.is-open ~ .overlay ~ .aside-right {
 		display: block;
-		position: absolute;
 		pointer-events: auto;
-		top: calc(var(--height-header) + 400px);
-		left: 0;
-		width: 100vw;
-		height: auto;
-		z-index: 101;
 	}
 
 	.overlay {
@@ -104,10 +100,7 @@
 		pointer-events: none;
 		display: none;
 		grid-template-columns: 1fr;
-		grid-template-rows: auto auto;
-		grid-template-areas:
-			'aside-right'
-			'aside-left';
+		grid-template-areas: 'aside-left';
 	}
 
 	/** オーバーレイ（is-open時に表示） */

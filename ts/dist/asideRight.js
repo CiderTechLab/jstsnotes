@@ -46,7 +46,7 @@ function generateTableOfContentsHTML(headings) {
     if (headings.length === 0)
         return '';
     let html = '<nav class="toc">\n';
-    html += '  <h2 class="text-xl font-bold mb-4">ページ内目次</h2>\n';
+    html += '  <h2 class="text-xl font-bold mb-4">Table of Contents</h2>\n';
     let inDetails = false;
     headings.forEach((heading) => {
         if (heading.level === 2) {

@@ -1,6 +1,6 @@
 function generateAsideLeft() {
     const htmlCode = `
-	<h2 class="text-xl font-bold mb-4">サイト目次</h2>
+	<h2 class="text-xl font-bold mb-4">Menu</h2>
 	<ul class="ml-0">
     <li><a href="/">Home</a></li>
   </ul>

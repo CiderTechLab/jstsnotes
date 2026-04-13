@@ -272,8 +272,9 @@
 @layer components {
   .body {
     display: grid;
-    grid-template-rows: auto auto 1fr auto auto;
+    grid-template-rows: auto auto auto auto;
     grid-template-areas: 'header'
+			'aside-right'
 			'main'
 			'footer';
   }
@@ -339,12 +340,11 @@
     grid-area: aside-right;
     pointer-events: none;
     height: auto;
-    width: 100vw;
+    width: 100%;
     background-color: var(--color-gray-100);
-    display: none;
-    overflow-y: auto;
+    position: static;
   }
-  .header.is-open + .overlay ~ .aside-right {
+  .header.is-open ~ .overlay ~ .aside-left {
     display: block;
     position: absolute;
     pointer-events: auto;
@@ -352,17 +352,13 @@
     left: 0;
     width: 100vw;
     height: auto;
-    z-index: 101;
+    z-index: 100;
+    overflow-y: auto;
+    max-height: calc(100vh - var(--height-header));
   }
-  .header.is-open ~ .overlay ~ .aside-left {
+  .header.is-open ~ .overlay ~ .aside-right {
     display: block;
-    position: absolute;
     pointer-events: auto;
-    top: calc(var(--height-header) + 400px);
-    left: 0;
-    width: 100vw;
-    height: auto;
-    z-index: 101;
   }
   .overlay {
     position: fixed;
@@ -375,9 +371,7 @@
     pointer-events: none;
     display: none;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    grid-template-areas: 'aside-right'
-			'aside-left';
+    grid-template-areas: 'aside-left';
   }
   .header.is-open ~ .overlay {
     display: grid;

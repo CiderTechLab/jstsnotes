@@ -60,7 +60,7 @@ function generateTableOfContentsHTML(headings: HeadingElement[]): string {
 	if (headings.length === 0) return '';
 
 	let html: string = '<nav class="toc">\n';
-	html += '  <h2 class="text-xl font-bold mb-4">ページ内目次</h2>\n';
+	html += '  <h2 class="text-xl font-bold mb-4">Table of Contents</h2>\n';
 
 	let inDetails = false;
 
