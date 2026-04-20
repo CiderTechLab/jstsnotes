@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<!-- meta info -->
+		<meta charset="UTF-8" />
+		<meta name="author" content="S.K" />
+		<meta
+			name="description"
+			content="S.KによるJavaScriptとTypeScriptの学習まとめサイトです。学習中に得た知識や経験をまとめました。"
+		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tailwind CSS - JS&nbsp;&amp;&nbsp;TS&nbsp;Learn Notes</title>
+		<!-- style info -->
+		<link rel="stylesheet" href="dist/index.css" />
+		<!-- script info -->
+		<script type="module" src="dist/header.js" defer></script>
+		<script type="module" src="dist/footer.js" defer></script>
+		<script type="module" src="dist/asideLeft.js" defer></script>
+		<script type="module" src="dist/asideRight.js" defer></script>
+	</head>
+	<body class="body">
+		<header class="header"></header>
+		<aside class="aside aside-left"></aside>
+		<main class="main">
+			<h2 class="heading-two">Tailwind CSS</h2>
+			<article class="article">
+				<section class="section">
+					<h3 class="heading-three">概要</h3>
+					<p>
+						Tailwind
+						CSSはOSSのCSSフレームワークです。特徴として<strong>ユーティリティファースト</strong>が挙げられます。他のCSSフレームワークは、ボタンやボックスなど既に定義済みのコンポーネントを使い制作していきますが、Tailwind
+						CSSはユーティリティークラスという特定のスタイルが設定されているクラスをHTML要素に組み合わせて適用することで、自由度が高く保守性が高いコーディングを実現しています。
+					</p>
+				</section>
+				<section class="section">
+					<h3 class="heading-three">導入</h3>
+					<h4 class="heading-four">試験的導入</h4>
+					<p>
+						私は当初、<a href="https://tailwindcss.com/" target="_blank"
+							>Tailwind CSSの公式サイト</a
+						>を参考に以下のコードを&lt;head&gt;要素内に記述し、試験的に導入しておりました。
+					</p>
+					<code
+						>&lt;script
+						src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</code
+					>
+					<p>
+						その後<b
+							>「同じ要素に、毎回同じTailwind
+							CSSのクラスを記述するのは冗長だな」</b
+						>と感じ、npmを経由し本格導入することにしました。
+					</p>
+					<h4 class="heading-four">本格的導入</h4>
+					<p>
+						<a
+							href="https://tailwindcss.com/docs/installation/using-vite"
+							target="_blank"
+							>Tailwind CSS公式サイト</a
+						>を参考に、viteを経由して導入しました。
+					</p>
+				</section>
+				<section class="section">
+					<h3 class="heading-three">設定ファイル</h3>
+					<p>
+						Tailwind
+						CSSの設定ファイルは、プロジェクトのルートディレクトリに配置される
+						<strong>tailwind.config.js</strong>です。以下、記述例です。
+					</p>
+				</section>
+				<section class="section">
+					<h3 class="heading-three">ビルド～読み込み方法</h3>
+					<p>
+						docs&gt;src&nbsp;内にあるTailwind
+						CSSの構文で制作したCSSファイルを以下のコマンドでbuildし、docsフォルダ内に生成します。
+					</p>
+					<code>npm run build</code>
+					<p>その後、生成したCSSファイルをhtml側で読み込みます。</p>
+				</section>
+			</article>
+		</main>
+		<aside class="aside aside-right"></aside>
+		<footer class="footer"></footer>
+	</body>
+</html>

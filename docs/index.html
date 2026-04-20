@@ -6,34 +6,17 @@
 		<meta name="author" content="S.K" />
 		<meta
 			name="description"
-			content="S.KによるJavaScriptおよびTypeScriptの学習まとめサイトです。学習中に得た知識や経験をまとめました。"
+			content="S.KによるJavaScriptとTypeScriptの学習まとめサイトです。学習中に得た知識や経験をまとめました。"
 		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>JS&nbsp;&amp;&nbsp;TS&nbsp;Learn&nbsp;Notes</title>
 		<!-- style info -->
 		<link rel="stylesheet" href="dist/index.css" />
-		<link rel="stylesheet" href="dist/index.css" />
 		<!-- script info -->
-		<script
-			type="module"
-			src="https://cidertechlab.github.io/roadtojsts/ts/dist/header.js"
-			defer
-		></script>
-		<script
-			type="module"
-			src="https://cidertechlab.github.io/roadtojsts/ts/dist/footer.js"
-			defer
-		></script>
-		<script
-			type="module"
-			src="https://cidertechlab.github.io/roadtojsts/ts/dist/asideLeft.js"
-			defer
-		></script>
-		<script
-			type="module"
-			src="https://cidertechlab.github.io/roadtojsts/ts/dist/asideRight.js"
-			defer
-		></script>
+		<script type="module" src="dist/header.js" defer></script>
+		<script type="module" src="dist/footer.js" defer></script>
+		<script type="module" src="dist/asideLeft.js" defer></script>
+		<script type="module" src="dist/asideRight.js" defer></script>
 	</head>
 	<body class="body">
 		<header class="header"></header>
@@ -43,7 +26,8 @@
 				<section class="section">
 					<b>ようこそ！JS&nbsp;&amp;&nbsp;TS&nbsp;Learn&nbsp;Notesへ！</b><br />
 					詳細は<a
-						href="https://github.com/CiderTechLab/roadtojsts/blob/main/README.md"
+						href="https://github.com/CiderTechLab/jstsnotes/blob/main/README.md"
+						target="_blank"
 						>README.md</a
 					>をご覧ください
 				</section>
@@ -56,31 +40,43 @@
 					<section class="section">
 						<h4 class="heading-four heading-four--js">JavaScriptの実行方法</h4>
 						<h5 class="heading-five">HTMLから読み込む</h5>
-						<p>以下のタグで読み込むことができます。</p>
+						<table class="table">
+							<caption>
+								HTMLからJavaScriptを読み込む方法一覧表
+							</caption>
+							<thead>
+								<tr>
+									<th class="thead-js">タグ</th>
+									<th class="thead-js">説明</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>&lt;script src="[ファイル名].js"&gt;&lt;/script&gt;</td>
+									<td>
+										HTMLの最後部、&lt;/body&gt;タグ直前に書く方法。DOMツリー構築後にスクリプトが実行されるため、意図した動作になる。しかし、このタグをHTMLの最前部（例えば&lt;body&gt;直下）に置くと、DOMツリー構築後にスクリプトが実行され、意図した動作にならないことがある。
+									</td>
+								</tr>
+								<tr>
+									<td>
+										&lt;script src="[ファイル名].js" defer&gt;&lt;/script&gt;
+									</td>
+									<td>
+										HTMLのhead要素内に書く方法。defer属性を付けることで、DOMツリー構築後にスクリプトが実行されるようになるため、意図した動作になる。
+									</td>
+								</tr>
+								<tr>
+									<td>
+										&lt;script type="module" src="[ファイル名].js"
+										defer&gt;&lt;/script&gt;
+									</td>
+									<td>
+										HTMLのhead要素内に書く方法。上記のdefer属性に加え、type="module"を付けることで、スクリプトがモジュールとして扱われるようになり、DOMツリー構築後にスクリプトが実行されるようになるため、意図した動作になる。
+									</td>
+								</tr>
+							</tbody>
+						</table>
 
-						<code>&lt;script src="[ファイル名].js"&gt;&lt;/script&gt;</code>
-
-						<p>
-							しかし、問題が。実はこのタグをそのままHTMLの最前部（例えば&lt;body&gt;直下）に置くと、DOMツリー構築後にスクリプトが実行され、意図した動作にならないことがあります。そこで出てくるのがHTMLの最後部、&lt;/body&gt;タグ直前に書く方法です。
-						</p>
-						<br />
-						<p>
-							でも、ちょっと待ってください！分かりづらくないですか？そこで次は&lt;head&gt;内に埋め込む方法です。
-						</p>
-
-						<code>&lt;script src="[ファイル名].js"&gt;&lt;/script&gt;</code>
-
-						<p>
-							はい、コードは同じですね。書き方も同じです。しかし問題があります。それは<b>DOMツリー構築後にスクリプトが実行され、意図した動作にならないこと</b>です。そこで、以下のコードに変更します。
-						</p>
-
-						<code
-							>&lt;script src="[ファイル名].js" defer&gt;&lt;/script&gt;</code
-						>
-
-						<p>
-							違いが分かりますか？defer属性を付けることで、スクリプトはDOMツリーの構築が完了した後に実行されるようになります。
-						</p>
 						<h5 class="heading-five">Node.js上での実行</h5>
 						<p>以下のコマンドで実行することができます。</p>
 						<code>node&nbsp;[ファイル名].js</code>
@@ -148,249 +144,6 @@
 									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-1_variable_naming-convension.js"
 									target="_blank"
 									>01-1_variable_naming-convension.js</a
-								>
-							</li>
-						</ul>
-					</section>
-				</details>
-
-				<details>
-					<summary>
-						<h3 class="heading-three">
-							変数、定数、データ型（JavaScript/TypeScript）
-						</h3>
-					</summary>
-					<section class="section">
-						<table class="table">
-							<caption>
-								変数・定数宣言の種類一覧表
-							</caption>
-							<thead class="thead">
-								<tr>
-									<th class="thead-js">宣言</th>
-									<th class="thead-js">初期値</th>
-									<th class="thead-js">再宣言</th>
-									<th class="thead-js">再代入</th>
-									<th class="thead-js">スコープ</th>
-									<th class="thead-js">巻き上げ</th>
-									<th class="thead-js">備考</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>const</td>
-									<td>必須</td>
-									<td>&#215;</td>
-									<td>&#215;</td>
-									<td>ブロックスコープ</td>
-									<td>&#215;</td>
-									<td><strong>最優先で使うべき。</strong></td>
-								</tr>
-								<tr>
-									<td>let</td>
-									<td>undefined（→実質必須な事が多い）</td>
-									<td>&#215;</td>
-									<td>&#9675;</td>
-									<td>ブロックスコープ</td>
-									<td>&#215;</td>
-									<td>constの次に使用するべき。</td>
-								</tr>
-								<tr>
-									<td>var</td>
-									<td>undefined</td>
-									<td>&#9675;</td>
-									<td>&#9675;</td>
-									<td>関数スコープ</td>
-									<td>&#9675;</td>
-									<td><strong>非推奨。</strong></td>
-								</tr>
-							</tbody>
-						</table>
-						<h4 class="heading-four">サンプルコード</h4>
-						<ul>
-							<li>
-								<a
-									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-1_variable_naming-convension.js"
-									target="_blank"
-									>01-1_variable_naming-convension.js</a
-								>
-							</li>
-						</ul>
-						<h4 class="heading-four">データ型</h4>
-						<table class="table">
-							<caption>
-								データ型一覧表
-							</caption>
-							<thead class="thead">
-								<tr>
-									<th class="thead-js-ts">データ型</th>
-									<th class="thead-js-ts">型の種類</th>
-									<th class="thead-js-ts">値</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>String</td>
-									<td>プリミティブ型</td>
-									<td>文字列</td>
-								</tr>
-								<tr>
-									<td>Number</td>
-									<td>プリミティブ型</td>
-									<td>
-										数値（整数、浮動小数点数、Infinity、NaN）、-(2^53-1)〜2^53-1、※2^53
-										- 1 = 9007199254740991
-									</td>
-								</tr>
-								<tr>
-									<td>bigint</td>
-									<td>プリミティブ型</td>
-									<td>任意精度整数（メモリが許す限りの大きさ）</td>
-								</tr>
-								<tr>
-									<td>Boolean</td>
-									<td>プリミティブ型</td>
-									<td>真偽値（trueまたはfalse）</td>
-								</tr>
-								<tr>
-									<td>null</td>
-									<td>プリミティブ型</td>
-									<td>null値</td>
-								</tr>
-								<tr>
-									<td>undefined</td>
-									<td>プリミティブ型</td>
-									<td>未定義値</td>
-								</tr>
-								<tr>
-									<td>symbol</td>
-									<td>プリミティブ型</td>
-									<td>一意の識別子</td>
-								</tr>
-								<tr>
-									<td>object</td>
-									<td>オブジェクト型</td>
-									<td>オブジェクト（プロパティの集合）</td>
-								</tr>
-								<tr>
-									<td>array</td>
-									<td>オブジェクト型</td>
-									<td>配列（順序付きの値の集合）</td>
-								</tr>
-								<tr>
-									<td>function</td>
-									<td>オブジェクト型</td>
-									<td>関数（実行可能なオブジェクト）</td>
-								</tr>
-							</tbody>
-						</table>
-						<table class="table">
-							<caption>
-								TypeScript固有のデータ型一覧表
-							</caption>
-							<thead class="thead">
-								<tr>
-									<th class="thead-ts">データ型</th>
-									<th class="thead-ts">型の種類</th>
-									<th class="thead-ts">構文</th>
-									<th class="thead-ts">使用例</th>
-									<th class="thead-ts">説明</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>any</td>
-									<td>特殊型</td>
-									<td>[変数宣言][変数名]: any</td>
-									<td><code>let valName: any</code></td>
-									<td>
-										任意の型の値を許容する。しかし、型安全性が失われるため<strong
-											>非推奨。</strong
-										>
-									</td>
-								</tr>
-								<tr>
-									<td>union</td>
-									<td>特殊型</td>
-									<td>[変数宣言][変数名]:[型1] | [型2] | ...</td>
-									<td><code>let valName: string | number</code></td>
-									<td>
-										複数の型を組み合わせた型。使用例は、値がstring型またはnumber型のいづれかであることを意味する。使えるプロパティは指定した複数の型の両方で使えるものに限られます。たとえばstring
-										|
-										numberの場合.toString()は両方使えますが.toUpperCase()は使えません。（number型で使えないため。）
-									</td>
-								</tr>
-								<tr>
-									<td>リテラル</td>
-									<td>特殊型</td>
-									<td>[変数宣言][変数名]: [リテラル値]</td>
-									<td><code>let valName: "hello"</code></td>
-									<td>
-										特定の値のみを許容する型。リテラル型を使用することで、変数が特定の値のみを持つことを保証できる。
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<h4 class="heading-four">TypeScript固有の機能</h4>
-						<h5 class="heading-five">型の明示的な宣言</h5>
-						<p>
-							TypeScriptで型宣言は必須なのか、と言われると<strong>型推論機能により必ずしも明示的な型宣言は必要ない。</strong>ただし、関数の引数・戻り値、データベースでは安全のために明示的な型宣言が推奨される。
-						</p>
-						<h5 class="heading-five">型チェック機能</h5>
-						<p>
-							IDEでの注釈、型推論機能、typeof演算子を使用することで変数、関数の型をチェックすることが出来る。
-						</p>
-						<h5 class="heading-five">割り当て可能性（assignability）</h5>
-						<p>
-							ある型の値が別の型の変数に割り当て可能かどうかを判断するルール。（例：サブタイプ関係、構造的部分型）
-						</p>
-						<h5 class="heading-five">型アノテーション（※非推奨）</h5>
-						<p>
-							変数で初期化時、型が推論されない変数は<strong
-								>進化するany（evolving any）</strong
-							>となる。しかし、any型を明示的に指定することは非推奨。なぜなら、型安全性が失われ、TypeScriptの利点が活かせなくなるため。
-						</p>
-						<h5 class="heading-five">型の絞り込み</h5>
-						<p>
-							ある値が定義された型や、宣言された型、以前に推論された型よりも限定的な型であることをコードで示すことです。型の絞り込みで利用できる論理チェックを<strong
-								>型ガード（type guard）</strong
-							>と呼びます。
-						</p>
-						<h5 class="heading-five">型の割り当てによる絞り込み</h5>
-						<p>
-							変数に直接値を割り当てると、変数を割り当てられた値の型に限定します。
-						</p>
-						<h5 class="heading-five">型のif文による確認</h5>
-						<p></p>
-						<h5 class="heading-five">型のtypeof演算子による確認</h5>
-						<h4 class="heading-four">サンプルコード</h4>
-						<ul>
-							<li>
-								<a
-									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-2_type.js"
-									target="_blank"
-									>01-2_type.js</a
-								>
-							</li>
-							<li>
-								<a
-									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-3_primitive-type.js"
-									target="_blank"
-									>01-3_primitive-type.js</a
-								>
-							</li>
-							<li>
-								<a
-									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-4_object-type.js"
-									target="_blank"
-									>01-4_object-type.js</a
-								>
-							</li>
-							<li>
-								<a
-									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-5_dynamic-type.js"
-									target="_blank"
-									>01-5_dynamic-type.js</a
 								>
 							</li>
 						</ul>
@@ -1269,75 +1022,6 @@
 							</tr>
 						</tbody>
 					</table>
-				</details>
-			</article>
-
-			<article class="article">
-				<h2 class="heading-two heading-two--tw">Tailwind CSS</h2>
-				<details>
-					<summary><h3 class="heading-three">概要</h3></summary>
-					<section class="section">
-						<p>
-							Tailwind
-							CSSはOSSのCSSフレームワークです。特徴として<strong>ユーティリティファースト</strong>が挙げられます。他のCSSフレームワークは、ボタンやボックスなど既に定義済みのコンポーネントを使い制作していきますが、Tailwind
-							CSSはユーティリティークラスという特定のスタイルが設定されているクラスをHTML要素に組み合わせて適用することで、自由度が高く保守性が高いコーディングを実現しています。
-						</p>
-					</section>
-				</details>
-
-				<details>
-					<summary><h3 class="heading-three">導入</h3></summary>
-					<section class="section">
-						<h4 class="heading-four">試験的導入</h4>
-						<p>
-							私は当初、<a href="https://tailwindcss.com/" target="_blank"
-								>Tailwind CSSの公式サイト</a
-							>を参考に以下のコードを&lt;head&gt;要素内に記述し、試験的に導入しておりました。
-						</p>
-						<code
-							>&lt;script
-							src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</code
-						>
-						<p>
-							その後<b
-								>「同じ要素に、毎回同じTailwind
-								CSSのクラスを記述するのは冗長だな」</b
-							>と感じ、npmを経由し本格導入することにしました。
-						</p>
-						<h4 class="heading-four">本格的導入</h4>
-						<p>
-							<a
-								href="https://tailwindcss.com/docs/installation/using-vite"
-								target="_blank"
-								>Tailwind CSS公式サイト</a
-							>を参考に、viteを経由して導入しました。
-						</p>
-					</section>
-				</details>
-
-				<details>
-					<summary><h3 class="heading-three">設定ファイル</h3></summary>
-					<section class="section">
-						<p>
-							Tailwind
-							CSSの設定ファイルは、プロジェクトのルートディレクトリに配置される
-							<strong>tailwind.config.js</strong>です。以下、記述例です。
-						</p>
-					</section>
-				</details>
-
-				<details>
-					<summary>
-						<h3 class="heading-three">ビルド～読み込み方法</h3>
-					</summary>
-					<section>
-						<p>
-							docs&gt;src&nbsp;内にあるTailwind
-							CSSの構文で制作したCSSファイルを以下のコマンドでbuildし、docsフォルダ内に生成します。
-						</p>
-						<code>npm run build</code>
-						<p>その後、生成したCSSファイルをhtml側で読み込みます。</p>
-					</section>
 				</details>
 			</article>
 		</main>

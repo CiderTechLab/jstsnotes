@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<!-- meta info -->
+		<meta charset="UTF-8" />
+		<meta name="author" content="S.K" />
+		<meta
+			name="description"
+			content="S.KによるJavaScriptとTypeScriptの学習まとめサイトです。学習中に得た知識や経験をまとめました。"
+		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>
+			変数、定数、データ型 - JS&nbsp;&amp;&nbsp;TS&nbsp;Learn&nbsp;Notes
+		</title>
+		<!-- style info -->
+		<link rel="stylesheet" href="dist/index.css" />
+		<!-- script info -->
+		<script type="module" src="dist/header.js" defer></script>
+		<script type="module" src="dist/footer.js" defer></script>
+		<script type="module" src="dist/asideLeft.js" defer></script>
+		<script type="module" src="dist/asideRight.js" defer></script>
+	</head>
+	<body class="body">
+		<header class="header"></header>
+		<aside class="aside aside-left"></aside>
+		<main class="main">
+			<article class="article">
+        <section class="section"></section>
+					<h2 class="heading-two">変数、定数、データ型（JavaScript/TypeScript）
+						</h2>
+						<table class="table">
+							<caption>
+								変数・定数宣言の種類一覧表
+							</caption>
+							<thead class="thead">
+								<tr>
+									<th class="thead-js">宣言</th>
+									<th class="thead-js">初期値</th>
+									<th class="thead-js">再宣言</th>
+									<th class="thead-js">再代入</th>
+									<th class="thead-js">スコープ</th>
+									<th class="thead-js">巻き上げ</th>
+									<th class="thead-js">備考</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>const</td>
+									<td>必須</td>
+									<td>&#215;</td>
+									<td>&#215;</td>
+									<td>ブロックスコープ</td>
+									<td>&#215;</td>
+									<td><strong>最優先で使うべき。</strong></td>
+								</tr>
+								<tr>
+									<td>let</td>
+									<td>undefined（→実質必須な事が多い）</td>
+									<td>&#215;</td>
+									<td>&#9675;</td>
+									<td>ブロックスコープ</td>
+									<td>&#215;</td>
+									<td>constの次に使用するべき。</td>
+								</tr>
+								<tr>
+									<td>var</td>
+									<td>undefined</td>
+									<td>&#9675;</td>
+									<td>&#9675;</td>
+									<td>関数スコープ</td>
+									<td>&#9675;</td>
+									<td><strong>非推奨。</strong></td>
+								</tr>
+							</tbody>
+						</table>
+						<h4 class="heading-four">サンプルコード</h4>
+						<ul>
+							<li>
+								<a
+									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-1_variable_naming-convension.js"
+									target="_blank"
+									>01-1_variable_naming-convension.js</a
+								>
+							</li>
+						</ul>
+						<h4 class="heading-four">データ型</h4>
+						<table class="table">
+							<caption>
+								データ型一覧表
+							</caption>
+							<thead class="thead">
+								<tr>
+									<th class="thead-js-ts">データ型</th>
+									<th class="thead-js-ts">型の種類</th>
+									<th class="thead-js-ts">値</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>String</td>
+									<td>プリミティブ型</td>
+									<td>文字列</td>
+								</tr>
+								<tr>
+									<td>Number</td>
+									<td>プリミティブ型</td>
+									<td>
+										数値（整数、浮動小数点数、Infinity、NaN）、-(2^53-1)〜2^53-1、※2^53
+										- 1 = 9007199254740991
+									</td>
+								</tr>
+								<tr>
+									<td>bigint</td>
+									<td>プリミティブ型</td>
+									<td>任意精度整数（メモリが許す限りの大きさ）</td>
+								</tr>
+								<tr>
+									<td>Boolean</td>
+									<td>プリミティブ型</td>
+									<td>真偽値（trueまたはfalse）</td>
+								</tr>
+								<tr>
+									<td>null</td>
+									<td>プリミティブ型</td>
+									<td>null値</td>
+								</tr>
+								<tr>
+									<td>undefined</td>
+									<td>プリミティブ型</td>
+									<td>未定義値</td>
+								</tr>
+								<tr>
+									<td>symbol</td>
+									<td>プリミティブ型</td>
+									<td>一意の識別子</td>
+								</tr>
+								<tr>
+									<td>object</td>
+									<td>オブジェクト型</td>
+									<td>オブジェクト（プロパティの集合）</td>
+								</tr>
+								<tr>
+									<td>array</td>
+									<td>オブジェクト型</td>
+									<td>配列（順序付きの値の集合）</td>
+								</tr>
+								<tr>
+									<td>function</td>
+									<td>オブジェクト型</td>
+									<td>関数（実行可能なオブジェクト）</td>
+								</tr>
+							</tbody>
+						</table>
+						<table class="table">
+							<caption>
+								TypeScript固有のデータ型一覧表
+							</caption>
+							<thead class="thead">
+								<tr>
+									<th class="thead-ts">データ型</th>
+									<th class="thead-ts">型の種類</th>
+									<th class="thead-ts">構文</th>
+									<th class="thead-ts">使用例</th>
+									<th class="thead-ts">説明</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>any</td>
+									<td>特殊型</td>
+									<td>[変数宣言][変数名]: any</td>
+									<td><code>let valName: any</code></td>
+									<td>
+										任意の型の値を許容する。しかし、型安全性が失われるため<strong
+											>非推奨。</strong
+										>
+									</td>
+								</tr>
+								<tr>
+									<td>union</td>
+									<td>特殊型</td>
+									<td>[変数宣言][変数名]:[型1] | [型2] | ...</td>
+									<td><code>let valName: string | number</code></td>
+									<td>
+										複数の型を組み合わせた型。使用例は、値がstring型またはnumber型のいづれかであることを意味する。使えるプロパティは指定した複数の型の両方で使えるものに限られます。たとえばstring
+										|
+										numberの場合.toString()は両方使えますが.toUpperCase()は使えません。（number型で使えないため。）
+									</td>
+								</tr>
+								<tr>
+									<td>リテラル</td>
+									<td>特殊型</td>
+									<td>[変数宣言][変数名]: [リテラル値]</td>
+									<td><code>let valName: "hello"</code></td>
+									<td>
+										特定の値のみを許容する型。リテラル型を使用することで、変数が特定の値のみを持つことを保証できる。
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<h4 class="heading-four">TypeScript固有の機能</h4>
+						<h5 class="heading-five">型の明示的な宣言</h5>
+						<p>
+							TypeScriptで型宣言は必須なのか、と言われると<strong>型推論機能により必ずしも明示的な型宣言は必要ない。</strong>ただし、関数の引数・戻り値、データベースでは安全のために明示的な型宣言が推奨される。
+						</p>
+						<h5 class="heading-five">型チェック機能</h5>
+						<p>
+							IDEでの注釈、型推論機能、typeof演算子を使用することで変数、関数の型をチェックすることが出来る。
+						</p>
+						<h5 class="heading-five">割り当て可能性（assignability）</h5>
+						<p>
+							ある型の値が別の型の変数に割り当て可能かどうかを判断するルール。（例：サブタイプ関係、構造的部分型）
+						</p>
+						<h5 class="heading-five">型アノテーション（※非推奨）</h5>
+						<p>
+							変数で初期化時、型が推論されない変数は<strong
+								>進化するany（evolving any）</strong
+							>となる。しかし、any型を明示的に指定することは非推奨。なぜなら、型安全性が失われ、TypeScriptの利点が活かせなくなるため。
+						</p>
+						<h5 class="heading-five">型の絞り込み</h5>
+						<p>
+							ある値が定義された型や、宣言された型、以前に推論された型よりも限定的な型であることをコードで示すことです。型の絞り込みで利用できる論理チェックを<strong
+								>型ガード（type guard）</strong
+							>と呼びます。
+						</p>
+						<h5 class="heading-five">型の割り当てによる絞り込み</h5>
+						<p>
+							変数に直接値を割り当てると、変数を割り当てられた値の型に限定します。
+						</p>
+						<h5 class="heading-five">型のif文による確認</h5>
+						<p></p>
+						<h5 class="heading-five">型のtypeof演算子による確認</h5>
+						<h4 class="heading-four">サンプルコード</h4>
+						<ul>
+							<li>
+								<a
+									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-2_type.js"
+									target="_blank"
+									>01-2_type.js</a
+								>
+							</li>
+							<li>
+								<a
+									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-3_primitive-type.js"
+									target="_blank"
+									>01-3_primitive-type.js</a
+								>
+							</li>
+							<li>
+								<a
+									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-4_object-type.js"
+									target="_blank"
+									>01-4_object-type.js</a
+								>
+							</li>
+							<li>
+								<a
+									href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/01-5_dynamic-type.js"
+									target="_blank"
+									>01-5_dynamic-type.js</a
+								>
+							</li>
+						</ul>
+					</section>
+			</article>
+		</main>
+		<aside class="aside aside-right"></aside>
+		<footer class="footer"></footer>
+	</body>
+</html>

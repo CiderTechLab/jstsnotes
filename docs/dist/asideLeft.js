@@ -1,9 +1,4 @@
-/**
- * @author S.K
- */
-export {};
-
-function generateAsideLeft(): void {
+function generateAsideLeft() {
 	const htmlCode = `
 	<h2 class="text-xl font-bold mb-4">Menu</h2>
 	<ul class="ml-0">
@@ -21,15 +16,14 @@ function generateAsideLeft(): void {
 	<ul class="ml-0">
 		<li><a href="/tailwindcss.html">Tailwind CSS</a></li>
 	</ul>`;
-
 	let asideLeftElement = document.querySelector('.aside-left');
 	if (asideLeftElement) {
 		asideLeftElement.innerHTML = htmlCode;
 	}
 }
-
 if (document.readyState === 'loading') {
 	document.addEventListener('DOMContentLoaded', generateAsideLeft);
 } else {
 	generateAsideLeft();
 }
+export {};

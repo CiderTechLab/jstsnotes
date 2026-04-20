@@ -8,6 +8,8 @@ export {};
  * 関数のパラメーター
  * - TypeScriptでは関数の引数に型を指定することができる。
  * - 引数に型を指定しないと暗黙的にany型と推論される。
+ * @param {string} langage - 言語
+ * @return {void}
  */
 function greeting(langage: string): void {
 	console.log(`---関数のパラメーター---`);
@@ -21,6 +23,9 @@ greeting('TypeScript');
  * - オプションパラメーターは省略可能であり、省略した場合はundefinedになる。
  * - オプションパラメーターは必須パラメーターの後に配置する必要があり、必須パラメータ
  *   ーの前に配置することはできない。SyntaxErrorになる。
+ * @param {string} langage - 言語
+ * @param {string} [name] - 名前
+ * @return {void}
  */
 function greetingWithOption(langage: string, name?: string): void {
 	console.log(`---関数のオプションパラメーター---`);
@@ -62,3 +67,58 @@ function rerurnType(langage: string): string {
 	return `Hello, ${langage} world!`;
 }
 console.log(rerurnType('TypeScript'));
+
+/**
+ * 関数の型
+ * - 関数の型を定義することができる。
+ * - 関数の型は、引数の型と戻り値の型を指定することができる。
+ */
+console.log(`---関数の型---`);
+const add: (a: number, b: number) => number = (a, b) => {
+	return a + b;
+};
+
+/**
+ * 関数の戻り値の型
+ * - void : 戻り値がないことを示す型。
+ * - never: 戻り値がないだけではなく関数の処理も返さない型。
+ * @return {void}
+ */
+function voidFunction(): void {
+	console.log(`---void関数---`);
+	const text = 'This function does not return anything.';
+	console.log(text);
+	// ERROR: 型 'string' を型 'void' に割り当てることはできません。(ts2322)
+	// return text;
+}
+voidFunction();
+
+/**
+ * @return {never}
+ */
+function throwError(): never {
+	// 以下文で意図的に例外（エラー）をスローする。
+	throw new Error('エラー');
+}
+
+/**
+ * 関数のオーバーロード
+ * - 同じ関数名で複数の関数定義を行うことができる。
+ * - できれば関数のオーバーロードは避けるべき。（コードの可読性が低下するため。）
+ */
+function overLoad(a: number, b: number): number;
+function overLoad(a: string, b: string): string;
+function overLoad(a: any, b: any): any {
+	console.log(`---関数のオーバーロード---`);
+	if (typeof a === 'number' && typeof b === 'number') {
+		return a + b;
+	} else if (typeof a === 'string' && typeof b === 'string') {
+		return a + b;
+	} else {
+		throw new Error('型エラー');
+	}
+}
+console.log(overLoad(1, 2));
+console.log(overLoad('Hello, ', 'world!'));
+// ERROR: 引数の型 'boolean' は、パラメーターの型 'number' に割り当てることができません。(ts2345)
+// console.log(overLoad(true, false));
