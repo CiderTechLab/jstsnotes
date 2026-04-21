@@ -1,8 +1,8 @@
 /**
- * @author S.K
  * Table of Contents Generator
  * <main>要素内のh2, h3タグから自動的に目次を生成し、
  * <aside class="sidebar-right">に挿入する
+ * @author S.K
  */
 
 interface HeadingElement {
@@ -60,8 +60,6 @@ function generateTableOfContentsHTML(headings: HeadingElement[]): string {
 	if (headings.length === 0) return '';
 
 	let html: string = '<nav class="toc">\n';
-	html += '  <h2 class="text-xl font-bold mb-4">Table of Contents</h2>\n';
-
 	let inDetails = false;
 
 	headings.forEach((heading) => {
@@ -105,6 +103,33 @@ function generateTableOfContentsHTML(headings: HeadingElement[]): string {
 }
 
 /**
+ * ウィンドウサイズがPC（1280px以上）かどうかを判定
+ */
+function isPC(): boolean {
+	return window.matchMedia('(min-width: 1280px)').matches;
+}
+
+/**
+ * PC時に全てのdetails要素をopen状態に設定
+ */
+function updateDetailsState(): void {
+	const sidebarRight = document.querySelector('.aside-right');
+	if (!sidebarRight) return;
+
+	const detailsElements =
+		sidebarRight.querySelectorAll<HTMLDetailsElement>('details');
+	const pcMode = isPC();
+
+	detailsElements.forEach((details) => {
+		if (pcMode) {
+			details.setAttribute('open', '');
+		} else {
+			details.removeAttribute('open');
+		}
+	});
+}
+
+/**
  * 目次を<aside class="sidebar-right">に挿入する
  */
 function insertToc(): void {
@@ -115,6 +140,9 @@ function insertToc(): void {
 	const tocHTML = generateTableOfContentsHTML(headings);
 
 	sidebarRight.innerHTML = tocHTML;
+
+	// PC時に全てのdetails要素をopen状態に設定
+	updateDetailsState();
 
 	// ハンバーガーボタンを動的に作成
 	let hamburger = document.querySelector<HTMLButtonElement>('.toc-hamburger');
@@ -141,6 +169,13 @@ function insertToc(): void {
 	const summaryElements = sidebarRight.querySelectorAll<HTMLElement>('summary');
 	summaryElements.forEach((summary) => {
 		summary.addEventListener('click', (event: Event) => {
+			// <a>要素をクリックした場合はリンクを機能させる
+			const target = event.target as HTMLElement;
+			if (target.tagName === 'A') {
+				return; // リンククリックを処理させる
+			}
+
+			// <a>以外をクリックした場合のみdetailsを開閉
 			const details = summary.closest<HTMLDetailsElement>('details');
 			if (details) {
 				details.toggleAttribute('open');
@@ -173,3 +208,8 @@ if (document.readyState === 'loading') {
 } else {
 	insertToc();
 }
+
+/**
+ * ウィンドウリサイズ時にdetails状態を更新（レスポンシブ対応）
+ */
+window.addEventListener('resize', updateDetailsState);

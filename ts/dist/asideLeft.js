@@ -6,15 +6,17 @@ function generateAsideLeft() {
   </ul>
 	<h3 class="text-lg mt-4 mb-2">JavaScript/TypeScript共通</h3>
   <ul class="ml-0">
-		<li><a href="/about.html">概要</a></li>
+		<li><a href="about.html">概要</a></li>
+		<li><a href="variable.html">変数、定数、データ型</a></li>
+		<li><a href="operator.html">演算子</a></li>
 	</ul>
 	<h3 class="text-lg mt-4 mb-2">TypeScript</h3>
 	<ul class="ml-0">
-		<li><a href="/errorcode.html">TypeScriptエラーコード一覧</a></li>
+		<li><a href="errorcode.html">TypeScriptエラーコード一覧</a></li>
 	</ul>
 	<h3 class="text-lg mt-4 mb-2">Tailwind CSS</h3>
 	<ul class="ml-0">
-		<li><a href="/tailwindcss.html">Tailwind CSS</a></li>
+		<li><a href="tailwindcss.html">Tailwind CSS</a></li>
 	</ul>`;
     let asideLeftElement = document.querySelector('.aside-left');
     if (asideLeftElement) {

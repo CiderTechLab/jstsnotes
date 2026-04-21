@@ -65,7 +65,7 @@
 	}
 	.aside-right {
 		grid-area: aside-right;
-		@apply w-full h-auto bg-gray-100 pointer-events-none;
+		@apply w-full h-auto bg-gray-100 pointer-events-auto;
 		margin-top: var(--height-header);
 		position: static;
 	}

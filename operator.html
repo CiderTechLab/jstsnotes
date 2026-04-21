@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<!-- meta info -->
+		<meta charset="UTF-8" />
+		<meta name="author" content="S.K" />
+		<meta
+			name="description"
+			content="S.KによるJavaScriptとTypeScriptの学習まとめサイトです。学習中に得た知識や経験をまとめました。"
+		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>演算子 - JS&nbsp;&amp;&nbsp;TS&nbsp;Learn Notes</title>
+		<!-- style info -->
+		<link rel="stylesheet" href="style/dist/index.css" />
+		<!-- script info -->
+		<script type="module" src="ts/dist/header.js" defer></script>
+		<script type="module" src="ts/dist/footer.js" defer></script>
+		<script type="module" src="ts/dist/asideLeft.js" defer></script>
+		<script type="module" src="ts/dist/asideRight.js" defer></script>
+	</head>
+	<body class="body">
+		<header class="header"></header>
+		<aside class="aside aside-left"></aside>
+		<main class="main">
+			<h2 class="heading-two">演算子</h2>
+			<article>
+				<section class="section">
+					<h3 class="heading-three">優先順位</h3>
+					<p>一番強い演算子は()（括弧）、一番弱い演算子は,(カンマ)。</p>
+					<h3 class="heading-three">算術演算子</h3>
+					<table class="table">
+						<caption>
+							算術演算子一覧表
+						</caption>
+						<thead class="thead">
+							<tr>
+								<th class="thead-js">演算子</th>
+								<th class="thead-js">意味</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>+</td>
+								<td>加算</td>
+							</tr>
+							<tr>
+								<td>-</td>
+								<td>減算</td>
+							</tr>
+							<tr>
+								<td>*</td>
+								<td>乗算</td>
+							</tr>
+							<tr>
+								<td>/</td>
+								<td>除算</td>
+							</tr>
+							<tr>
+								<td>%</td>
+								<td>剰余（割り算の余り）</td>
+							</tr>
+							<tr>
+								<td>++（インクリメント演算子）</td>
+								<td>1を加算。前置・後置で挙動が異なる。</td>
+							</tr>
+							<tr>
+								<td>--（デクリメント演算子）</td>
+								<td>1を減算。前置・後置で挙動が異なる。</td>
+							</tr>
+						</tbody>
+					</table>
+					<h3 class="heading-three">等価演算子</h3>
+					<h4 class="heading-four">概要</h4>
+					<p>
+						値の等しさを比較するために使用され、戻り値はBoolean型（trueまたはfalse）となる。ほとんどの場合、厳密等価（===）または厳密非等価（!==）を使用する。
+					</p>
+					<table class="table">
+						<caption>
+							等価演算子一覧表
+						</caption>
+						<thead class="thead">
+							<tr>
+								<th class="thead-js">演算子</th>
+								<th class="thead-js">意味</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>==</td>
+								<td>等価。値が等しい場合にtrueを返す。<b>型変換あり</b></td>
+							</tr>
+							<tr>
+								<td>===</td>
+								<td>
+									厳密等価。値と型が等しい場合にtrueを返す。<b>型変換なし</b>
+								</td>
+							</tr>
+							<tr>
+								<td>!=</td>
+								<td>
+									非等価。値が等しくない場合にtrueを返す。<b>型変換あり</b>
+								</td>
+							</tr>
+							<tr>
+								<td>!==</td>
+								<td>
+									厳密非等価。値と型が等しくない場合にtrueを返す。<b
+										>型変換なし</b
+									>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h3 class="heading-three">関係演算子</h3>
+					<h4 class="heading-four">概要</h4>
+					<p>
+						オペランドの大小関係を比較するために使用され、戻り値はBoolean型（trueまたはfalse）となる。
+					</p>
+					<table class="table">
+						<caption>
+							関係演算子一覧表
+						</caption>
+						<thead class="thead">
+							<tr>
+								<th class="thead-js">演算子</th>
+								<th class="thead-js">意味</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>X&gt;Y</td>
+								<td>大なり。XがYより大きい場合にtrueを返す。</td>
+							</tr>
+							<tr>
+								<td>X&lt;Y</td>
+								<td>小なり。XがYより小さい場合にtrueを返す。</td>
+							</tr>
+							<tr>
+								<td>X&gt;=Y</td>
+								<td>大なりイコール。XがY<b>以上</b>の場合にtrueを返す。</td>
+							</tr>
+							<tr>
+								<td>X&lt;=Y</td>
+								<td>小なりイコール。XがY<b>以下</b>の場合にtrueを返す。</td>
+							</tr>
+							<tr>
+								<td>X in Y</td>
+								<td>
+									YプロパティがXオブジェクトのプロパティを持っているかどうかを判断する。
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<h3 class="heading-three">論理演算子</h3>
+					<h4 class="heading-four">概要</h4>
+					<p>
+						オペランドの論理積、論理和、論理否定を評価するために使用され、戻り値はBoolean型（trueまたはfalse）となる。
+					</p>
+					<table class="table">
+						<caption>
+							論理演算子一覧表
+						</caption>
+						<thead class="thead">
+							<tr>
+								<th class="thead-js">演算子</th>
+								<th class="thead-js">意味</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>X&nbsp;&amp;&amp;&nbsp;Y</td>
+								<td>論理積（AND）。XとYの両方がtrueの場合にtrueを返す。</td>
+							</tr>
+							<tr>
+								<td>X&nbsp;||&nbsp;Y</td>
+								<td>
+									論理和（OR）。XまたはYのどちらかがtrueの場合にtrueを返す。
+								</td>
+							</tr>
+							<tr>
+								<td>!X</td>
+								<td>論理否定（NOT）。Xがfalseの場合にtrueを返す。</td>
+							</tr>
+						</tbody>
+					</table>
+					<h3 class="heading-three">falsyとtruthy</h3>
+					<p>
+						Boolean関数で値を評価した際、falseとみなされる値を<b>falsy</b>、trueとみなされる値を<b>truthy</b>と呼ぶ。
+					</p>
+					<h3 class="heading-three">三項演算子</h3>
+					<p>以下の式でif文を簡潔に書くことができる。</p>
+					<p>
+						<code
+							>[条件式]&nbsp;?&nbsp;[真のときの値]&nbsp;:&nbsp;[偽のときの値]</code
+						>
+					</p>
+					<h4 class="heading-four">サンプルコード</h4>
+					<ul>
+						<li>
+							<a
+								href="https://github.com/CiderTechLab/jstsnotes/blob/main/js/02_operators-operands.js"
+								target="_blank"
+								>02_operators-operands.js</a
+							>
+						</li>
+					</ul>
+				</section>
+			</article>
+		</main>
+		<aside class="aside aside-right"></aside>
+		<footer class="footer"></footer>
+	</body>
+</html>
