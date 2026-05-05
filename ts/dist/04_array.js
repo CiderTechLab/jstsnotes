@@ -61,4 +61,12 @@ function sum(...numbers) {
     return numbers.reduce((acc, cur) => acc + cur, 0);
 }
 console.log(sum(1, 2, 3, 4, 5));
+/**
+ * タプル
+ */
+console.log('---タプル---');
+function createTuple() {
+    return ['ohtani', 17];
+}
+console.log(createTuple());
 export {};

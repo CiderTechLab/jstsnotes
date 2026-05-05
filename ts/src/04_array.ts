@@ -69,3 +69,27 @@ function sum(...numbers: number[]): number {
 	return numbers.reduce((acc, cur) => acc + cur, 0);
 }
 console.log(sum(1, 2, 3, 4, 5));
+
+/**
+ * タプル
+ * - 固定サイズの配列
+ */
+function createTuple(): [string, number] {
+	console.log('---タプル---');
+	return ['ohtani', 17];
+
+	// return ['suzuki'];
+	// ERROR:ソースには 1 個の要素が含まれていますが、ターゲットには 2 個が必要です。ts(2322)
+}
+console.log(createTuple());
+
+/**
+ * タプルの型推論
+ * - as const: constアサーションと呼ばれる機能。
+ *   使用された値を出来る限りそのまま使用し、読み取り専用で型を推論する。
+ */
+function createTupleInference() {
+	console.log('---タプルの型推論---');
+	return ['ohtani', 17] as const;
+}
+console.log(createTupleInference());
